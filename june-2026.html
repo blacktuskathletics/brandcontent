@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Tusk — June 2026 Content Calendar</title>
+<style>
+:root{
+  color-scheme: light;
+  --black:#231F20; --deep:#0A0806; --gold:#A4822D;
+  --white:#FFFFFF; --lgrey:#F2F2F2; --mgrey:#6E6A66; --dgrey:#3A3633;
+  --line:#E2DED7; --acq:#FBF1DA; --acq-b:#A4822D;
+  --ret:#EDEBE7; --ret-b:#6E6A66; --reeng:#F6F4F1; --reeng-b:#B8B2A8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--white); color:var(--black);
+  font-family:Arial,Helvetica,sans-serif; font-size:14px; line-height:1.45;
+}
+.wrap{max-width:1080px; margin:0 auto; padding:22px 20px 60px}
+header.top{border-bottom:3px solid var(--gold); padding-bottom:16px; margin-bottom:18px}
+.kicker{font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); font-weight:700}
+h1{font-size:24px; margin:6px 0 2px; color:var(--black)}
+.sub{color:var(--mgrey); font-size:13px}
+
+.progwrap{margin:18px 0 8px}
+.progrow{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+.progbar{flex:1; min-width:220px; height:14px; background:var(--lgrey); border-radius:8px; overflow:hidden}
+.progfill{height:100%; width:0; background:var(--gold); border-radius:8px; transition:width .3s ease}
+.progtxt{font-weight:700; font-size:13px; white-space:nowrap}
+.tierstats{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+.chip{font-size:11px; padding:4px 10px; border-radius:20px; font-weight:700; border:1px solid var(--line)}
+.chip .n{color:var(--mgrey); font-weight:400}
+.controls{margin:14px 0 4px; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+.btn{font:inherit; font-size:12px; padding:6px 12px; border:1px solid var(--line); background:var(--white);
+  border-radius:6px; cursor:pointer; color:var(--dgrey)}
+.btn:hover{border-color:var(--gold); color:var(--black)}
+.legend{font-size:11px; color:var(--mgrey); margin-left:auto; display:flex; gap:14px; flex-wrap:wrap}
+.dot{display:inline-block; width:10px; height:10px; border-radius:3px; vertical-align:middle; margin-right:4px}
+
+.week{margin-top:26px}
+.week h2{font-size:15px; margin:0 0 4px; padding-bottom:6px; border-bottom:1px solid var(--line)}
+.week h2 .wpct{float:right; font-size:12px; color:var(--mgrey); font-weight:400}
+
+.row{display:grid; grid-template-columns:30px 92px 1fr; gap:12px; align-items:start;
+  padding:11px 12px; border:1px solid var(--line); border-left-width:4px; border-radius:7px; margin-top:8px; background:var(--white)}
+.row.acq{border-left-color:var(--acq-b)}
+.row.ret{border-left-color:var(--ret-b)}
+.row.reeng{border-left-color:var(--reeng-b)}
+.row.done{background:var(--lgrey); opacity:.62}
+.row.done .hook{text-decoration:line-through}
+
+.cb{appearance:none; width:22px; height:22px; border:2px solid var(--mgrey); border-radius:6px;
+  cursor:pointer; margin:1px 0 0; position:relative; flex:none; background:var(--white)}
+.cb:checked{background:var(--gold); border-color:var(--gold)}
+.cb:checked::after{content:""; position:absolute; left:6px; top:2px; width:6px; height:11px;
+  border:solid var(--white); border-width:0 3px 3px 0; transform:rotate(45deg)}
+
+.meta{font-size:11px; color:var(--mgrey)}
+.date{font-weight:700; color:var(--black); font-size:12px}
+.tags{margin-top:3px; display:flex; gap:5px; flex-wrap:wrap}
+.tag{font-size:10px; padding:2px 7px; border-radius:12px; font-weight:700; letter-spacing:.02em}
+.tag.acq{background:var(--acq); color:#7a5f1d}
+.tag.ret{background:var(--ret); color:var(--dgrey)}
+.tag.reeng{background:var(--reeng); color:var(--mgrey)}
+.tag.type{background:var(--white); border:1px solid var(--line); color:var(--mgrey); font-weight:400}
+.tag.ch{background:var(--deep); color:var(--white); font-weight:400}
+
+.hook{font-weight:700; color:var(--black); font-size:14px}
+.msg{margin-top:3px; color:var(--dgrey); font-size:12.5px}
+.foot{margin-top:6px; font-size:11px; color:var(--mgrey)}
+.foot b{color:var(--dgrey); font-weight:700}
+.saved{font-size:11px; color:var(--gold); margin-left:6px; opacity:0; transition:opacity .2s}
+.saved.show{opacity:1}
+footer.note{margin-top:30px; padding-top:14px; border-top:1px solid var(--line); font-size:11px; color:var(--mgrey)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="kicker">Black Tusk Athletics · Edmonton</div>
+    <h1>June 2026 Content Calendar</h1>
+    <div class="sub">Four weeks · all three growth tiers · Instagram, Facebook &amp; email. Check items off as they publish — progress saves on this device.</div>
+  </header>
+
+  <div class="progwrap">
+    <div class="progrow">
+      <div class="progbar"><div class="progfill" id="fill"></div></div>
+      <div class="progtxt" id="ptxt">0 of 24 published<span class="saved" id="saved">saved ✓</span></div>
+    </div>
+    <div class="tierstats" id="tierstats"></div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="reset">Reset all</button>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--acq-b)"></span>Acquisition</span>
+      <span><span class="dot" style="background:var(--ret-b)"></span>Retention</span>
+      <span><span class="dot" style="background:var(--reeng-b)"></span>Re-engagement + Community</span>
+    </div>
+  </div>
+
+  <div id="cal"></div>
+
+  <footer class="note">
+    Source: BTA June 2026 Content Calendar. Items marked “NEW” or with full copy are detailed in the master doc.
+    Items involving an offer or member email need Jay’s sign-off before publishing. Check state is stored locally in this browser.
+  </footer>
+</div>
+
+<script>
+const DATA = [
+ {week:"Week 1 — June 1–7 · “Summer starts here / What to expect”", items:[
+  {d:"Mon Jun 1",ch:"Instagram",tier:"acq",type:"Reel",hook:"“You don’t need to be fit to start. You start to get fit.”",msg:"Bust the #1 barrier that stops people walking in. CTA: book a free No Sweat Intro.",src:"Original (echoes “We Make Decisions…”)",prod:"Film 20–30s: coach piece-to-camera + class b-roll"},
+  {d:"Tue Jun 2",ch:"IG + FB",tier:"acq",type:"Carousel",hook:"“Your first week here — what actually happens”",msg:"Lower gym nerves; show the room is friendly. CTA: NSI link in bio.",src:"NEW — Carousel 1",prod:"Use supplied PNGs; 6 slides"},
+  {d:"Wed Jun 3",ch:"Email",tier:"ret",type:"Email",hook:"Subject: “The days you least want to come”",msg:"Consistency beats heroics; reaffirm why they started. No ask.",src:"Repurpose “We Make Decisions…”",prod:"Copy-only"},
+  {d:"Thu Jun 5",ch:"Instagram",tier:"ret",type:"Feed / Reel",hook:"“Breathe. The skill nobody coaches you on.”",msg:"Exhale on exertion — a quick win members can use today.",src:"Repurpose “Proper Breathing”",prod:"Coach clip or single graphic"},
+  {d:"Fri Jun 6",ch:"Facebook",tier:"reeng",type:"Community post",hook:"“Haven’t seen you in a while? The door’s still open.”",msg:"Warm, no-guilt win-back touch. CTA: reply or drop in.",src:"Original",prod:"Copy + warm candid photo"},
+  {d:"Sat Jun 7",ch:"Instagram",tier:"reeng",type:"Story",hook:"“Tag your Saturday crew”",msg:"Community engagement; surface belonging.",src:"Original",prod:"Story template + tag sticker"},
+ ]},
+ {week:"Week 2 — June 8–14 · “Your why / PT as outcomes”", items:[
+  {d:"Mon Jun 8",ch:"Instagram",tier:"acq",type:"Reel",hook:"“What Personal Training actually buys you”",msg:"Position PT (top revenue driver) as outcomes, not sessions. CTA: NSI.",src:"NEW blog “What PT Actually Buys You”",prod:"Film a real 1:1 session"},
+  {d:"Tue Jun 9",ch:"IG + FB",tier:"ret",type:"Feed",hook:"Member spotlight: “Meet [Member] — here’s her why”",msg:"Real member, real reason. Make members feel seen.",src:"Repurpose “What’s Your Why” (Julia format)",prod:"Photo + short pulled quote; get consent"},
+  {d:"Wed Jun 10",ch:"Email",tier:"ret",type:"Email",hook:"Subject: “Your why, on the hard days”",msg:"Reconnect members to motivation in month one (churn window).",src:"Repurpose “What’s Your Why”",prod:"Copy-only"},
+  {d:"Thu Jun 11",ch:"Instagram",tier:"acq",type:"Carousel",hook:"“Breathe.” — coaching tip carousel",msg:"Save-and-share value that shows coaching depth to non-members.",src:"NEW — Carousel 2",prod:"Use supplied PNGs; 6 slides"},
+  {d:"Fri Jun 12",ch:"Facebook",tier:"reeng",type:"Event",hook:"“Bring-a-Friend Saturday — June 20”",msg:"Stand up the community event; invite members to bring one guest.",src:"Original",prod:"Event graphic + RSVP (offer = approval gate)"},
+  {d:"Sun Jun 14",ch:"Instagram",tier:"reeng",type:"Story",hook:"“We miss you” check-in poll",msg:"Low-pressure win-back; open a door for lapsed members.",src:"Original",prod:"Story poll sticker"},
+ ]},
+ {week:"Week 3 — June 15–21 · “Father’s Day / coaches / Legends”", items:[
+  {d:"Mon Jun 15",ch:"Instagram",tier:"acq",type:"Reel",hook:"“The strongest thing you can model for your kids”",msg:"Father’s Day angle (Jun 21); parents as the audience.",src:"Original",prod:"Film parent + kid / Legends member"},
+  {d:"Tue Jun 16",ch:"IG + FB",tier:"ret",type:"Feed",hook:"“A day in the life of Coach [Name]”",msg:"Humanize the staff; build the trust that keeps members.",src:"Original",prod:"Film/photo a coach’s real day"},
+  {d:"Wed Jun 17",ch:"Email",tier:"reeng",type:"Email",hook:"Subject: “Come back for one class — on us”",msg:"Win-back the month-one churned. One free class, no strings.",src:"Original",prod:"Copy-only; OFFER needs approval"},
+  {d:"Thu Jun 18",ch:"Instagram",tier:"ret",type:"Feed",hook:"“Legends (50+): proof it’s never too late”",msg:"Program spotlight; pride for an underseen group.",src:"Original",prod:"Photo a Legends class"},
+  {d:"Sat Jun 20",ch:"IG + FB",tier:"reeng",type:"Reel",hook:"“Bring-a-Friend Day + the longest day of the year”",msg:"Solstice + community event; capture footage for re-use.",src:"Original",prod:"Film the event live"},
+  {d:"Sun Jun 21",ch:"Instagram",tier:"reeng",type:"Feed / Carousel",hook:"“To every dad in our community —”",msg:"Father’s Day; celebrate member dads by name.",src:"Original",prod:"Carousel of member dads (consent)"},
+ ]},
+ {week:"Week 4 — June 22–27 · “Summer start / month recap”", items:[
+  {d:"Mon Jun 22",ch:"Instagram",tier:"acq",type:"Reel",hook:"“Summer is the easiest time to start. Here’s why.”",msg:"Seasonal acquisition hook; Edmonton patio-season energy.",src:"Original",prod:"Film outdoor / river-valley adjacent"},
+  {d:"Tue Jun 23",ch:"IG + FB",tier:"ret",type:"Feed",hook:"“The June PR board”",msg:"Celebrate member wins; make the room proud.",src:"Original",prod:"Photo the PR/whiteboard"},
+  {d:"Wed Jun 24",ch:"Email",tier:"ret",type:"Email",hook:"Subject: “What we saw in class this month”",msg:"Value-first community recap; warmth, no pitch.",src:"Original",prod:"Copy-only"},
+  {d:"Thu Jun 25",ch:"Instagram",tier:"acq",type:"Feed",hook:"“StrongTEENS: school’s out, screens are winning”",msg:"Teens program; parents buying for kids out of school.",src:"Original",prod:"Photo a StrongTEENS session"},
+  {d:"Fri Jun 26",ch:"Facebook",tier:"reeng",type:"Community post",hook:"“June, in your words” — member shoutouts",msg:"Belonging; close the month on the members’ voices.",src:"Original",prod:"Graphic with 3–4 member quotes"},
+  {d:"Sat Jun 27",ch:"Instagram",tier:"reeng",type:"Story",hook:"“One small step this weekend”",msg:"Re-engage lapsed; a single doable action.",src:"Original",prod:"Story template"},
+ ]},
+];
+
+const TIER_LABEL = {acq:"Acquisition", ret:"Retention", reeng:"Re-engagement + Community"};
+const KEY = "bta-june2026-calendar-v1";
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ state = {}; }
+
+function idFor(wi, ii){ return "w"+wi+"i"+ii; }
+function save(){
+  localStorage.setItem(KEY, JSON.stringify(state));
+  const s = document.getElementById("saved");
+  s.classList.add("show"); setTimeout(()=>s.classList.remove("show"), 900);
+}
+
+function render(){
+  const cal = document.getElementById("cal");
+  cal.innerHTML = "";
+  DATA.forEach((wk, wi) => {
+    const done = wk.items.filter((_,ii)=>state[idFor(wi,ii)]).length;
+    const sec = document.createElement("div");
+    sec.className = "week";
+    sec.innerHTML = '<h2>'+wk.week+'<span class="wpct">'+done+'/'+wk.items.length+'</span></h2>';
+    wk.items.forEach((it, ii) => {
+      const id = idFor(wi, ii);
+      const checked = !!state[id];
+      const row = document.createElement("div");
+      row.className = "row "+it.tier+(checked?" done":"");
+      row.innerHTML =
+        '<input type="checkbox" class="cb" '+(checked?"checked":"")+' data-id="'+id+'" aria-label="Mark published">'+
+        '<div class="meta"><div class="date">'+it.d+'</div>'+
+          '<div class="tags"><span class="tag ch">'+it.ch+'</span></div></div>'+
+        '<div><div class="tags" style="margin:0 0 4px">'+
+            '<span class="tag '+it.tier+'">'+TIER_LABEL[it.tier]+'</span>'+
+            '<span class="tag type">'+it.type+'</span></div>'+
+          '<div class="hook">'+it.hook+'</div>'+
+          '<div class="msg">'+it.msg+'</div>'+
+          '<div class="foot"><b>Source:</b> '+it.src+'  ·  <b>Production:</b> '+it.prod+'</div>'+
+        '</div>';
+      sec.appendChild(row);
+    });
+    cal.appendChild(sec);
+  });
+  cal.querySelectorAll(".cb").forEach(cb => {
+    cb.addEventListener("change", e => {
+      const id = e.target.dataset.id;
+      if(e.target.checked) state[id] = true; else delete state[id];
+      save(); render(); updateProgress();
+    });
+  });
+  updateProgress();
+}
+
+function updateProgress(){
+  let total=0, done=0;
+  const tierCount = {acq:[0,0], ret:[0,0], reeng:[0,0]};
+  DATA.forEach((wk, wi) => wk.items.forEach((it, ii) => {
+    total++; tierCount[it.tier][1]++;
+    if(state[idFor(wi,ii)]){ done++; tierCount[it.tier][0]++; }
+  }));
+  const pct = total ? Math.round(done/total*100) : 0;
+  document.getElementById("fill").style.width = pct+"%";
+  document.getElementById("ptxt").innerHTML = done+" of "+total+" published ("+pct+"%)<span class="+'"saved"'+" id=\"saved\"></span>";
+  const ts = document.getElementById("tierstats");
+  ts.innerHTML = "";
+  Object.keys(tierCount).forEach(t => {
+    const c = tierCount[t];
+    const chip = document.createElement("span");
+    chip.className = "chip";
+    chip.style.borderLeft = "4px solid var(--"+(t==="acq"?"acq-b":t==="ret"?"ret-b":"reeng-b")+")";
+    chip.innerHTML = TIER_LABEL[t]+' <span class="n">'+c[0]+"/"+c[1]+"</span>";
+    ts.appendChild(chip);
+  });
+}
+
+document.getElementById("reset").addEventListener("click", () => {
+  if(confirm("Clear all check marks?")){ state = {}; save(); render(); }
+});
+
+render();
+</script>
+</body>
+</html>
