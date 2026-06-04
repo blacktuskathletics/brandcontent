@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Tusk — July 2026 Content Calendar</title>
+<style>
+:root{
+  color-scheme: light;
+  --black:#231F20; --deep:#0A0806; --gold:#A4822D;
+  --white:#FFFFFF; --lgrey:#F2F2F2; --mgrey:#6E6A66; --dgrey:#3A3633;
+  --line:#E2DED7; --acq:#FBF1DA; --acq-b:#A4822D;
+  --ret:#EDEBE7; --ret-b:#6E6A66; --reeng:#F6F4F1; --reeng-b:#B8B2A8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--white); color:var(--black);
+  font-family:Arial,Helvetica,sans-serif; font-size:14px; line-height:1.45;
+}
+.wrap{max-width:1080px; margin:0 auto; padding:22px 20px 60px}
+header.top{border-bottom:3px solid var(--gold); padding-bottom:16px; margin-bottom:18px}
+.kicker{font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); font-weight:700}
+h1{font-size:24px; margin:6px 0 2px; color:var(--black)}
+.sub{color:var(--mgrey); font-size:13px}
+
+.progwrap{margin:18px 0 8px}
+.progrow{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+.progbar{flex:1; min-width:220px; height:14px; background:var(--lgrey); border-radius:8px; overflow:hidden}
+.progfill{height:100%; width:0; background:var(--gold); border-radius:8px; transition:width .3s ease}
+.progtxt{font-weight:700; font-size:13px; white-space:nowrap}
+.tierstats{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+.chip{font-size:11px; padding:4px 10px; border-radius:20px; font-weight:700; border:1px solid var(--line)}
+.chip .n{color:var(--mgrey); font-weight:400}
+.controls{margin:14px 0 4px; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+.btn{font:inherit; font-size:12px; padding:6px 12px; border:1px solid var(--line); background:var(--white);
+  border-radius:6px; cursor:pointer; color:var(--dgrey)}
+.btn:hover{border-color:var(--gold); color:var(--black)}
+.legend{font-size:11px; color:var(--mgrey); margin-left:auto; display:flex; gap:14px; flex-wrap:wrap}
+.dot{display:inline-block; width:10px; height:10px; border-radius:3px; vertical-align:middle; margin-right:4px}
+
+.week{margin-top:26px}
+.week h2{font-size:15px; margin:0 0 4px; padding-bottom:6px; border-bottom:1px solid var(--line)}
+.week h2 .wpct{float:right; font-size:12px; color:var(--mgrey); font-weight:400}
+
+.row{display:grid; grid-template-columns:64px 92px 1fr 26px; gap:12px; align-items:start;
+  padding:11px 12px; border:1px solid var(--line); border-left-width:4px; border-radius:7px; margin-top:8px; background:var(--white)}
+.row.acq{border-left-color:var(--acq-b)}
+.row.ret{border-left-color:var(--ret-b)}
+.row.reeng{border-left-color:var(--reeng-b)}
+.row.done{background:var(--lgrey); opacity:.66}
+.row.done .hook{text-decoration:line-through}
+
+.cbcol{display:flex; flex-direction:column; gap:8px; align-items:center}
+.cbwrap{display:flex; flex-direction:column; align-items:center; gap:2px}
+.cblbl{font-size:8.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--mgrey); font-weight:700}
+.cb{appearance:none; width:22px; height:22px; border:2px solid var(--mgrey); border-radius:6px;
+  cursor:pointer; margin:0; position:relative; flex:none; background:var(--white)}
+.cb.cap:checked{background:var(--dgrey); border-color:var(--dgrey)}
+.cb.pub:checked{background:var(--gold); border-color:var(--gold)}
+.cb:checked::after{content:""; position:absolute; left:6px; top:2px; width:6px; height:11px;
+  border:solid var(--white); border-width:0 3px 3px 0; transform:rotate(45deg)}
+
+.meta{font-size:11px; color:var(--mgrey)}
+.date{font-weight:700; color:var(--black); font-size:12px}
+.tags{margin-top:3px; display:flex; gap:5px; flex-wrap:wrap}
+.tag{font-size:10px; padding:2px 7px; border-radius:12px; font-weight:700; letter-spacing:.02em}
+.tag.acq{background:var(--acq); color:#7a5f1d}
+.tag.ret{background:var(--ret); color:var(--dgrey)}
+.tag.reeng{background:var(--reeng); color:var(--mgrey)}
+.tag.type{background:var(--white); border:1px solid var(--line); color:var(--mgrey); font-weight:400}
+.tag.ch{background:var(--deep); color:var(--white); font-weight:400}
+.tag.flag{background:#fff4d6; color:#8a6d18; border:1px solid var(--gold)}
+
+.hook{font-weight:700; color:var(--black); font-size:14px}
+.msg{margin-top:3px; color:var(--dgrey); font-size:12.5px}
+.foot{margin-top:6px; font-size:11px; color:var(--mgrey)}
+.foot b{color:var(--dgrey); font-weight:700}
+.exp{appearance:none; border:1px solid var(--line); background:var(--white); width:24px; height:24px;
+  border-radius:6px; cursor:pointer; font-size:16px; line-height:1; color:var(--mgrey); font-weight:700}
+.exp:hover{border-color:var(--gold); color:var(--black)}
+.detail{display:none; grid-column:1 / -1; margin-top:10px; padding:12px 14px; background:var(--lgrey);
+  border-radius:6px; border-left:3px solid var(--gold); font-size:12.5px; color:var(--dgrey); white-space:pre-wrap; line-height:1.5}
+.row.open .detail{display:block}
+.detail b{color:var(--black)}
+
+.saved{font-size:11px; color:var(--gold); margin-left:6px; opacity:0; transition:opacity .2s}
+.saved.show{opacity:1}
+
+section.lib{margin-top:40px; border-top:3px solid var(--gold); padding-top:18px}
+section.lib h2{font-size:19px; margin:0 0 4px}
+section.lib h3{font-size:14px; margin:22px 0 4px; color:var(--black); border-bottom:1px solid var(--line); padding-bottom:5px}
+section.lib h4{font-size:13px; margin:16px 0 4px; color:var(--gold)}
+.card{border:1px solid var(--line); border-radius:8px; padding:14px 16px; margin-top:10px; background:var(--white)}
+.card p{margin:0 0 10px}
+.subj{font-weight:700; color:var(--black)}
+.flagbox{background:#fff4d6; border:1px solid var(--gold); border-radius:6px; padding:8px 12px; font-size:12px;
+  color:#8a6d18; margin:8px 0}
+.linklist{columns:2; font-size:12.5px; margin-top:6px}
+.linklist a{color:var(--gold)}
+@media(max-width:620px){ .linklist{columns:1} .row{grid-template-columns:54px 1fr 26px} .meta{display:none} }
+footer.note{margin-top:30px; padding-top:14px; border-top:1px solid var(--line); font-size:11px; color:var(--mgrey)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="kicker">Black Tusk Athletics · Edmonton</div>
+    <h1>July 2026 Content Calendar</h1>
+    <div class="sub">Four weeks · all three growth tiers · Instagram, Facebook &amp; email. Tick <b>Captured</b> when footage/copy is ready and <b>Published</b> when it's live. Tap <b>+</b> on any row for the full copy. Progress saves on this device.</div>
+  </header>
+
+  <div class="progwrap">
+    <div class="progrow">
+      <div class="progbar"><div class="progfill" id="fill"></div></div>
+      <div class="progtxt" id="ptxt">0 of 24 published<span class="saved" id="saved">saved ✓</span></div>
+    </div>
+    <div class="tierstats" id="tierstats"></div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="expandAll">Expand all</button>
+    <button class="btn" id="collapseAll">Collapse all</button>
+    <button class="btn" id="reset">Reset checks</button>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--acq-b)"></span>Acquisition</span>
+      <span><span class="dot" style="background:var(--ret-b)"></span>Retention</span>
+      <span><span class="dot" style="background:var(--reeng-b)"></span>Re-engagement + Community</span>
+    </div>
+  </div>
+
+  <div id="cal"></div>
+
+  <!-- ============ SOURCE LIBRARY ============ -->
+  <section class="lib">
+    <h2>Source Library</h2>
+    <div class="sub">Everything written in the Black Tusk voice, ready to use. Edit bracketed bits (member names, coach names) before anything goes live. Items with an offer or member email need Jay's sign-off first.</div>
+
+    <h3>Weekly emails (4)</h3>
+
+    <div class="card">
+      <p class="subj">Email 1 · Wed Jul 1 · Community — Subject: “Happy Canada Day from all of us”</p>
+      <p>We're not going to use this email to sell you anything. We just wanted to say thanks.</p>
+      <p>Black Tusk isn't a building with some equipment in it. It's the people — the early risers, the after-work crew, the person who quietly cheers for whoever's finishing last. On a day that's about this country and the communities in it, we're grateful you're part of ours.</p>
+      <p>Enjoy the day, Edmonton. Get outside, see the people you love, and we'll see you on the floor when you're ready.</p>
+      <p>Happy Canada Day,<br>Coach [Name]</p>
+    </div>
+
+    <div class="card">
+      <p class="subj">Email 2 · Wed Jul 8 · Retention — Subject: “When the gym's the last thing you want in summer”</p>
+      <p>It's 26 degrees, the patios are full, and the last place you want to be is under a barbell. We get it. Half the class feels the same way in July.</p>
+      <p>Here's the thing we've learned after years of coaching: the summer is won by people who let go of all-or-nothing. You don't need the perfect week. You need to show up for the imperfect one — twenty minutes, one class, a walk that turns into something. Every time you do the thing you didn't feel like doing, you cast a small vote for the person you're becoming.</p>
+      <p>So don't wait for September to get serious. Come as you are, in the heat, on the busy week. We'll scale it, and we'll be glad to see you.</p>
+      <p>See you in class,<br>Coach [Name]</p>
+    </div>
+
+    <div class="card">
+      <p class="subj">Email 3 · Wed Jul 15 · Re-engagement — Subject: “Come back for one class — on us”</p>
+      <div class="flagbox">⚠ This email includes a free-class offer. Do not send until Jay approves the offer and the copy.</div>
+      <p>We'll keep this short. We've missed you.</p>
+      <p>Life gets busy, summer scatters everyone, and somewhere in there the gym slipped off the list. That happens to everyone — no guilt here. But the door is still open, and your spot in this community didn't go anywhere.</p>
+      <p>Come back for one class before August, on us. No commitment, no catch — just show up, and we'll take care of the rest. Reply to this email and we'll find you a time that works.</p>
+      <p>Hope to see you soon,<br>Coach [Name]</p>
+    </div>
+
+    <div class="card">
+      <p class="subj">Email 4 · Wed Jul 22 · Retention — Subject: “What we saw in class this month”</p>
+      <p>July was a good month to be part of this gym. We watched a member come straight from the airport to make a class. We watched someone hit a lift they'd been circling since spring. We watched the room go quiet and then loud for the last person finishing a workout — because that's who we are.</p>
+      <p>None of that shows up on a leaderboard. But it's the real measure of the place: people doing hard things next to people who want to see them win, even in the middle of summer.</p>
+      <p>Thanks for being one of them. See you on the floor.</p>
+      <p>Coach [Name]</p>
+    </div>
+
+    <h3>Full original blog posts (2)</h3>
+
+    <div class="card">
+      <h4>Blog A — Retention / summer consistency</h4>
+      <p class="subj">Don't Lose Your Summer</p>
+      <p>There's a particular kind of guilt that shows up around the middle of July. The weather's finally good, the calendar's full of weekends away, and somewhere between the lake and the patio your training quietly fell off a cliff. By the time you notice, two weeks have gone by, and the story you start telling yourself is the dangerous one: “I've blown it. I'll just start fresh in September.”</p>
+      <p>If that's where you are right now, we want to take that story away from you, because it isn't true.</p>
+      <p>Here's what actually happens when you take a couple of weeks off: not much. Your fitness doesn't evaporate. Your strength doesn't pack a bag and leave. The body you built over months doesn't come undone over a long weekend at the cabin. What does the damage isn't the break — it's the guilt that turns a two-week pause into a three-month one. The break is fine. The story is what gets you.</p>
+      <p>So here's the reframe we give our members every July: aim for “something,” not “perfect.” The whole all-or-nothing idea — that if you can't train five days a week you may as well not bother — is the single biggest reason people lose their summers. It's nonsense. A twenty-minute hotel-room circuit counts. A long hike counts. A swim, a bike, a walk that turns into a jog counts. Consistency was never about being perfect; it was about not disappearing entirely. Keep one foot in, and coming back isn't a comeback — it's just Tuesday.</p>
+      <p>And you don't have to figure it out alone. If you're heading away, tell us before you go and we'll send you something simple you can do anywhere. Not because we want to chase you down on vacation — we want you to enjoy it — but because coming home to a coach who knows where you went and asks how the trip was is a very different feeling than slinking back in hoping nobody noticed you were gone.</p>
+      <p>Enjoy your summer. Genuinely. Ride the midway at K-Days, sit on the patio, take the trip. Just don't let two good weeks off convince you to throw away the next three months. Keep something going, however small, and we'll be right here when you walk back in.</p>
+      <p>See you in class.<br><i>— Coach [Name]</i></p>
+      <p style="font-size:11.5px;color:var(--mgrey)"><b>Repurpose into:</b> the Jul 13 “Don't lose your summer” carousel, Email 2, a 30s Reel (“two weeks off won't undo you”), and a Story poll (“where are you headed this summer?”).</p>
+    </div>
+
+    <div class="card">
+      <h4>Blog B — Personal Training / revenue</h4>
+      <p class="subj">Personal Training Isn't a Last Resort</p>
+      <p>Most people think about Personal Training in one of two ways, and both of them are wrong. The first: PT is what you do when you're too out of shape, too injured, or too nervous for a “real” class — the rehab option, the kiddie pool. The second: PT is for athletes chasing the last five percent. Most people decide they're neither, so they never ask. And they miss the thing PT is actually built for.</p>
+      <p>Personal Training isn't a last resort. It's precision.</p>
+      <p>When you train one-on-one, you're buying an hour where someone's entire job is you. Not the room, not the clock, not the eleven other people in class — you. Your knee that's been cranky since that hike. The deadlift setup that never quite clicked. The wedding in October, the baby on the way, the back that needs rebuilding before it needs loading. A coach who sees all of that, programs around it, and adjusts in real time as your body changes — that's the product. The exercise is almost incidental.</p>
+      <p>Group classes are one of the best things we offer, and for a lot of people they're all they'll ever need — the energy of the room is real and it's a huge part of why people stay. But there are seasons where you want more precision than a group setting can give. Coming back from an injury. Starting from scratch and wanting to learn the movements properly first. Chasing a specific goal with a deadline. Or simply being the kind of person who learns best with eyes on you. None of those are weaknesses. They're just reasons to want a sharper tool.</p>
+      <p>And it isn't all-or-nothing — it rarely is, with us. Plenty of members use PT the way you'd use a tutor: a block of one-on-one sessions to fix something specific or build a foundation, then back into class with a body that knows what it's doing. Some keep a standing weekly session as the anchor the rest of their week is built around. There's no wrong amount.</p>
+      <p>If you've ever finished a class thinking “I wish someone had watched that set,” or you've been circling the idea of starting but want to learn the ropes first — that's exactly who PT is for. Not too weak. Not too advanced. Just someone who wants their hour built entirely around them.</p>
+      <p>Come have a no-pressure conversation with us — a No Sweat Intro — and we'll tell you honestly whether PT, classes, or a mix is the right call for you.</p>
+      <p><i>— Coach [Name]</i></p>
+      <p style="font-size:11.5px;color:var(--mgrey)"><b>Repurpose into:</b> the Jul 9 PT Reel, a “PT myths” carousel, a website PT-page intro, and an email to members who've never tried PT.</p>
+    </div>
+
+    <h3>Designed carousels (2)</h3>
+    <div class="card">
+      <p class="subj">Carousel 1 — “CrossFit myths, busted” (Acquisition) · 6 slides</p>
+      <p>Cover → 4 myths (“I need to get fit first” · “It's all ego and max lifts” · “I'll get hurt” · “Everyone will watch me”) → CTA: book a No Sweat Intro. Files: <i>carousel_slides/c1_myths_1–6.png</i>.</p>
+      <p class="subj">Carousel 2 — “Don't lose your summer” (Retention) · 6 slides</p>
+      <p>Cover → 4 points (“Two weeks off won't undo you” · “Aim for something, not perfect” · “Move on the trip you're on” · “Tell us before you go”) → CTA: ask us for a travel plan. Files: <i>carousel_slides/c2_summer_1–6.png</i>.</p>
+    </div>
+
+    <h3>Production checklist</h3>
+    <div class="card">
+      <p>☐ Batch-film: Jul 2 summer Reel, Jul 9 PT Reel, Jul 17 K-Days Reel, Jul 24 Legends Reel.</p>
+      <p>☐ Member consent secured for the Jul 10 spotlight and Jul 25 summer carousel.</p>
+      <p>☐ Confirm Bring-a-Friend Day date (Sat Jul 18) and capture live footage.</p>
+      <p>☐ Approve win-back “one free class before August” offer before the Jul 15 email.</p>
+      <p>☐ Carousel files (12 slides) exported and queued; captions pulled from the rows above.</p>
+    </div>
+
+    <h3>Edmonton seasonal hooks used this month</h3>
+    <div class="card">
+      <p>• Canada Day (Wed Jul 1) — community gratitude post + email.</p>
+      <p>• Taste of Edmonton (Jul 16–26, Churchill Square) — “fun and training coexist” acquisition hook.</p>
+      <p>• K-Days (Jul 17–26) — local pride community Reel and weekend post.</p>
+      <p>• Summer travel &amp; heat — the “Don't Lose Your Summer” retention theme and travel-training carousel.</p>
+      <p>• School's out — StrongTEENS acquisition angle for parents.</p>
+    </div>
+
+    <h3>Links</h3>
+    <h4>Blog library (repurpose these)</h4>
+    <div class="linklist">
+      <a href="https://www.blacktuskathletics.com/blog/we-make-decisions-based-on-what-we-feel-in-the-moment-black-tusk-athletics">We Make Decisions Based On What We Feel In The Moment</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/what-can-proper-breathing-do-for-you-black-tusk-athletics">What Can Proper Breathing Do For You?</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/leading-with-kindness-black-tusk-athletics">Leading With Kindness</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/whats-your-why-black-tusk-athletics">What's Your Why? (Julia's story)</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/why-crossfit-black-tusk-athletics">Why CrossFit?</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/what-is-personal-training-and-is-it-right-for-you-black-tusk-athletics">What Is Personal Training and Is It Right For You?</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/what-to-expect-when-returning-to-black-tusk-athletics-black-tusk-athletics">What To Expect When Returning</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/whats-our-take-on-nutrition-black-tusk-athletics">What's Our Take On Nutrition</a>
+    </div>
+    <h4>Programs &amp; booking</h4>
+    <div class="linklist">
+      <a href="https://www.blacktuskathletics.com/programs/personal-training">Personal Training</a><br>
+      <a href="https://www.blacktuskathletics.com/programs/group-classes">Group Classes</a><br>
+      <a href="https://www.blacktuskathletics.com/programs/legends-50">Legends (50+)</a><br>
+      <a href="https://www.blacktuskathletics.com/programs/teens-strength-and-conditioning">StrongTEENS (11–16)</a><br>
+      <a href="https://api.grow.pushpress.com/widget/booking/XeAYLaDsj8GP6RB8om7P">Book a No Sweat Intro</a><br>
+      <a href="https://instagram.com/blacktuskathletics">Instagram</a><br>
+      <a href="https://www.facebook.com/blacktuskathletics">Facebook</a>
+    </div>
+  </section>
+
+  <footer class="note">
+    Source: BTA July 2026 Content Calendar &amp; Growth Engine. Full doc (with campaign brief) delivered as a Word/PDF file.
+    Items involving an offer or member email need Jay's sign-off before publishing. Check state is stored locally in this browser.
+  </footer>
+</div>
+
+<script>
+const DATA = [
+ {week:"Week 1 — July 1–7 · “Canada Day & a summer start”", items:[
+  {d:"Wed Jul 1",ch:"IG + Email",tier:"reeng",type:"Reel + Email",hook:"“Happy Canada Day, Edmonton.”",msg:"Celebrate the community; gratitude, no ask. (Email 1 + a Reel)",src:"Repurpose “Leading With Kindness”",prod:"Short community Reel; email copy in Source Library",full:"REEL: warm community montage — faces in the gym, the room, Edmonton summer. Caption leans on gratitude, not a pitch.\n\nEMAIL 1 (full copy in Source Library): \"Happy Canada Day from all of us\" — thanks the members, no ask."},
+  {d:"Thu Jul 2",ch:"Instagram",tier:"acq",type:"Reel",hook:"“Summer is the quietest the gym ever gets. That's your opening.”",msg:"Flip the summer excuse into a reason to start now. CTA: free No Sweat Intro.",src:"Original (echoes “We Make Decisions…”)",prod:"Film 20–30s: coach to-camera + quiet-room b-roll",full:"CAPTION: Everyone tells themselves they'll start in September. Here's the secret nobody mentions: summer is the easiest time to walk in. The room is calmer, the coaches have more eyes for you, and there's no crowd to feel lost in. You don't need to be fit to start — you start, and the fitness catches up. 📍 Edmonton — book a free No Sweat Intro in our bio. Come exactly as you are. #yeg #edmonton #blacktuskathletics #functionalfitness #community"},
+  {d:"Fri Jul 3",ch:"Facebook",tier:"reeng",type:"Community post",hook:"“Spring got busy and you drifted? No guilt — the door's open.”",msg:"Warm, no-pressure win-back touch. CTA: reply or just drop in.",src:"Original",prod:"Copy + warm candid photo",full:"POST: No lecture, no guilt. Spring gets busy, routines fall apart — it happens to everyone. Your spot in this community didn't go anywhere. Reply here or just drop into a class this week. We'd love to see you."},
+  {d:"Sat Jul 4",ch:"Instagram",tier:"reeng",type:"Story",hook:"“Tag your summer training partner”",msg:"Light community engagement; surface belonging.",src:"Original",prod:"Story template + tag sticker",full:"STORY: Simple branded template — \"Tag the person who drags you to class (or who you drag).\" Tag sticker. Reshare responses."},
+  {d:"Mon Jul 6",ch:"IG + FB",tier:"acq",type:"Carousel",hook:"“CrossFit myths, busted” (4 myths)",msg:"Myth-bust the objections that keep newcomers out. CTA: NSI in bio.",src:"NEW — Carousel 1 (designed)",prod:"Use supplied PNGs; 6 slides",full:"CAPTION: Most of what keeps people out of a gym like ours isn't true. You don't need to be fit first. It isn't all ego and max lifts. You're far more likely to get hurt guessing alone than being coached. And nobody's watching you — they're chasing their own workout and quietly cheering for yours (swipe). If one of these has been your excuse, let's talk. 📍 Edmonton · Free No Sweat Intro in the bio. #yeg #edmontonfitness #blacktuskathletics #crossfit #newhere\n\nSLIDES: see Carousel 1 in Source Library (c1_myths_1–6.png)."},
+  {d:"Tue Jul 7",ch:"Instagram",tier:"ret",type:"Feed / Reel",hook:"“Training in the heat: 3 things that actually help”",msg:"Seasonal coaching tip members can use today (hydrate, exhale, scale).",src:"Repurpose “Proper Breathing” + original",prod:"Coach clip or single graphic",full:"POINTS: 1) Hydrate before you're thirsty — start the day topped up, not at the gym. 2) Exhale on exertion — heat makes breath-holding worse; breathe out on the hard part. 3) Scale without shame — on a 28° day, intensity is relative. Showing up smart beats showing up heroic."},
+ ]},
+ {week:"Week 2 — July 8–14 · “Your why + Personal Training”", items:[
+  {d:"Wed Jul 8",ch:"Email",tier:"ret",type:"Email",hook:"Subject: “When the gym's the last thing you want in summer”",msg:"Consistency beats heroics through heat and travel. No ask. (Email 2)",src:"Repurpose “We Make Decisions…”",prod:"Copy-only",full:"Full copy in Source Library → Email 2. Theme: let go of all-or-nothing; show up for the imperfect week."},
+  {d:"Thu Jul 9",ch:"Instagram",tier:"acq",type:"Reel",hook:"“Personal Training isn't a last resort”",msg:"Reframe PT (top revenue driver) as precision, not rescue. CTA: NSI.",src:"NEW blog “PT Isn't a Last Resort”",prod:"Film a real 1:1 session",full:"CAPTION: Personal Training isn't the thing you do when you're too out of shape for a \"real\" class. It's the thing you do when you want an hour built entirely around you — your knee, your goal, your comeback, your why. That's not a last resort. That's precision. If you've been curious, this is your sign. Link in bio for a No Sweat Intro and we'll tell you honestly whether PT, classes, or a mix is right for you. #personaltraining #yegfitness #blacktuskathletics #coaching"},
+  {d:"Fri Jul 10",ch:"IG + FB",tier:"ret",type:"Feed",hook:"Member spotlight: “Meet [Member] — why she trains all summer”",msg:"Real member, real reason; make members feel seen.",src:"Repurpose “What's Your Why” (Julia format)",prod:"Photo + pulled quote; get consent",full:"CAPTION: Meet [Member]. [She] started [X months] ago [couldn't do a full squat / wasn't sure she belonged] — and [she's] still here, training through a summer that pulls everyone in ten directions. We asked [her] why [she] keeps showing up when the patios are calling. [Her] answer had nothing to do with abs and everything to do with [reason]. Your why might not look like [Member]'s. That doesn't make it any less important. 🖤 #memberspotlight #whyitrain #blacktuskathletics #yegcommunity\n\n⚠ Get member consent before posting."},
+  {d:"Sun Jul 12",ch:"Instagram",tier:"reeng",type:"Story",hook:"“We miss you” check-in poll",msg:"Low-pressure win-back; open a door for lapsed members.",src:"Original",prod:"Story poll sticker",full:"STORY: \"Haven't been in lately? No judgment — where are you at?\" Poll: \"Still training elsewhere\" / \"Fell off, want back in.\" DM everyone who taps the second option, warmly."},
+  {d:"Mon Jul 13",ch:"IG + FB",tier:"ret",type:"Carousel",hook:"“Don't lose your summer” — travel & progress",msg:"Save-worthy retention value for the vacation season.",src:"NEW — Carousel 2 (designed)",prod:"Use supplied PNGs; 6 slides",full:"CAPTION: Heading somewhere this summer? Don't let two good weeks off convince you to throw away the next three months. Save this for your trip (swipe). Something always beats nothing. 🖤 #blacktuskathletics #yeg #summertraining #consistency\n\nSLIDES: see Carousel 2 in Source Library (c2_summer_1–6.png)."},
+  {d:"Tue Jul 14",ch:"Facebook",tier:"reeng",type:"Event",hook:"“Bring-a-Friend Saturday — July 18”",msg:"Stand up the community event; invite members to bring one guest.",src:"Original",prod:"Event graphic + RSVP",full:"EVENT POST: One Saturday class, bring one friend, no pressure on them to join. ⚠ Offer/event = approval gate — confirm the Jul 18 date with Jay before posting."},
+ ]},
+ {week:"Week 3 — July 15–21 · “K-Days, Taste of Edmonton & summer in the city”", items:[
+  {d:"Wed Jul 15",ch:"Email",tier:"reeng",type:"Email",hook:"Subject: “Come back for one class — on us”",msg:"Win-back the lapsed; one free class, no strings. (Email 3)",src:"Original",prod:"Copy-only; OFFER needs approval",full:"⚠ OFFER — needs Jay's approval before sending. Full copy in Source Library → Email 3. One free class before August, no catch."},
+  {d:"Thu Jul 16",ch:"Instagram",tier:"acq",type:"Reel",hook:"“Taste of Edmonton starts today — fun and training can coexist”",msg:"Local hook (Taste of Edmonton Jul 16–26); balance, not guilt. CTA: NSI.",src:"Original",prod:"Film near Churchill Sq / patio energy",full:"CAPTION: Taste of Edmonton is on (Churchill Square, through the 26th) and we are 100% going. Here's our take: you don't earn the food by suffering, and you don't ruin your progress by enjoying the city. Train, then go eat. Balance isn't a diet — it's a rhythm. 📍 New here? Free No Sweat Intro in the bio. #tasteofedmonton #yeg #blacktuskathletics #balance"},
+  {d:"Fri Jul 17",ch:"IG + FB",tier:"reeng",type:"Reel",hook:"“It's K-Days, Edmonton 🎡”",msg:"Local pride hook (K-Days Jul 17–26); we're part of this city.",src:"Original",prod:"Film fun, city-proud b-roll",full:"CAPTION: It's K-Days, Edmonton. 🎡 The mini doughnuts, the midway, the city in full summer mode — we love this town in July. We're not here to tell you to skip the fun. We're here for the part where you want to feel good doing it. Train hard, then go ride the rides. That's the whole idea. 🖤 #kdays #yeg #edmonton #blacktuskathletics #community"},
+  {d:"Sat Jul 18",ch:"IG + FB",tier:"reeng",type:"Reel",hook:"“Bring-a-Friend Day — today”",msg:"Capture the community event live for re-use all month.",src:"Original",prod:"Film the event live",full:"REEL: capture the energy live — friends laughing, scaling together, the post-class group shot. Gold for re-use in August acquisition content. ⚠ Confirm event is approved/scheduled first."},
+  {d:"Mon Jul 20",ch:"Instagram",tier:"ret",type:"Feed",hook:"“A day in the life of Coach [Name]”",msg:"Humanize the staff; build the trust that keeps members.",src:"Original",prod:"Film/photo a coach's real day",full:"FORMAT: 4–6 candid moments from a coach's real day — coffee, programming the whiteboard, a 6am class, a 1:1, the clean-up. Caption in the coach's own voice. Builds the trust that keeps members."},
+  {d:"Tue Jul 21",ch:"Instagram",tier:"acq",type:"Feed",hook:"“StrongTEENS: summer's halfway gone, screens are winning”",msg:"Teens program; parents buying for kids out of school.",src:"Original",prod:"Photo a StrongTEENS session",full:"CAPTION (to parents): Half the summer's gone and the screens are winning. StrongTEENS (11–16) gives them somewhere to go, real coaching, and the kind of confidence that doesn't come from a phone. Spots are limited for the rest of summer. 📍 Edmonton — DM us or book a No Sweat Intro in the bio. #strongteens #yeg #blacktuskathletics #youthfitness"},
+ ]},
+ {week:"Week 4 — July 22–28 · “Summer momentum & celebrating July”", items:[
+  {d:"Wed Jul 22",ch:"Email",tier:"ret",type:"Email",hook:"Subject: “What we saw in class this month”",msg:"Value-first community recap; warmth, no pitch. (Email 4)",src:"Original",prod:"Copy-only",full:"Full copy in Source Library → Email 4. A warm month-in-review; no ask, just belonging."},
+  {d:"Thu Jul 23",ch:"Instagram",tier:"ret",type:"Feed",hook:"“The July PR board”",msg:"Celebrate member wins; make the room proud.",src:"Original",prod:"Photo the PR/whiteboard",full:"POST: photo the PR/whiteboard, tag the members (with consent). Caption: \"July's wins. Every name here showed up on a day they didn't feel like it. That's the whole game.\""},
+  {d:"Fri Jul 24",ch:"Instagram",tier:"acq",type:"Reel",hook:"“Legends (50+): it's never too late — and summer's the time”",msg:"Program spotlight that doubles as acquisition for older adults.",src:"Original",prod:"Film/photo a Legends class",full:"CAPTION: \"I'm too old to start.\" We hear it all the time — and it's the one that breaks our hearts a little, because it's so rarely true. Our Legends (50+) members will tell you: the best time to get strong was twenty years ago, and the second-best time is a Tuesday this summer. It's never too late, and you won't be doing it alone. 📍 Edmonton — book a No Sweat Intro in the bio. #legends #neverlateto #yeg #blacktuskathletics #community"},
+  {d:"Sat Jul 25",ch:"IG + FB",tier:"reeng",type:"Feed / Carousel",hook:"“K-Days weekend: train, then go ride the midway”",msg:"Community + local; permission to enjoy the city.",src:"Original",prod:"Carousel of members enjoying summer (consent)",full:"CAROUSEL/POST: members training + out enjoying the city (midway, river valley, patio). Permission to live, not just lift. ⚠ Get consent for any member photos."},
+  {d:"Sun Jul 26",ch:"Facebook",tier:"reeng",type:"Community post",hook:"“July, in your words” — member shoutouts",msg:"Belonging; close the month on the members' voices.",src:"Original",prod:"Graphic with 3–4 member quotes",full:"POST: graphic with 3–4 real member quotes about what the gym/community meant this month. Close July on the members' voices, not the brand's."},
+  {d:"Mon Jul 27",ch:"Instagram",tier:"reeng",type:"Story",hook:"“One small step before August”",msg:"Re-engage lapsed; a single doable action.",src:"Original",prod:"Story template",full:"STORY: \"August is a clean page. One small step this week? Book a class.\" Single CTA, low pressure, link sticker."},
+ ]},
+];
+
+const TIER_LABEL = {acq:"Acquisition", ret:"Retention", reeng:"Re-engagement + Community"};
+const KEY = "bta-july-2026-calendar-v2";
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ state = {}; }
+
+function idFor(wi, ii){ return "w"+wi+"i"+ii; }
+function save(){
+  localStorage.setItem(KEY, JSON.stringify(state));
+  const s = document.getElementById("saved");
+  if(s){ s.classList.add("show"); setTimeout(()=>s.classList.remove("show"), 900); }
+}
+function st(id){ return state[id] || {}; }
+
+function render(){
+  const cal = document.getElementById("cal");
+  cal.innerHTML = "";
+  DATA.forEach((wk, wi) => {
+    const done = wk.items.filter((_,ii)=>st(idFor(wi,ii)).pub).length;
+    const sec = document.createElement("div");
+    sec.className = "week";
+    sec.innerHTML = '<h2>'+wk.week+'<span class="wpct">'+done+'/'+wk.items.length+' published</span></h2>';
+    wk.items.forEach((it, ii) => {
+      const id = idFor(wi, ii);
+      const s = st(id);
+      const row = document.createElement("div");
+      row.className = "row "+it.tier+(s.pub?" done":"");
+      row.dataset.id = id;
+      const flag = /needs approval|OFFER|approval gate|consent/i.test(it.prod+it.full) ?
+        '<span class="tag flag">approval / consent</span>' : '';
+      row.innerHTML =
+        '<div class="cbcol">'+
+          '<div class="cbwrap"><input type="checkbox" class="cb cap" '+(s.cap?"checked":"")+' data-id="'+id+'" data-k="cap" aria-label="Captured"><span class="cblbl">Cap</span></div>'+
+          '<div class="cbwrap"><input type="checkbox" class="cb pub" '+(s.pub?"checked":"")+' data-id="'+id+'" data-k="pub" aria-label="Published"><span class="cblbl">Pub</span></div>'+
+        '</div>'+
+        '<div class="meta"><div class="date">'+it.d+'</div>'+
+          '<div class="tags"><span class="tag ch">'+it.ch+'</span></div></div>'+
+        '<div><div class="tags" style="margin:0 0 4px">'+
+            '<span class="tag '+it.tier+'">'+TIER_LABEL[it.tier]+'</span>'+
+            '<span class="tag type">'+it.type+'</span>'+flag+'</div>'+
+          '<div class="hook">'+it.hook+'</div>'+
+          '<div class="msg">'+it.msg+'</div>'+
+          '<div class="foot"><b>Source:</b> '+it.src+'  ·  <b>Production:</b> '+it.prod+'</div>'+
+        '</div>'+
+        '<button class="exp" data-id="'+id+'" aria-label="Toggle full copy">+</button>'+
+        '<div class="detail">'+it.full.replace(/\n/g,"<br>")+'</div>';
+      sec.appendChild(row);
+    });
+    cal.appendChild(sec);
+  });
+  cal.querySelectorAll(".cb").forEach(cb => {
+    cb.addEventListener("change", e => {
+      const id = e.target.dataset.id, k = e.target.dataset.k;
+      const cur = state[id] || {};
+      if(e.target.checked) cur[k] = true; else delete cur[k];
+      if(!cur.cap && !cur.pub) delete state[id]; else state[id] = cur;
+      save(); render(); updateProgress();
+    });
+  });
+  cal.querySelectorAll(".exp").forEach(b => {
+    b.addEventListener("click", e => {
+      const row = e.target.closest(".row");
+      row.classList.toggle("open");
+      e.target.textContent = row.classList.contains("open") ? "–" : "+";
+    });
+  });
+  updateProgress();
+}
+
+function updateProgress(){
+  let total=0, done=0;
+  const tierCount = {acq:[0,0], ret:[0,0], reeng:[0,0]};
+  DATA.forEach((wk, wi) => wk.items.forEach((it, ii) => {
+    total++; tierCount[it.tier][1]++;
+    if(st(idFor(wi,ii)).pub){ done++; tierCount[it.tier][0]++; }
+  }));
+  const pct = total ? Math.round(done/total*100) : 0;
+  document.getElementById("fill").style.width = pct+"%";
+  document.getElementById("ptxt").innerHTML = done+" of "+total+" published ("+pct+"%)<span class=\"saved\" id=\"saved\"></span>";
+  const ts = document.getElementById("tierstats");
+  ts.innerHTML = "";
+  Object.keys(tierCount).forEach(t => {
+    const c = tierCount[t];
+    const chip = document.createElement("span");
+    chip.className = "chip";
+    chip.style.borderLeft = "4px solid var(--"+(t==="acq"?"acq-b":t==="ret"?"ret-b":"reeng-b")+")";
+    chip.innerHTML = TIER_LABEL[t]+' <span class="n">'+c[0]+"/"+c[1]+"</span>";
+    ts.appendChild(chip);
+  });
+}
+
+document.getElementById("expandAll").addEventListener("click", () => {
+  document.querySelectorAll(".row").forEach(r=>{ r.classList.add("open"); const b=r.querySelector(".exp"); if(b)b.textContent="–"; });
+});
+document.getElementById("collapseAll").addEventListener("click", () => {
+  document.querySelectorAll(".row").forEach(r=>{ r.classList.remove("open"); const b=r.querySelector(".exp"); if(b)b.textContent="+"; });
+});
+document.getElementById("reset").addEventListener("click", () => {
+  if(confirm("Clear all Captured/Published check marks?")){ state = {}; save(); render(); }
+});
+
+render();
+</script>
+</body>
+</html>
