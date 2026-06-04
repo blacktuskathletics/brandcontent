@@ -11,27 +11,30 @@
   --white:#FFFFFF; --lgrey:#F2F2F2; --mgrey:#6E6A66; --dgrey:#3A3633;
   --line:#E2DED7; --acq:#FBF1DA; --acq-b:#A4822D;
   --ret:#EDEBE7; --ret-b:#6E6A66; --reeng:#F6F4F1; --reeng-b:#B8B2A8;
+  --panel:#FBFAF8;
 }
 *{box-sizing:border-box}
-body{
-  margin:0; background:var(--white); color:var(--black);
-  font-family:Arial,Helvetica,sans-serif; font-size:14px; line-height:1.45;
-}
-.wrap{max-width:1080px; margin:0 auto; padding:22px 20px 60px}
+body{margin:0; background:var(--white); color:var(--black);
+  font-family:Arial,Helvetica,sans-serif; font-size:14px; line-height:1.45;}
+.wrap{max-width:1100px; margin:0 auto; padding:22px 20px 60px}
 header.top{border-bottom:3px solid var(--gold); padding-bottom:16px; margin-bottom:18px}
 .kicker{font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); font-weight:700}
 h1{font-size:24px; margin:6px 0 2px; color:var(--black)}
 .sub{color:var(--mgrey); font-size:13px}
 
-.progwrap{margin:18px 0 8px}
-.progrow{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
-.progbar{flex:1; min-width:220px; height:14px; background:var(--lgrey); border-radius:8px; overflow:hidden}
-.progfill{height:100%; width:0; background:var(--gold); border-radius:8px; transition:width .3s ease}
-.progtxt{font-weight:700; font-size:13px; white-space:nowrap}
-.tierstats{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+.progwrap{margin:16px 0 6px; display:flex; flex-direction:column; gap:9px}
+.progrow{display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+.plabel{font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; width:78px; color:var(--dgrey)}
+.progbar{flex:1; min-width:200px; height:12px; background:var(--lgrey); border-radius:8px; overflow:hidden}
+.progfill{height:100%; width:0; border-radius:8px; transition:width .3s ease}
+.progfill.cap{background:var(--mgrey)}
+.progfill.pub{background:var(--gold)}
+.progtxt{font-weight:700; font-size:12px; white-space:nowrap; width:128px; text-align:right}
+.tierstats{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
 .chip{font-size:11px; padding:4px 10px; border-radius:20px; font-weight:700; border:1px solid var(--line)}
 .chip .n{color:var(--mgrey); font-weight:400}
-.controls{margin:14px 0 4px; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+
+.controls{margin:14px 0 4px; display:flex; gap:8px; flex-wrap:wrap; align-items:center}
 .btn{font:inherit; font-size:12px; padding:6px 12px; border:1px solid var(--line); background:var(--white);
   border-radius:6px; cursor:pointer; color:var(--dgrey)}
 .btn:hover{border-color:var(--gold); color:var(--black)}
@@ -42,19 +45,24 @@ h1{font-size:24px; margin:6px 0 2px; color:var(--black)}
 .week h2{font-size:15px; margin:0 0 4px; padding-bottom:6px; border-bottom:1px solid var(--line)}
 .week h2 .wpct{float:right; font-size:12px; color:var(--mgrey); font-weight:400}
 
-.row{display:grid; grid-template-columns:30px 92px 1fr; gap:12px; align-items:start;
+.row{display:grid; grid-template-columns:112px 84px 1fr 34px; gap:12px; align-items:start;
   padding:11px 12px; border:1px solid var(--line); border-left-width:4px; border-radius:7px; margin-top:8px; background:var(--white)}
 .row.acq{border-left-color:var(--acq-b)}
 .row.ret{border-left-color:var(--ret-b)}
 .row.reeng{border-left-color:var(--reeng-b)}
-.row.done{background:var(--lgrey); opacity:.62}
-.row.done .hook{text-decoration:line-through}
+.row.posted{background:var(--lgrey)}
+.row.posted .hook{text-decoration:line-through; opacity:.7}
 
-.cb{appearance:none; width:22px; height:22px; border:2px solid var(--mgrey); border-radius:6px;
-  cursor:pointer; margin:1px 0 0; position:relative; flex:none; background:var(--white)}
-.cb:checked{background:var(--gold); border-color:var(--gold)}
-.cb:checked::after{content:""; position:absolute; left:6px; top:2px; width:6px; height:11px;
+.checks{display:flex; flex-direction:column; gap:7px}
+.chk{display:flex; align-items:center; gap:6px; font-size:9.5px; font-weight:700; text-transform:uppercase;
+  letter-spacing:.04em; color:var(--mgrey); cursor:pointer; user-select:none}
+.cb{appearance:none; -webkit-appearance:none; width:20px; height:20px; border:2px solid var(--mgrey);
+  border-radius:5px; cursor:pointer; position:relative; flex:none; background:var(--white)}
+.cb.cap:checked{background:var(--dgrey); border-color:var(--dgrey)}
+.cb.pub:checked{background:var(--gold); border-color:var(--gold)}
+.cb:checked::after{content:""; position:absolute; left:5px; top:1px; width:6px; height:11px;
   border:solid var(--white); border-width:0 3px 3px 0; transform:rotate(45deg)}
+.chk.on{color:var(--black)}
 
 .meta{font-size:11px; color:var(--mgrey)}
 .date{font-weight:700; color:var(--black); font-size:12px}
@@ -70,8 +78,36 @@ h1{font-size:24px; margin:6px 0 2px; color:var(--black)}
 .msg{margin-top:3px; color:var(--dgrey); font-size:12.5px}
 .foot{margin-top:6px; font-size:11px; color:var(--mgrey)}
 .foot b{color:var(--dgrey); font-weight:700}
-.saved{font-size:11px; color:var(--gold); margin-left:6px; opacity:0; transition:opacity .2s}
-.saved.show{opacity:1}
+
+.toggle{width:30px; height:30px; border-radius:7px; border:1px solid var(--line); background:var(--white);
+  font-size:20px; line-height:1; cursor:pointer; color:var(--gold); font-weight:700; padding:0}
+.toggle:hover{border-color:var(--gold)}
+
+.detail{grid-column:1 / -1; display:none; margin-top:10px; padding:14px 16px 6px;
+  background:var(--panel); border:1px solid var(--line); border-radius:8px}
+.detail.open{display:block}
+.dlabel{font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--gold); font-weight:700; margin:0 0 6px}
+.detail p{margin:0 0 10px; font-size:13px; color:var(--dgrey); line-height:1.55}
+.detail .sub2{margin-top:14px}
+.slides{margin:0 0 10px; padding-left:20px}
+.slides li{font-size:13px; color:var(--dgrey); margin-bottom:6px; line-height:1.5}
+.warn{background:#FBF1DA; border:1px solid var(--gold); color:#7a5f1d; padding:8px 11px; border-radius:6px;
+  font-size:12px; margin:0 0 12px; font-weight:600}
+.hash{font-size:11.5px; color:var(--mgrey); font-style:italic}
+
+.section{margin-top:30px; border:1px solid var(--line); border-radius:8px; overflow:hidden}
+.section > h3{margin:0; padding:13px 16px; background:var(--lgrey); font-size:14px; cursor:pointer;
+  display:flex; justify-content:space-between; align-items:center}
+.section > h3 .sx{color:var(--gold); font-size:20px; font-weight:700}
+.section .body{display:none; padding:16px}
+.section .body.open{display:block}
+.section .body h4{font-size:14px; margin:18px 0 6px; color:var(--black)}
+.section .body h4:first-child{margin-top:0}
+.section .body p{font-size:13px; color:var(--dgrey); line-height:1.6; margin:0 0 11px}
+.section .body a{color:var(--gold)}
+.linklist{columns:2; font-size:12.5px; line-height:1.9}
+@media(max-width:640px){ .linklist{columns:1} .row{grid-template-columns:112px 1fr 30px} .meta.dt{display:none} }
+
 footer.note{margin-top:30px; padding-top:14px; border-top:1px solid var(--line); font-size:11px; color:var(--mgrey)}
 </style>
 </head>
@@ -80,19 +116,23 @@ footer.note{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
   <header class="top">
     <div class="kicker">Black Tusk Athletics · Edmonton</div>
     <h1>June 2026 Content Calendar</h1>
-    <div class="sub">Four weeks · all three growth tiers · Instagram, Facebook &amp; email. Check items off as they publish — progress saves on this device.</div>
+    <div class="sub">All three growth tiers across Instagram, Facebook &amp; email. Tick <b>Captured</b> when footage/photos are shot and <b>Published</b> when it's live. Hit <b>+</b> on any row to read the full copy. Progress saves on this device.</div>
   </header>
 
   <div class="progwrap">
-    <div class="progrow">
-      <div class="progbar"><div class="progfill" id="fill"></div></div>
-      <div class="progtxt" id="ptxt">0 of 24 published<span class="saved" id="saved">saved ✓</span></div>
-    </div>
-    <div class="tierstats" id="tierstats"></div>
+    <div class="progrow"><span class="plabel">Captured</span>
+      <div class="progbar"><div class="progfill cap" id="bta-fillcap"></div></div>
+      <div class="progtxt" id="bta-txtcap">0 of 24</div></div>
+    <div class="progrow"><span class="plabel">Published</span>
+      <div class="progbar"><div class="progfill pub" id="bta-fillpub"></div></div>
+      <div class="progtxt" id="bta-txtpub">0 of 24</div></div>
+    <div class="tierstats" id="bta-tiers"></div>
   </div>
 
   <div class="controls">
-    <button class="btn" id="reset">Reset all</button>
+    <button class="btn" id="bta-expand">+ Expand all copy</button>
+    <button class="btn" id="bta-collapse">− Collapse all</button>
+    <button class="btn" id="bta-reset">Reset checkmarks</button>
     <div class="legend">
       <span><span class="dot" style="background:var(--acq-b)"></span>Acquisition</span>
       <span><span class="dot" style="background:var(--ret-b)"></span>Retention</span>
@@ -100,127 +140,207 @@ footer.note{margin-top:30px; padding-top:14px; border-top:1px solid var(--line);
     </div>
   </div>
 
-  <div id="cal"></div>
+  <div id="bta-cal"></div>
+
+  <div class="section">
+    <h3 data-sec="blogs">Full blog posts (2) — source material <span class="sx" data-x="blogs">+</span></h3>
+    <div class="body" id="sec-blogs">
+      <h4>Blog A — "Why The First Month Is The Hardest (And Why That's The Point)"</h4>
+      <p><em>Retention / month-one churn. Repurpose into: a 30s Reel ("week three is the hardest part"), Email 1, a 5-slide carousel, and a Story poll ("what week are you on?").</em></p>
+      <p>There's a moment, usually somewhere around week three, when the new wears off. The first-day nerves are gone. The little jolt of "I actually did it, I joined" has faded. And what's left is a Tuesday, and a long day behind you, and a warm couch making a very convincing argument.</p>
+      <p>If you're in that moment right now, we want you to know something: this is the hardest part, and it has almost nothing to do with fitness.</p>
+      <p>When you first start training, you're running on motivation — and motivation is a fair-weather friend. It shows up when you're excited and disappears the second things get inconvenient. People think the people who "stick with it" are the ones with more motivation. They're not. They're the ones who figured out, early, that you don't wait to feel like it. You just go, and the feeling catches up.</p>
+      <p>We've said it before: we make decisions based on what we feel in the moment. Do I feel like getting up early? Not really. Do I feel like that workout full of burpees? Definitely not. But every time you do the thing you didn't feel like doing, you cast a small vote for a version of yourself who takes action. And those votes add up faster than you'd believe. With each week, it gets a little easier — not because the work gets lighter, but because you start to trust that you can do hard things.</p>
+      <p>Here's the other half, and it's the half that actually keeps people: you don't have to carry that alone. The reason our members make it past the wobbly first month isn't willpower — it's the person next to them who noticed they were gone, the coach who knows their name, the group chat that won't let them ghost. Community is the thing that holds you when motivation lets go.</p>
+      <p>So if you're in week three and the couch is winning, do the smallest possible version of showing up. Come to one class. Don't worry about the workout — we'll scale it. Just get in the room. Let us do the rest. The first month is the hardest because you're becoming someone new, and that always feels strange before it feels good.</p>
+      <p>You're closer than you think. We'll see you in class. <em>— Coach [Name]</em></p>
+
+      <h4>Blog B — "What Personal Training Actually Buys You"</h4>
+      <p><em>Personal Training / revenue. Repurpose into: the Jun 8 Reel, a "PT myths" carousel, a website PT-page intro, and an email to members who've never tried PT.</em></p>
+      <p>When people picture Personal Training, they usually picture one of two things: either someone who's too out of shape for a "real" class, or a pro athlete chasing the last 5%. Most people assume they're not the right fit for either. So they never ask. And they miss the thing PT is actually for.</p>
+      <p>Here's what you're really buying when you train one-on-one: an hour where someone's entire job is you.</p>
+      <p>Not the room. Not the clock. Not the twelve other people in class. You. Your knee that's been cranky since that hike. The deadlift setup that never quite clicked. The fact that you've got a wedding in October, or a baby on the way, or a back that needs rebuilding before it needs loading. A coach who sees all of that, programs around it, and adjusts in real time as your body changes — that's the product. The exercise is almost incidental.</p>
+      <p>Group classes are one of the best things we offer, and for a lot of people they're all they'll ever need — the energy of the room is real. But there are seasons where you need more precision than a group setting can give. Coming back from an injury. Starting from scratch and wanting to learn the movements properly before you're shoulder-to-shoulder with a barbell. Chasing a specific goal with a deadline. Or just being the kind of person who learns best with eyes on you. That's where PT earns its keep.</p>
+      <p>And it isn't all-or-nothing. Plenty of our members use Personal Training the way you'd use a tutor — a block of one-on-one sessions to fix something specific or build a foundation, then back into class with a body that knows what it's doing. Some keep a standing weekly session as the anchor their whole week is built around. There's no wrong amount.</p>
+      <p>If you've ever finished a class thinking "I wish someone had watched that set," or you've been circling the idea of starting but want to learn the ropes first — that's exactly who PT is for. Not too weak. Not too advanced. Just someone who wants their hour to be built entirely around them.</p>
+      <p>Come have a no-pressure conversation with us — a No Sweat Intro — and we'll tell you honestly whether PT, classes, or a mix is the right call for you. <em>— Coach [Name]</em></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3 data-sec="check">June production checklist <span class="sx" data-x="check">+</span></h3>
+    <div class="body" id="sec-check">
+      <ul class="slides">
+        <li>Batch-film: Jun 1 Reel, Jun 8 PT Reel, Jun 15 Father's Day Reel, Jun 22 summer Reel.</li>
+        <li>Member consent secured for the Jun 9 spotlight and Jun 21 dads carousel.</li>
+        <li>Confirm Bring-a-Friend Day date (Sat Jun 20) and capture live footage.</li>
+        <li>Approve win-back "one free class" offer before the Jun 17 email.</li>
+        <li>Carousel files (12 slides) exported and queued; captions pulled from each row.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3 data-sec="links">Links &amp; assets <span class="sx" data-x="links">+</span></h3>
+    <div class="body" id="sec-links">
+      <h4>Blog library (repurpose these)</h4>
+      <div class="linklist">
+        <a href="https://www.blacktuskathletics.com/blog/we-make-decisions-based-on-what-we-feel-in-the-moment-black-tusk-athletics">We Make Decisions Based On What We Feel In The Moment</a><br>
+        <a href="https://www.blacktuskathletics.com/blog/what-can-proper-breathing-do-for-you-black-tusk-athletics">What Can Proper Breathing Do For You?</a><br>
+        <a href="https://www.blacktuskathletics.com/blog/leading-with-kindness-black-tusk-athletics">Leading With Kindness</a><br>
+        <a href="https://www.blacktuskathletics.com/blog/whats-your-why-black-tusk-athletics">What's Your Why? (Julia's story)</a><br>
+        <a href="https://www.blacktuskathletics.com/blog/why-crossfit-black-tusk-athletics">Why CrossFit?</a><br>
+        <a href="https://www.blacktuskathletics.com/blog/what-is-personal-training-and-is-it-right-for-you-black-tusk-athletics">What Is Personal Training and Is It Right For You?</a><br>
+        <a href="https://www.blacktuskathletics.com/blog/what-to-expect-when-returning-to-black-tusk-athletics-black-tusk-athletics">What To Expect When Returning to Black Tusk</a><br>
+        <a href="https://www.blacktuskathletics.com/blog/whats-our-take-on-nutrition-black-tusk-athletics">What's Our Take On Nutrition</a><br>
+        <a href="https://www.blacktuskathletics.com/blog/ships-only-sink-when-the-water-gets-in-black-tusk-athletics">Ships Only Sink When The Water Gets In</a><br>
+        <a href="https://www.blacktuskathletics.com/blog/black-tusk-is-back-black-tusk-athletics">BLACK TUSK IS BACK</a><br>
+      </div>
+      <h4>Booking &amp; social</h4>
+      <p>Book a No Sweat Intro: <a href="https://api.grow.pushpress.com/widget/booking/XeAYLaDsj8GP6RB8om7P">booking link</a><br>
+      Instagram: <a href="https://instagram.com/blacktuskathletics">@blacktuskathletics</a><br>
+      Facebook: <a href="https://www.facebook.com/blacktuskathletics">facebook.com/blacktuskathletics</a></p>
+    </div>
+  </div>
 
   <footer class="note">
-    Source: BTA June 2026 Content Calendar. Items marked “NEW” or with full copy are detailed in the master doc.
-    Items involving an offer or member email need Jay’s sign-off before publishing. Check state is stored locally in this browser.
+    Items involving an offer or member email need Jay's sign-off before publishing. Check state is stored locally in your browser (per device).
   </footer>
 </div>
 
 <script>
+(function(){
 const DATA = [
  {week:"Week 1 — June 1–7 · “Summer starts here / What to expect”", items:[
-  {d:"Mon Jun 1",ch:"Instagram",tier:"acq",type:"Reel",hook:"“You don’t need to be fit to start. You start to get fit.”",msg:"Bust the #1 barrier that stops people walking in. CTA: book a free No Sweat Intro.",src:"Original (echoes “We Make Decisions…”)",prod:"Film 20–30s: coach piece-to-camera + class b-roll"},
-  {d:"Tue Jun 2",ch:"IG + FB",tier:"acq",type:"Carousel",hook:"“Your first week here — what actually happens”",msg:"Lower gym nerves; show the room is friendly. CTA: NSI link in bio.",src:"NEW — Carousel 1",prod:"Use supplied PNGs; 6 slides"},
-  {d:"Wed Jun 3",ch:"Email",tier:"ret",type:"Email",hook:"Subject: “The days you least want to come”",msg:"Consistency beats heroics; reaffirm why they started. No ask.",src:"Repurpose “We Make Decisions…”",prod:"Copy-only"},
-  {d:"Thu Jun 5",ch:"Instagram",tier:"ret",type:"Feed / Reel",hook:"“Breathe. The skill nobody coaches you on.”",msg:"Exhale on exertion — a quick win members can use today.",src:"Repurpose “Proper Breathing”",prod:"Coach clip or single graphic"},
+  {d:"Mon Jun 1",ch:"Instagram",tier:"acq",type:"Reel",hook:"“You don’t need to be fit to start. You start to get fit.”",msg:"Bust the #1 barrier that stops people walking in. CTA: book a free No Sweat Intro.",src:"Original (echoes “We Make Decisions…”)",prod:"Film 20–30s: coach piece-to-camera + class b-roll",
+   copy:`<div class="dlabel">Instagram caption</div><p>Half the people who want to join a gym never do — because they’re waiting until they’re “ready.” Fit enough. Strong enough. Less nervous. Here’s the secret nobody tells you: nobody in that room started ready. They started nervous, scaled the workout, and let the fitness catch up. That’s not a slogan — it’s literally how it works. ⏱ Edmonton — book a free No Sweat Intro in our bio. Come exactly as you are.</p><p class="hash">#yeg #edmonton #blacktuskathletics #functionalfitness #community</p>`},
+  {d:"Tue Jun 2",ch:"IG + FB",tier:"acq",type:"Carousel",hook:"“Your first week here — what actually happens”",msg:"Lower gym nerves; show the room is friendly. CTA: NSI link in bio.",src:"NEW — Carousel 1 (6 slides)",prod:"Use supplied PNGs; 6 slides",
+   copy:`<div class="dlabel">Instagram caption</div><p>Nervous about walking into a gym like ours? Good — that means you care. Here’s what actually happens in your first week (swipe). Spoiler: nobody’s watching you, everything scales, and by Friday someone knows your name. That last part is the whole point. 📍 Edmonton · Free No Sweat Intro in the bio.</p><p class="hash">#yeg #edmontonfitness #blacktuskathletics #crossfit #newhere</p><div class="dlabel sub2">6 slides</div><ol class="slides"><li><b>Cover:</b> YOUR FIRST WEEK HERE — “what actually happens, so the nerves don’t get the last word.”</li><li>You’ll be nervous. Everyone in that room felt the same on day one.</li><li>Nobody is watching you. They’re chasing their own workout — and cheering for yours.</li><li>We scale everything. You don’t need to be fit to start. You start to get fit.</li><li>By Friday, someone knows your name. The community is the reason people stay.</li><li><b>CTA:</b> Book a free No Sweat Intro — no workout, no pressure.</li></ol>`},
+  {d:"Wed Jun 3",ch:"Email",tier:"ret",type:"Email",hook:"Subject: “The days you least want to come”",msg:"Consistency beats heroics; reaffirm why they started. No ask.",src:"Repurpose “We Make Decisions…”",prod:"Copy-only",
+   copy:`<div class="dlabel">Email — subject: “The days you least want to come”</div><p>Do you feel like training today? Probably not. Neither did half the class.</p><p>Here’s the thing we’ve noticed after years of coaching: the days you least want to show up are usually the ones that matter most. Not because of the workout itself — but because of what showing up says about who you’re becoming. Putting in the work, even when it isn’t fun, gets you one step closer to seeing yourself as a person who takes action.</p><p>You don’t have to love it. You just have to come. We’ll handle the rest once you’re here.</p><p>See you in class,<br>Coach [Name]</p>`},
+  {d:"Thu Jun 5",ch:"Instagram",tier:"ret",type:"Feed / Reel",hook:"“Breathe. The skill nobody coaches you on.”",msg:"Exhale on exertion — a quick win members can use today.",src:"Repurpose “Proper Breathing”",prod:"Coach clip or single graphic",
+   copy:`<div class="dlabel">Coaching beats (repurposed from “Proper Breathing”)</div><ol class="slides"><li>Don’t hold your breath — it cuts oxygen to the muscles you’re using.</li><li>The rule: exhale on exertion.</li><li>Push, stand, pull — exhale. Same rule, every lift.</li><li>Three big exhales resets a racing heart mid-workout.</li></ol><p class="hash">Caption angle: one usable tip, then “want eyes on your form? Book a No Sweat Intro.”</p>`},
   {d:"Fri Jun 6",ch:"Facebook",tier:"reeng",type:"Community post",hook:"“Haven’t seen you in a while? The door’s still open.”",msg:"Warm, no-guilt win-back touch. CTA: reply or drop in.",src:"Original",prod:"Copy + warm candid photo"},
   {d:"Sat Jun 7",ch:"Instagram",tier:"reeng",type:"Story",hook:"“Tag your Saturday crew”",msg:"Community engagement; surface belonging.",src:"Original",prod:"Story template + tag sticker"},
  ]},
  {week:"Week 2 — June 8–14 · “Your why / PT as outcomes”", items:[
-  {d:"Mon Jun 8",ch:"Instagram",tier:"acq",type:"Reel",hook:"“What Personal Training actually buys you”",msg:"Position PT (top revenue driver) as outcomes, not sessions. CTA: NSI.",src:"NEW blog “What PT Actually Buys You”",prod:"Film a real 1:1 session"},
-  {d:"Tue Jun 9",ch:"IG + FB",tier:"ret",type:"Feed",hook:"Member spotlight: “Meet [Member] — here’s her why”",msg:"Real member, real reason. Make members feel seen.",src:"Repurpose “What’s Your Why” (Julia format)",prod:"Photo + short pulled quote; get consent"},
-  {d:"Wed Jun 10",ch:"Email",tier:"ret",type:"Email",hook:"Subject: “Your why, on the hard days”",msg:"Reconnect members to motivation in month one (churn window).",src:"Repurpose “What’s Your Why”",prod:"Copy-only"},
-  {d:"Thu Jun 11",ch:"Instagram",tier:"acq",type:"Carousel",hook:"“Breathe.” — coaching tip carousel",msg:"Save-and-share value that shows coaching depth to non-members.",src:"NEW — Carousel 2",prod:"Use supplied PNGs; 6 slides"},
-  {d:"Fri Jun 12",ch:"Facebook",tier:"reeng",type:"Event",hook:"“Bring-a-Friend Saturday — June 20”",msg:"Stand up the community event; invite members to bring one guest.",src:"Original",prod:"Event graphic + RSVP (offer = approval gate)"},
+  {d:"Mon Jun 8",ch:"Instagram",tier:"acq",type:"Reel",hook:"“What Personal Training actually buys you”",msg:"Position PT (top revenue driver) as outcomes, not sessions. CTA: NSI.",src:"NEW blog “What PT Actually Buys You”",prod:"Film a real 1:1 session",
+   copy:`<div class="dlabel">Instagram caption</div><p>Personal Training isn’t about being too weak for class. It’s about having someone whose entire job, for one hour, is you. Your form. Your goals. Your comeback from that injury. Your why. That’s what you’re actually paying for — attention, not just exercise. If you’ve been curious, this is your sign. Link in bio for a No Sweat Intro.</p><p class="hash">#personaltraining #yegfitness #blacktuskathletics #coaching</p><p class="sub2"><em>Full source blog “What Personal Training Actually Buys You” is in the Full blog posts section below.</em></p>`},
+  {d:"Tue Jun 9",ch:"IG + FB",tier:"ret",type:"Feed",hook:"Member spotlight: “Meet [Member] — here’s her why”",msg:"Real member, real reason. Make members feel seen.",src:"Repurpose “What’s Your Why” (Julia format)",prod:"Photo + short pulled quote; get consent",
+   copy:`<div class="dlabel">Instagram caption (fill the brackets)</div><p>Meet [Member]. [She] started [X months] ago [couldn’t do a full squat / wasn’t sure she belonged] — and now [she’s setting PRs / knows half the room’s name]. We asked [her] why [she] keeps showing up. [Her] answer had nothing to do with abs and everything to do with [reason]. Your why might not look like [Member]’s. That doesn’t make it any less important. 🖤</p><p class="hash">#memberspotlight #whyitrain #blacktuskathletics #yegcommunity</p>`},
+  {d:"Wed Jun 10",ch:"Email",tier:"ret",type:"Email",hook:"Subject: “Your why, on the hard days”",msg:"Reconnect members to motivation in month one (churn window).",src:"Repurpose “What’s Your Why”",prod:"Copy-only",
+   copy:`<div class="dlabel">Email — subject: “Your why, on the hard days”</div><p>Every person who walks through our doors has a different reason for being here. A different history, a different week, a different thing they’re carrying. The one thing you all share is that for 60 minutes, you give your “why” everything you’ve got — and we’re grateful for that hour.</p><p>When motivation runs low — and in the first month or two, it will — it’s the why that carries you, not the willpower. Maybe it’s your kids. Maybe it’s proving something to yourself. Maybe it’s just wanting to feel like you again.</p><p>So here’s a small ask: hit reply and tell us your why. We’ll keep it in mind next time we see you on the floor.</p><p>See you in class,<br>Coach [Name]</p>`},
+  {d:"Thu Jun 11",ch:"Instagram",tier:"acq",type:"Carousel",hook:"“Breathe.” — coaching tip carousel",msg:"Save-and-share value that shows coaching depth to non-members.",src:"NEW — Carousel 2 (6 slides)",prod:"Use supplied PNGs; 6 slides",
+   copy:`<div class="dlabel">6 slides (repurposed from “Proper Breathing”)</div><ol class="slides"><li><b>Cover:</b> BREATHE. — “the most overlooked skill in the gym.”</li><li>Don’t hold your breath — it cuts oxygen to the muscles you’re using.</li><li>The rule: exhale on exertion.</li><li>Push, stand, pull — exhale. Same rule, every lift.</li><li>Three big exhales resets a racing heart mid-workout.</li><li><b>CTA:</b> Want eyes on your form? Book a No Sweat Intro.</li></ol>`},
+  {d:"Fri Jun 12",ch:"Facebook",tier:"reeng",type:"Event",hook:"“Bring-a-Friend Saturday — June 20”",msg:"Stand up the community event; invite members to bring one guest.",src:"Original",prod:"Event graphic + RSVP (offer = approval gate)",
+   copy:`<div class="warn">⚠ Involves an event/offer — confirm date and any guest offer with Jay before posting.</div><p class="hash">Angle: members bring one guest free on Sat Jun 20. Keep it warm and community-first, not promotional.</p>`},
   {d:"Sun Jun 14",ch:"Instagram",tier:"reeng",type:"Story",hook:"“We miss you” check-in poll",msg:"Low-pressure win-back; open a door for lapsed members.",src:"Original",prod:"Story poll sticker"},
  ]},
  {week:"Week 3 — June 15–21 · “Father’s Day / coaches / Legends”", items:[
   {d:"Mon Jun 15",ch:"Instagram",tier:"acq",type:"Reel",hook:"“The strongest thing you can model for your kids”",msg:"Father’s Day angle (Jun 21); parents as the audience.",src:"Original",prod:"Film parent + kid / Legends member"},
   {d:"Tue Jun 16",ch:"IG + FB",tier:"ret",type:"Feed",hook:"“A day in the life of Coach [Name]”",msg:"Humanize the staff; build the trust that keeps members.",src:"Original",prod:"Film/photo a coach’s real day"},
-  {d:"Wed Jun 17",ch:"Email",tier:"reeng",type:"Email",hook:"Subject: “Come back for one class — on us”",msg:"Win-back the month-one churned. One free class, no strings.",src:"Original",prod:"Copy-only; OFFER needs approval"},
+  {d:"Wed Jun 17",ch:"Email",tier:"reeng",type:"Email",hook:"Subject: “Come back for one class — on us”",msg:"Win-back the month-one churned. One free class, no strings.",src:"Original",prod:"Copy-only; OFFER needs approval",
+   copy:`<div class="warn">⚠ This email includes a free-class offer. Do not send until Jay approves the offer and the copy.</div><div class="dlabel">Email — subject: “Come back for one class — on us”</div><p>We’ll keep this short. We’ve missed you.</p><p>Life gets busy, routines fall apart, and somewhere in there the gym slipped off the list. That happens to everyone — no guilt here. But the door is still open, and your spot in this community didn’t go anywhere.</p><p>Come back for one class, on us. No commitment, no catch — just show up, and we’ll take care of the rest. Reply to this email and we’ll find you a time that works.</p><p>Hope to see you soon,<br>Coach [Name]</p>`},
   {d:"Thu Jun 18",ch:"Instagram",tier:"ret",type:"Feed",hook:"“Legends (50+): proof it’s never too late”",msg:"Program spotlight; pride for an underseen group.",src:"Original",prod:"Photo a Legends class"},
   {d:"Sat Jun 20",ch:"IG + FB",tier:"reeng",type:"Reel",hook:"“Bring-a-Friend Day + the longest day of the year”",msg:"Solstice + community event; capture footage for re-use.",src:"Original",prod:"Film the event live"},
-  {d:"Sun Jun 21",ch:"Instagram",tier:"reeng",type:"Feed / Carousel",hook:"“To every dad in our community —”",msg:"Father’s Day; celebrate member dads by name.",src:"Original",prod:"Carousel of member dads (consent)"},
+  {d:"Sun Jun 21",ch:"Instagram",tier:"reeng",type:"Feed / Carousel",hook:"“To every dad in our community —”",msg:"Father’s Day; celebrate member dads by name.",src:"Original",prod:"Carousel of member dads (consent)",
+   copy:`<div class="dlabel">Instagram caption</div><p>To every dad in our community: the early mornings, the “one more round,” the kid watching you do hard things and learning that they can too — we see it. The strongest thing you model isn’t a number on the bar. It’s showing up. Happy Father’s Day from all of us at Black Tusk. 🖤</p><p class="hash">#fathersday #yeg #blacktuskathletics #community</p>`},
  ]},
  {week:"Week 4 — June 22–27 · “Summer start / month recap”", items:[
   {d:"Mon Jun 22",ch:"Instagram",tier:"acq",type:"Reel",hook:"“Summer is the easiest time to start. Here’s why.”",msg:"Seasonal acquisition hook; Edmonton patio-season energy.",src:"Original",prod:"Film outdoor / river-valley adjacent"},
   {d:"Tue Jun 23",ch:"IG + FB",tier:"ret",type:"Feed",hook:"“The June PR board”",msg:"Celebrate member wins; make the room proud.",src:"Original",prod:"Photo the PR/whiteboard"},
-  {d:"Wed Jun 24",ch:"Email",tier:"ret",type:"Email",hook:"Subject: “What we saw in class this month”",msg:"Value-first community recap; warmth, no pitch.",src:"Original",prod:"Copy-only"},
+  {d:"Wed Jun 24",ch:"Email",tier:"ret",type:"Email",hook:"Subject: “What we saw in class this month”",msg:"Value-first community recap; warmth, no pitch.",src:"Original",prod:"Copy-only",
+   copy:`<div class="dlabel">Email — subject: “What we saw in class this month”</div><p>June was a good month to be part of this gym. We watched a brand-new member string together her first full week. We watched someone hit a lift they’d been circling for months. We watched the room go quiet and then loud for the last person finishing a workout — because that’s who we are.</p><p>None of that shows up on a leaderboard. But it’s the real measure of the place: people doing hard things next to people who want to see them win.</p><p>Thanks for being one of them. See you on the floor.</p><p>Coach [Name]</p>`},
   {d:"Thu Jun 25",ch:"Instagram",tier:"acq",type:"Feed",hook:"“StrongTEENS: school’s out, screens are winning”",msg:"Teens program; parents buying for kids out of school.",src:"Original",prod:"Photo a StrongTEENS session"},
   {d:"Fri Jun 26",ch:"Facebook",tier:"reeng",type:"Community post",hook:"“June, in your words” — member shoutouts",msg:"Belonging; close the month on the members’ voices.",src:"Original",prod:"Graphic with 3–4 member quotes"},
   {d:"Sat Jun 27",ch:"Instagram",tier:"reeng",type:"Story",hook:"“One small step this weekend”",msg:"Re-engage lapsed; a single doable action.",src:"Original",prod:"Story template"},
  ]},
 ];
-
 const TIER_LABEL = {acq:"Acquisition", ret:"Retention", reeng:"Re-engagement + Community"};
-const KEY = "bta-june2026-calendar-v1";
-let state = {};
-try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ state = {}; }
-
-function idFor(wi, ii){ return "w"+wi+"i"+ii; }
-function save(){
-  localStorage.setItem(KEY, JSON.stringify(state));
-  const s = document.getElementById("saved");
-  s.classList.add("show"); setTimeout(()=>s.classList.remove("show"), 900);
-}
+const TIER_B = {acq:"#A4822D", ret:"#6E6A66", reeng:"#B8B2A8"};
+const KEY = "bta-june2026-calendar-v2";
+let state = {cap:{}, pub:{}};
+try { const s = JSON.parse(localStorage.getItem(KEY)||"{}"); if(s.cap) state.cap=s.cap; if(s.pub) state.pub=s.pub; } catch(e){}
+const $ = id => document.getElementById(id);
+const idFor = (wi,ii)=>"w"+wi+"i"+ii;
+function save(){ localStorage.setItem(KEY, JSON.stringify(state)); }
 
 function render(){
-  const cal = document.getElementById("cal");
-  cal.innerHTML = "";
+  const cal = $("bta-cal"); cal.innerHTML = "";
   DATA.forEach((wk, wi) => {
-    const done = wk.items.filter((_,ii)=>state[idFor(wi,ii)]).length;
+    const posted = wk.items.filter((_,ii)=>state.pub[idFor(wi,ii)]).length;
     const sec = document.createElement("div");
     sec.className = "week";
-    sec.innerHTML = '<h2>'+wk.week+'<span class="wpct">'+done+'/'+wk.items.length+'</span></h2>';
+    sec.innerHTML = '<h2>'+wk.week+'<span class="wpct">'+posted+'/'+wk.items.length+' posted</span></h2>';
     wk.items.forEach((it, ii) => {
       const id = idFor(wi, ii);
-      const checked = !!state[id];
+      const capd = !!state.cap[id], pubd = !!state.pub[id];
       const row = document.createElement("div");
-      row.className = "row "+it.tier+(checked?" done":"");
+      row.className = "row "+it.tier+(pubd?" posted":"");
+      const detail = it.copy ? it.copy
+        : '<div class="dlabel">Brief</div><p>'+it.msg+'</p><p class="hash">Original piece — no long-form copy yet. Production: '+it.prod+'. Draft when you shoot/write it.</p>';
       row.innerHTML =
-        '<input type="checkbox" class="cb" '+(checked?"checked":"")+' data-id="'+id+'" aria-label="Mark published">'+
-        '<div class="meta"><div class="date">'+it.d+'</div>'+
-          '<div class="tags"><span class="tag ch">'+it.ch+'</span></div></div>'+
-        '<div><div class="tags" style="margin:0 0 4px">'+
-            '<span class="tag '+it.tier+'">'+TIER_LABEL[it.tier]+'</span>'+
-            '<span class="tag type">'+it.type+'</span></div>'+
-          '<div class="hook">'+it.hook+'</div>'+
-          '<div class="msg">'+it.msg+'</div>'+
-          '<div class="foot"><b>Source:</b> '+it.src+'  ·  <b>Production:</b> '+it.prod+'</div>'+
-        '</div>';
+        '<div class="checks">'+
+          '<label class="chk'+(capd?" on":"")+'"><input type="checkbox" class="cb cap" data-k="cap" data-id="'+id+'" '+(capd?"checked":"")+'>Captured</label>'+
+          '<label class="chk'+(pubd?" on":"")+'"><input type="checkbox" class="cb pub" data-k="pub" data-id="'+id+'" '+(pubd?"checked":"")+'>Published</label>'+
+        '</div>'+
+        '<div class="meta dt"><div class="date">'+it.d+'</div><div class="tags"><span class="tag ch">'+it.ch+'</span></div></div>'+
+        '<div><div class="tags" style="margin:0 0 4px"><span class="tag '+it.tier+'">'+TIER_LABEL[it.tier]+'</span><span class="tag type">'+it.type+'</span></div>'+
+          '<div class="hook">'+it.hook+'</div><div class="msg">'+it.msg+'</div>'+
+          '<div class="foot"><b>Source:</b> '+it.src+'  ·  <b>Production:</b> '+it.prod+'</div></div>'+
+        '<button class="toggle" data-toggle="'+id+'">+</button>'+
+        '<div class="detail" id="d-'+id+'">'+detail+'</div>';
       sec.appendChild(row);
     });
     cal.appendChild(sec);
   });
-  cal.querySelectorAll(".cb").forEach(cb => {
-    cb.addEventListener("change", e => {
-      const id = e.target.dataset.id;
-      if(e.target.checked) state[id] = true; else delete state[id];
-      save(); render(); updateProgress();
-    });
-  });
+  cal.querySelectorAll(".cb").forEach(cb => cb.addEventListener("change", e => {
+    const id = e.target.dataset.id, k = e.target.dataset.k;
+    if(e.target.checked) state[k][id] = true; else delete state[k][id];
+    save(); render(); updateProgress();
+  }));
+  cal.querySelectorAll(".toggle").forEach(btn => btn.addEventListener("click", e => {
+    const d = $("d-"+e.target.dataset.toggle);
+    const open = d.classList.toggle("open");
+    e.target.textContent = open ? "−" : "+";
+  }));
   updateProgress();
 }
-
 function updateProgress(){
-  let total=0, done=0;
-  const tierCount = {acq:[0,0], ret:[0,0], reeng:[0,0]};
+  let total=0, ncap=0, npub=0; const tc = {acq:[0,0], ret:[0,0], reeng:[0,0]};
   DATA.forEach((wk, wi) => wk.items.forEach((it, ii) => {
-    total++; tierCount[it.tier][1]++;
-    if(state[idFor(wi,ii)]){ done++; tierCount[it.tier][0]++; }
+    total++; tc[it.tier][1]++;
+    if(state.cap[idFor(wi,ii)]) ncap++;
+    if(state.pub[idFor(wi,ii)]){ npub++; tc[it.tier][0]++; }
   }));
-  const pct = total ? Math.round(done/total*100) : 0;
-  document.getElementById("fill").style.width = pct+"%";
-  document.getElementById("ptxt").innerHTML = done+" of "+total+" published ("+pct+"%)<span class="+'"saved"'+" id=\"saved\"></span>";
-  const ts = document.getElementById("tierstats");
-  ts.innerHTML = "";
-  Object.keys(tierCount).forEach(t => {
-    const c = tierCount[t];
-    const chip = document.createElement("span");
-    chip.className = "chip";
-    chip.style.borderLeft = "4px solid var(--"+(t==="acq"?"acq-b":t==="ret"?"ret-b":"reeng-b")+")";
-    chip.innerHTML = TIER_LABEL[t]+' <span class="n">'+c[0]+"/"+c[1]+"</span>";
+  const pc = total?Math.round(ncap/total*100):0, pp = total?Math.round(npub/total*100):0;
+  $("bta-fillcap").style.width = pc+"%"; $("bta-txtcap").textContent = ncap+" of "+total+" ("+pc+"%)";
+  $("bta-fillpub").style.width = pp+"%"; $("bta-txtpub").textContent = npub+" of "+total+" ("+pp+"%)";
+  const ts = $("bta-tiers"); ts.innerHTML = "";
+  Object.keys(tc).forEach(t => {
+    const c = tc[t]; const chip = document.createElement("span");
+    chip.className = "chip"; chip.style.borderLeft = "4px solid "+TIER_B[t];
+    chip.innerHTML = TIER_LABEL[t]+' published <span class="n">'+c[0]+"/"+c[1]+"</span>";
     ts.appendChild(chip);
   });
 }
-
-document.getElementById("reset").addEventListener("click", () => {
-  if(confirm("Clear all check marks?")){ state = {}; save(); render(); }
+$("bta-reset").addEventListener("click", () => { if(confirm("Clear all Captured + Published checkmarks?")){ state={cap:{},pub:{}}; save(); render(); } });
+$("bta-expand").addEventListener("click", () => {
+  document.querySelectorAll(".detail").forEach(d=>d.classList.add("open"));
+  document.querySelectorAll(".toggle").forEach(b=>b.textContent="−");
 });
-
+$("bta-collapse").addEventListener("click", () => {
+  document.querySelectorAll(".detail").forEach(d=>d.classList.remove("open"));
+  document.querySelectorAll(".toggle").forEach(b=>b.textContent="+");
+});
+document.querySelectorAll(".section > h3").forEach(h => h.addEventListener("click", () => {
+  const body = $("sec-"+h.dataset.sec);
+  const x = h.querySelector(".sx");
+  const open = body.classList.toggle("open");
+  x.textContent = open ? "−" : "+";
+}));
 render();
+})();
 </script>
 </body>
 </html>
