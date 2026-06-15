@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Tusk, August 2026 Content Calendar</title>
+<style>
+:root{
+  color-scheme: light;
+  --black:#231F20; --deep:#0A0806; --gold:#A4822D;
+  --white:#FFFFFF; --lgrey:#F2F2F2; --mgrey:#6E6A66; --dgrey:#3A3633;
+  --line:#E2DED7; --acq:#FBF1DA; --acq-b:#A4822D;
+  --ret:#EDEBE7; --ret-b:#6E6A66; --reeng:#F6F4F1; --reeng-b:#B8B2A8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--white); color:var(--black);
+  font-family:Arial,Helvetica,sans-serif; font-size:14px; line-height:1.45;
+}
+.wrap{max-width:1080px; margin:0 auto; padding:22px 20px 60px}
+header.top{border-bottom:3px solid var(--gold); padding-bottom:16px; margin-bottom:18px}
+.kicker{font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); font-weight:700}
+h1{font-size:24px; margin:6px 0 2px; color:var(--black)}
+.sub{color:var(--mgrey); font-size:13px}
+
+.progwrap{margin:18px 0 8px}
+.progrow{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+.progbar{flex:1; min-width:220px; height:14px; background:var(--lgrey); border-radius:8px; overflow:hidden}
+.progfill{height:100%; width:0; background:var(--gold); border-radius:8px; transition:width .3s ease}
+.progtxt{font-weight:700; font-size:13px; white-space:nowrap}
+.tierstats{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+.chip{font-size:11px; padding:4px 10px; border-radius:20px; font-weight:700; border:1px solid var(--line)}
+.chip .n{color:var(--mgrey); font-weight:400}
+.controls{margin:14px 0 4px; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+.btn{font:inherit; font-size:12px; padding:6px 12px; border:1px solid var(--line); background:var(--white);
+  border-radius:6px; cursor:pointer; color:var(--dgrey)}
+.btn:hover{border-color:var(--gold); color:var(--black)}
+.legend{font-size:11px; color:var(--mgrey); margin-left:auto; display:flex; gap:14px; flex-wrap:wrap}
+.dot{display:inline-block; width:10px; height:10px; border-radius:3px; vertical-align:middle; margin-right:4px}
+
+.week{margin-top:26px}
+.week h2{font-size:15px; margin:0 0 4px; padding-bottom:6px; border-bottom:1px solid var(--line)}
+.week h2 .wpct{float:right; font-size:12px; color:var(--mgrey); font-weight:400}
+
+.row{display:grid; grid-template-columns:64px 92px 1fr 26px; gap:12px; align-items:start;
+  padding:11px 12px; border:1px solid var(--line); border-left-width:4px; border-radius:7px; margin-top:8px; background:var(--white)}
+.row.acq{border-left-color:var(--acq-b)}
+.row.ret{border-left-color:var(--ret-b)}
+.row.reeng{border-left-color:var(--reeng-b)}
+.row.done{background:var(--lgrey); opacity:.66}
+.row.done .hook{text-decoration:line-through}
+
+.cbcol{display:flex; flex-direction:column; gap:8px; align-items:center}
+.cbwrap{display:flex; flex-direction:column; align-items:center; gap:2px}
+.cblbl{font-size:8.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--mgrey); font-weight:700}
+.cb{appearance:none; width:22px; height:22px; border:2px solid var(--mgrey); border-radius:6px;
+  cursor:pointer; margin:0; position:relative; flex:none; background:var(--white)}
+.cb.cap:checked{background:var(--dgrey); border-color:var(--dgrey)}
+.cb.pub:checked{background:var(--gold); border-color:var(--gold)}
+.cb:checked::after{content:""; position:absolute; left:6px; top:2px; width:6px; height:11px;
+  border:solid var(--white); border-width:0 3px 3px 0; transform:rotate(45deg)}
+
+.meta{font-size:11px; color:var(--mgrey)}
+.date{font-weight:700; color:var(--black); font-size:12px}
+.tags{margin-top:3px; display:flex; gap:5px; flex-wrap:wrap}
+.tag{font-size:10px; padding:2px 7px; border-radius:12px; font-weight:700; letter-spacing:.02em}
+.tag.acq{background:var(--acq); color:#7a5f1d}
+.tag.ret{background:var(--ret); color:var(--dgrey)}
+.tag.reeng{background:var(--reeng); color:var(--mgrey)}
+.tag.type{background:var(--white); border:1px solid var(--line); color:var(--mgrey); font-weight:400}
+.tag.ch{background:var(--deep); color:var(--white); font-weight:400}
+.tag.flag{background:#fff4d6; color:#8a6d18; border:1px solid var(--gold)}
+
+.hook{font-weight:700; color:var(--black); font-size:14px}
+.msg{margin-top:3px; color:var(--dgrey); font-size:12.5px}
+.foot{margin-top:6px; font-size:11px; color:var(--mgrey)}
+.foot b{color:var(--dgrey); font-weight:700}
+.exp{appearance:none; border:1px solid var(--line); background:var(--white); width:24px; height:24px;
+  border-radius:6px; cursor:pointer; font-size:16px; line-height:1; color:var(--mgrey); font-weight:700}
+.exp:hover{border-color:var(--gold); color:var(--black)}
+.detail{display:none; grid-column:1 / -1; margin-top:10px; padding:12px 14px; background:var(--lgrey);
+  border-radius:6px; border-left:3px solid var(--gold); font-size:12.5px; color:var(--dgrey); white-space:pre-wrap; line-height:1.5}
+.row.open .detail{display:block}
+.detail b{color:var(--black)}
+
+.saved{font-size:11px; color:var(--gold); margin-left:6px; opacity:0; transition:opacity .2s}
+.saved.show{opacity:1}
+
+section.lib{margin-top:40px; border-top:3px solid var(--gold); padding-top:18px}
+section.lib h2{font-size:19px; margin:0 0 4px}
+section.lib h3{font-size:14px; margin:22px 0 4px; color:var(--black); border-bottom:1px solid var(--line); padding-bottom:5px}
+section.lib h4{font-size:13px; margin:16px 0 4px; color:var(--gold)}
+.card{border:1px solid var(--line); border-radius:8px; padding:14px 16px; margin-top:10px; background:var(--white)}
+.card p{margin:0 0 10px}
+.subj{font-weight:700; color:var(--black)}
+.flagbox{background:#fff4d6; border:1px solid var(--gold); border-radius:6px; padding:8px 12px; font-size:12px;
+  color:#8a6d18; margin:8px 0}
+.linklist{columns:2; font-size:12.5px; margin-top:6px}
+.linklist a{color:var(--gold)}
+@media(max-width:620px){ .linklist{columns:1} .row{grid-template-columns:54px 1fr 26px} .meta{display:none} }
+footer.note{margin-top:30px; padding-top:14px; border-top:1px solid var(--line); font-size:11px; color:var(--mgrey)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="kicker">Black Tusk Athletics · Edmonton</div>
+    <h1>August 2026 Content Calendar</h1>
+    <div class="sub">Four weeks · all three growth tiers · Instagram, Facebook &amp; email. Tick <b>Captured</b> when footage/copy is ready and <b>Published</b> when it's live. Tap <b>+</b> on any row for the full copy. Progress saves on this device.</div>
+  </header>
+
+  <div class="progwrap">
+    <div class="progrow">
+      <div class="progbar"><div class="progfill" id="fill"></div></div>
+      <div class="progtxt" id="ptxt">0 of 24 published<span class="saved" id="saved">saved ✓</span></div>
+    </div>
+    <div class="tierstats" id="tierstats"></div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="expandAll">Expand all</button>
+    <button class="btn" id="collapseAll">Collapse all</button>
+    <button class="btn" id="reset">Reset checks</button>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--acq-b)"></span>Acquisition</span>
+      <span><span class="dot" style="background:var(--ret-b)"></span>Retention</span>
+      <span><span class="dot" style="background:var(--reeng-b)"></span>Re-engagement + Community</span>
+    </div>
+  </div>
+
+  <div id="cal"></div>
+
+  <!-- ============ SOURCE LIBRARY ============ -->
+  <section class="lib">
+    <h2>Source Library</h2>
+    <div class="sub">Everything written in the Black Tusk voice, ready to use. Edit bracketed bits (member names, coach names) before anything goes live. Items with an offer or member email need Jay's sign-off first.</div>
+
+    <h3>Weekly emails (4)</h3>
+
+    <div class="card">
+      <p class="subj">Email 1 · Wed Aug 5 · Community · Subject: “Why we love this city in August”</p>
+      <p>We're not going to use this email to sell you anything. We just wanted to say something we don't say often enough: we love this city.</p>
+      <p>August in Edmonton is the good stuff. Heritage Festival in the park, Folk Fest drifting up off the hill, the Fringe about to take over Old Strathcona, and long evenings that feel like they'll never end. It's easy to forget, in the middle of a busy year, how much there is to be grateful for right here.</p>
+      <p>Black Tusk has always been a community first and a gym second. The training is the reason you walk in. The people are the reason you stay. In a month this full of life, we're just glad you're part of ours.</p>
+      <p>Get out there and enjoy it, Edmonton. We'll see you on the floor.</p>
+      <p>Coach [Name]</p>
+    </div>
+
+    <div class="card">
+      <p class="subj">Email 2 · Wed Aug 12 · Retention · Subject: “The September trap”</p>
+      <p>There's a story a lot of us tell ourselves around this time of year. “I'll get serious in September. New season, fresh start, back to routine.” It sounds responsible. It's actually a trap.</p>
+      <p>Here's why: the version of you that's waiting for September is the same one that waited for Monday, and for the new year before that. The calendar has never once changed anybody. Showing up does. And the quiet last few weeks of summer are the easiest time there is to start, while the room is calm and nobody's fighting for a spot.</p>
+      <p>You don't need the perfect week to begin. You need one imperfect one. Twenty minutes, one class, a walk that turns into something. Every time you do the thing you didn't feel like doing, you cast a small vote for the person you're becoming. Do that a few times before September and you won't be starting in the fall. You'll already be moving.</p>
+      <p>Don't wait for the calendar. Come as you are, this week. We'll scale it, and we'll be glad to see you.</p>
+      <p>See you in class,<br>Coach [Name]</p>
+    </div>
+
+    <div class="card">
+      <p class="subj">Email 3 · Wed Aug 19 · Re-engagement · Subject: “Come build your fall rhythm with us”</p>
+      <div class="flagbox">⚠ This email includes a free-week offer. Do not send until Jay approves the offer and the copy.</div>
+      <p>We'll keep this short. We've missed you.</p>
+      <p>Summer scatters everyone. Trips, heat, kids home, and somewhere in there the routine you had in spring quietly fell apart. That happens to all of us, and there's no guilt here. But fall is coming, and it's the best chance all year to rebuild something steady, before the busy season swallows it.</p>
+      <p>So here's the invitation: come back and build your fall rhythm with us. Your first week back is on us, no commitment, no catch. We'll help you pick one class day to anchor and grow the rest from there. Reply to this email and we'll find you a time that works.</p>
+      <p>Your spot in this community never went anywhere. Hope to see you soon,<br>Coach [Name]</p>
+    </div>
+
+    <div class="card">
+      <p class="subj">Email 4 · Wed Aug 26 · Retention · Subject: “What we saw in class this month”</p>
+      <p>August was a good month to be part of this gym. We watched a member come straight from a weekend away and walk in like they'd never left. We watched someone hit a lift they'd been circling all summer. We watched the room go quiet and then loud for the last person finishing a workout, because that's who we are.</p>
+      <p>And we watched something we love every year about now: people quietly deciding not to wait for September. Starting in the calm. Building the rhythm that carries them into fall while everyone else is still getting ready to get ready.</p>
+      <p>None of that shows up on a leaderboard. But it's the real measure of the place: people doing hard things next to people who want to see them win.</p>
+      <p>Thanks for being one of them. See you on the floor.</p>
+      <p>Coach [Name]</p>
+    </div>
+
+    <h3>Full original blog posts (2)</h3>
+
+    <div class="card">
+      <h4>Blog A, Retention / the fall reset</h4>
+      <p class="subj">Don't Wait for September</p>
+      <p>There's a story that shows up every year around the middle of August, right about the time the evenings start getting a little shorter. It goes like this: “I'll get serious in September. New season, kids back in school, back to routine. That's when I'll really start.” It sounds responsible. It feels like a plan. It's actually one of the most expensive lies we tell ourselves.</p>
+      <p>Here's the problem. The version of you waiting for September is the same one that waited for Monday, and for January before that. The calendar has never once changed anybody. A date on the wall doesn't hand you discipline, energy, or a body that knows how to move. Only showing up does that, and showing up doesn't care what month it is.</p>
+      <p>There's also a quiet practical truth nobody mentions: the end of summer is the easiest time of the entire year to start. The room is calm. The coaches have more eyes for you. There's no January-style crowd to feel lost in, no fight for a spot, no sea of people who will be gone by February. You get the gym closer to how it actually feels on a normal Tuesday, with more attention than you'll ever get during the rush.</p>
+      <p>And momentum is a real thing. If you start now, even small, September isn't a cliff you have to climb. It's just the next week. While everyone else is getting ready to get ready, you're already moving. You've already had the awkward first session, already learned where things are, already met a couple of faces who know your name. That head start is worth more than any amount of New Year's motivation.</p>
+      <p>So here's the reframe we give people every August: don't wait for the calendar to give you permission. You don't need the perfect week to begin. You need one imperfect one. One class. Twenty minutes. A conversation with a coach about where you're at. Do that a few times before the leaves turn and you won't be starting your fall. You'll be in the middle of it, while the rest of the city is still circling the parking lot.</p>
+      <p>The door is open right now, today, in the quiet. Come see what it feels like before the crowd arrives.</p>
+      <p>See you in class.<br><i>Coach [Name]</i></p>
+      <p style="font-size:11.5px;color:var(--mgrey)"><b>Repurpose into:</b> the Aug 6 “start now” Reel, Carousel 1, Email 2, and a Story poll (“starting now, or waiting for September?”).</p>
+    </div>
+
+    <div class="card">
+      <h4>Blog B, Personal Training / structure / revenue</h4>
+      <p class="subj">Willpower Is Overrated. Structure Wins.</p>
+      <p>Most people who fall off their training don't quit because they're weak. They quit because they were relying on willpower, and willpower is the worst training partner you could pick. It shows up strong on day one, gets bored by day four, and ghosts you completely the first week things get hard.</p>
+      <p>We see it every fall. Someone decides this is the year, white-knuckles two great weeks on pure motivation, then misses a Monday, then a week, then quietly disappears. It's not a character flaw. It's a design flaw. They built the whole thing on the one fuel source guaranteed to run out.</p>
+      <p>Here's what actually carries people: structure. A plan you made when you were motivated, that keeps running when you're not. A class time already on the calendar, so the decision is made before the tired version of you gets a vote. A coach who's expecting you. People who notice if you don't show. Structure is just borrowed discipline, a system you build once so you don't have to win the argument with yourself every single morning.</p>
+      <p>This is the part people miss about coaching, and about Personal Training in particular. You're not paying for someone to count your reps. You're buying structure. An hour that's already booked, built entirely around you and your goals, with someone whose whole job is to keep you honest and adjust as your body changes. For a lot of people rebuilding a routine this fall, that's the difference between another two-week burst and a year that actually sticks.</p>
+      <p>Group classes do the same thing in their own way. The schedule is set, the coach is there, the community is expecting you. You stop negotiating with yourself about whether to go and you just go, because that's what Tuesday is now. Fundamentals does it for brand-new members: a clear path in, so you're not guessing. None of it relies on you feeling motivated. That's the whole point.</p>
+      <p>So if you've tried to “be more disciplined” before and it didn't take, stop blaming yourself and change the design. Build the structure first, and let it carry the willpower. Come have a no-pressure conversation with us, a No Sweat Intro, and we'll help you build a fall rhythm that doesn't depend on how you feel that day.</p>
+      <p><i>Coach [Name]</i></p>
+      <p style="font-size:11.5px;color:var(--mgrey)"><b>Repurpose into:</b> the Aug 13 PT Reel, Carousel 2, a “willpower vs structure” carousel, and an email to members who drifted over the summer.</p>
+    </div>
+
+    <h3>Designed carousels (2)</h3>
+    <div class="card">
+      <p class="subj">Carousel 1, “Start before September” (Acquisition) · 6 slides</p>
+      <p>Cover → 4 reasons (“The room is calmer right now” · “Routines beat resolutions” · “You don't need to be fit first” · “Momentum beats a fresh start”) → CTA: book a No Sweat Intro. Files: <i>carousel_slides/c1_september_1-6.png</i>.</p>
+      <p class="subj">Carousel 2, “Build your fall rhythm” (Retention) · 6 slides</p>
+      <p>Cover → 4 tips (“Anchor one class day first” · “Book the week, don't wing it” · “Stack it on a habit you have” · “Tell us your goal for fall”) → CTA: lock your fall in. Files: <i>carousel_slides/c2_rhythm_1-6.png</i>.</p>
+    </div>
+
+    <h3>Production checklist</h3>
+    <div class="card">
+      <p>☐ Batch-film: Aug 6 “start now” Reel, Aug 13 PT Reel, Aug 15 Fringe Reel, Aug 28 Legends Reel.</p>
+      <p>☐ Member consent secured for the Aug 14 spotlight, the Aug 23 shoutouts, and the Aug 27 PR board.</p>
+      <p>☐ Approve the win-back “first week back on us” offer before the Aug 19 email.</p>
+      <p>☐ Carousel files (12 slides) exported and queued; captions pulled from the rows above.</p>
+      <p>☐ Tee up September: book a planning window for Aug 29-31 to recap August and build the next calendar.</p>
+    </div>
+
+    <h3>Edmonton seasonal hooks used this month</h3>
+    <div class="card">
+      <p>• Heritage Festival &amp; Heritage Day (Aug 1-3, Borden Park): community gratitude post + email on the long weekend.</p>
+      <p>• Edmonton Folk Music Festival (Aug 6-9, Gallagher Park): local pride community Reel.</p>
+      <p>• Edmonton International Fringe Festival (Aug 13-23, Old Strathcona): “catch a show, then a class” acquisition hook.</p>
+      <p>• Back to routine &amp; the September reset: the “Start Before September” acquisition theme and “Build Your Fall Rhythm” retention carousel.</p>
+      <p>• School's back, StrongTEENS acquisition angle for parents reclaiming the routine.</p>
+    </div>
+
+    <h3>Links</h3>
+    <h4>Blog library (repurpose these)</h4>
+    <div class="linklist">
+      <a href="https://www.blacktuskathletics.com/blog/we-make-decisions-based-on-what-we-feel-in-the-moment-black-tusk-athletics">We Make Decisions Based On What We Feel In The Moment</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/what-can-proper-breathing-do-for-you-black-tusk-athletics">What Can Proper Breathing Do For You?</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/leading-with-kindness-black-tusk-athletics">Leading With Kindness</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/whats-your-why-black-tusk-athletics">What's Your Why? (Julia's story)</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/why-crossfit-black-tusk-athletics">Why CrossFit?</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/what-is-personal-training-and-is-it-right-for-you-black-tusk-athletics">What Is Personal Training and Is It Right For You?</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/what-to-expect-when-returning-to-black-tusk-athletics-black-tusk-athletics">What To Expect When Returning</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/whats-our-take-on-nutrition-black-tusk-athletics">What's Our Take On Nutrition</a>
+    </div>
+    <h4>Programs &amp; booking</h4>
+    <div class="linklist">
+      <a href="https://www.blacktuskathletics.com/programs/personal-training">Personal Training</a><br>
+      <a href="https://www.blacktuskathletics.com/programs/group-classes">Group Classes</a><br>
+      <a href="https://www.blacktuskathletics.com/programs/legends-50">Legends (50+)</a><br>
+      <a href="https://www.blacktuskathletics.com/programs/teens-strength-and-conditioning">StrongTEENS (11-16)</a><br>
+      <a href="https://api.grow.pushpress.com/widget/booking/XeAYLaDsj8GP6RB8om7P">Book a No Sweat Intro</a><br>
+      <a href="https://instagram.com/blacktuskathletics">Instagram</a><br>
+      <a href="https://www.facebook.com/blacktuskathletics">Facebook</a>
+    </div>
+  </section>
+
+  <footer class="note">
+    Source: BTA August 2026 Content Calendar &amp; Growth Engine. Full doc (with campaign brief) delivered as a Word/PDF file.
+    Items involving an offer or member email need Jay's sign-off before publishing. Check state is stored locally in this browser.
+  </footer>
+</div>
+
+<script>
+const DATA = [
+ {week:"Week 1, August 1-7 · “Heritage long weekend & a strong finish to summer”", items:[
+  {d:"Sat Aug 1",ch:"Instagram",tier:"reeng",type:"Story",hook:"“Heritage long weekend, Edmonton.”",msg:"Light community hook for the long weekend; enjoy the city.",src:"Original",prod:"Story template + location sticker",full:"STORY: Branded template over a Borden Park / festival vibe. \"Heritage long weekend, Edmonton. Go eat your way around the world. We'll be here when you're back.\" Location sticker, light and community-first."},
+  {d:"Sun Aug 2",ch:"Facebook",tier:"reeng",type:"Community post",hook:"“Drifted off over summer? No guilt. The door's open.”",msg:"Warm, no-pressure win-back touch before the fall.",src:"Original",prod:"Copy + warm candid photo",full:"POST: No lecture, no guilt. Summer scatters everyone and routines fall apart, it happens to all of us. Your spot in this community didn't go anywhere. Reply here or just drop into a class this week. We'd love to see you before the fall rush."},
+  {d:"Mon Aug 3",ch:"IG + FB",tier:"reeng",type:"Reel",hook:"“Happy Heritage Day, Edmonton.”",msg:"Community gratitude + city pride on the civic holiday. No ask.",src:"Repurpose “Leading With Kindness”",prod:"Short community Reel; city-proud b-roll",full:"REEL: warm community montage, faces in the gym, the city in summer. Caption leans on gratitude and belonging, not a pitch. Tie it to Heritage Day and the long weekend."},
+  {d:"Wed Aug 5",ch:"Email",tier:"reeng",type:"Email",hook:"Subject: “Why we love this city in August”",msg:"Gratitude for the community and the city, no pitch. (Email 1)",src:"Repurpose “Leading With Kindness”",prod:"Copy-only",full:"Full copy in Source Library → Email 1. Pure gratitude for the city and the community, no ask."},
+  {d:"Thu Aug 6",ch:"Instagram",tier:"acq",type:"Reel",hook:"“Everyone starts in September. The smart money starts now.”",msg:"Flip the September-rush excuse into a reason to begin now. CTA: free No Sweat Intro.",src:"NEW blog “Don't Wait for September”",prod:"Film 20-30s: coach to-camera + quiet-room b-roll",full:"CAPTION: Every year it's the same: the gyms fill up the first week of September with people white-knuckling a fresh start. Here's the secret nobody mentions. The best time to begin is right now, in the quiet last stretch of summer. The room is calmer, the coaches have more eyes for you, and by the time the September crowd shows up, you're not starting, you're already in rhythm. You don't need to be fit to begin. You begin, and the fitness catches up. 📍 Edmonton. Book a free No Sweat Intro in our bio. Come exactly as you are. #yeg #edmonton #blacktuskathletics #functionalfitness #community"},
+  {d:"Fri Aug 7",ch:"Instagram",tier:"ret",type:"Feed / Reel",hook:"“The last month of summer decides your fall.”",msg:"Consistency now sets up September; something beats nothing.",src:"Repurpose “We Make Decisions…”",prod:"Coach clip or single graphic",full:"POINTS: The work you do in the quiet now is what you lean on in September. You don't need a perfect month, you just need to not disappear. Keep one foot in and fall isn't a restart, it's a continuation. Something always beats nothing."},
+ ]},
+ {week:"Week 2, August 8-14 · “Folk Fest, your why & Personal Training”", items:[
+  {d:"Sat Aug 8",ch:"IG + FB",tier:"reeng",type:"Reel",hook:"“Folk Fest weekend on the hill.”",msg:"Local pride hook (Folk Fest Aug 6-9, Gallagher Park); we're part of this city.",src:"Original",prod:"Film fun, city-proud b-roll",full:"REEL: city-proud b-roll with Folk Fest energy (Gallagher Park, Aug 6-9). We love this town in August. Go enjoy a night under the lights, then come move. Balance isn't a diet, it's a rhythm."},
+  {d:"Sun Aug 9",ch:"Instagram",tier:"reeng",type:"Story",hook:"“We miss you” check-in poll",msg:"Low-pressure win-back; open a door for lapsed members.",src:"Original",prod:"Story poll sticker",full:"STORY: \"Haven't been in lately? No judgment. Where are you at?\" Poll: \"Still training elsewhere\" / \"Fell off, want back in.\" DM everyone who taps the second option, warmly, and mention the fall rhythm reset."},
+  {d:"Mon Aug 10",ch:"IG + FB",tier:"acq",type:"Carousel",hook:"“Start before September” (4 reasons)",msg:"Beat the September rush; the quiet end of summer is the smart time to begin. CTA: NSI in bio.",src:"NEW: Carousel 1 (designed)",prod:"Use supplied PNGs; 6 slides",full:"CAPTION: Thinking you'll start in September? Most people are. That's exactly why now is smarter (swipe). The room's calmer, you get more of your coach's attention, and you walk into fall already moving instead of starting from zero with the crowd. The hardest part is the first session, not the fiftieth. If you've been waiting for the right time, this is closer to it than September will be. 📍 Edmonton · Free No Sweat Intro in the bio. #yeg #edmontonfitness #blacktuskathletics #crossfit #newhere\n\nSLIDES: see Carousel 1 in Source Library (c1_september_1-6.png)."},
+  {d:"Wed Aug 12",ch:"Email",tier:"ret",type:"Email",hook:"Subject: “The September trap”",msg:"Don't wait for the calendar; start the imperfect week now. No ask. (Email 2)",src:"Repurpose “We Make Decisions…”",prod:"Copy-only",full:"Full copy in Source Library → Email 2. Theme: the calendar never changed anybody; start the imperfect week now, not in September."},
+  {d:"Thu Aug 13",ch:"Instagram",tier:"acq",type:"Reel",hook:"“Personal Training isn't a last resort. It's a head start.”",msg:"Reframe PT (top revenue driver) as an advantage going into fall. CTA: NSI.",src:"NEW blog “Willpower Is Overrated”",prod:"Film a real 1:1 session",full:"CAPTION: Personal Training isn't the thing you do when you're too out of shape for a \"real\" class. It's a head start. An hour built entirely around you: your knee, your goal, your comeback, your why. Going into fall, that's not a last resort, it's an unfair advantage. If you've been curious, this is your sign. Link in bio for a No Sweat Intro and we'll tell you honestly whether PT, classes, or a mix is right for you. #personaltraining #yegfitness #blacktuskathletics #coaching"},
+  {d:"Fri Aug 14",ch:"IG + FB",tier:"ret",type:"Feed",hook:"Member spotlight: “Meet [Member]: why he trained all summer”",msg:"Real member, real reason; make members feel seen.",src:"Repurpose “What's Your Why” (Julia format)",prod:"Photo + pulled quote; get consent",full:"CAPTION: Meet [Member]. [He] started [X months] ago [couldn't do a full squat / wasn't sure he belonged], and [he's] still here, training right through a summer that pulls everyone in ten directions. We asked [him] why [he] keeps showing up when the patios and the lake are calling. [His] answer had nothing to do with abs and everything to do with [reason]. Your why might not look like [Member]'s. That doesn't make it any less important. 🖤 #memberspotlight #whyitrain #blacktuskathletics #yegcommunity\n\n⚠ Get member consent before posting."},
+ ]},
+ {week:"Week 3, August 15-21 · “Fringe Festival & summer in the city”", items:[
+  {d:"Sat Aug 15",ch:"IG + FB",tier:"reeng",type:"Reel",hook:"“It's Fringe, Edmonton.”",msg:"Local pride hook (Fringe Aug 13-23, Old Strathcona); catch a show, then a class.",src:"Original",prod:"Film fun b-roll near Old Strathcona",full:"CAPTION: It's Fringe, Edmonton. 🎭 Old Strathcona packed, a hundred shows a day, the whole city out on the sidewalks. We love this town in August. We're not here to tell you to skip the fun. We're here for the part where you want to feel good doing it. Catch a show, then catch a class. That's the whole idea. 🖤 #yegfringe #yeg #edmonton #blacktuskathletics #community"},
+  {d:"Sun Aug 16",ch:"Instagram",tier:"reeng",type:"Story",hook:"“One small step before September”",msg:"Re-engage lapsed; a single doable action ahead of the fall.",src:"Original",prod:"Story template + link sticker",full:"STORY: \"September's a clean page. One small step this week? Book a class.\" Single CTA, low pressure, link sticker."},
+  {d:"Mon Aug 17",ch:"IG + FB",tier:"ret",type:"Carousel",hook:"“Build your fall rhythm”: summer to steady",msg:"Save-worthy retention value for the back-to-routine season.",src:"NEW: Carousel 2 (designed)",prod:"Use supplied PNGs; 6 slides",full:"CAPTION: Heading into fall? Don't try to rebuild the whole week on day one. Save this and start with one anchor day (swipe). Structure beats willpower every time. 🖤 #blacktuskathletics #yeg #fallreset #consistency\n\nSLIDES: see Carousel 2 in Source Library (c2_rhythm_1-6.png)."},
+  {d:"Wed Aug 19",ch:"Email",tier:"reeng",type:"Email",hook:"Subject: “Come build your fall rhythm with us”",msg:"Win-back the lapsed; first week back on us. (Email 3)",src:"Original",prod:"Copy-only; OFFER needs approval",full:"⚠ OFFER: needs Jay's approval before sending. Full copy in Source Library → Email 3. First week back on us, no catch, help them anchor one class day."},
+  {d:"Thu Aug 20",ch:"Instagram",tier:"acq",type:"Reel",hook:"“At the Fringe, every show is 45 minutes. So is a class.”",msg:"Local hook; lower the time barrier to starting. CTA: NSI.",src:"Original",prod:"Film near Old Strathcona / class energy",full:"CAPTION: At the Fringe, every show runs about 45 minutes, and you'll happily sit through five in a day. Here's a thought: a class is 45 minutes too. If you can find time for a show, you can find time to feel good. The hardest part isn't the hour, it's the deciding. 📍 Edmonton. Free No Sweat Intro in the bio. #yegfringe #yeg #blacktuskathletics #functionalfitness"},
+  {d:"Fri Aug 21",ch:"Instagram",tier:"ret",type:"Feed",hook:"“A day in the life of Coach [Name]”",msg:"Humanize the staff; build the trust that keeps members.",src:"Original",prod:"Film/photo a coach's real day",full:"FORMAT: 4-6 candid moments from a coach's real day: coffee, programming the whiteboard, a 6am class, a 1:1, the clean-up. Caption in the coach's own voice. Builds the trust that keeps members."},
+ ]},
+ {week:"Week 4, August 22-28 · “Back to routine & celebrating August”", items:[
+  {d:"Sat Aug 22",ch:"Instagram",tier:"acq",type:"Reel",hook:"“StrongTEENS: school's back, screens lose.”",msg:"Teens program; parents reclaiming routine as school returns.",src:"Original",prod:"Photo a StrongTEENS session",full:"CAPTION (to parents): School's back, and the screens have had a long summer. StrongTEENS (11-16) gives them somewhere to go, real coaching, and the kind of confidence that doesn't come from a phone. A great anchor for the new routine. 📍 Edmonton. DM us or book a No Sweat Intro in the bio. #strongteens #yeg #blacktuskathletics #youthfitness"},
+  {d:"Sun Aug 23",ch:"Facebook",tier:"reeng",type:"Community post",hook:"“August, in your words”: member shoutouts",msg:"Belonging; close the month on the members' voices.",src:"Original",prod:"Graphic with 3-4 member quotes",full:"POST: graphic with 3-4 real member quotes about what the gym/community meant this month. Close August on the members' voices, not the brand's. ⚠ Get consent for any quotes/photos."},
+  {d:"Mon Aug 24",ch:"Instagram",tier:"reeng",type:"Story",hook:"“September starts Monday. Beat the rush.”",msg:"Re-engage lapsed; book ahead of the fall crowd.",src:"Original",prod:"Story template + link sticker",full:"STORY: \"September fills up fast. Book your No Sweat Intro now and skip the rush.\" Link sticker. Aimed at lapsed members and fence-sitters."},
+  {d:"Wed Aug 26",ch:"Email",tier:"ret",type:"Email",hook:"Subject: “What we saw in class this month”",msg:"Value-first community recap; warmth, no pitch. (Email 4)",src:"Original",prod:"Copy-only",full:"Full copy in Source Library → Email 4. A warm month-in-review; no ask, just belonging, plus a nod to the people who started in the calm before the rush."},
+  {d:"Thu Aug 27",ch:"Instagram",tier:"ret",type:"Feed",hook:"“The August PR board”",msg:"Celebrate member wins; make the room proud.",src:"Original",prod:"Photo the PR/whiteboard",full:"POST: photo the PR/whiteboard, tag the members (with consent). Caption: \"August's wins. Every name here showed up on a day they didn't feel like it, in the last stretch of summer. That's the whole game.\" ⚠ Get consent before tagging."},
+  {d:"Fri Aug 28",ch:"Instagram",tier:"acq",type:"Reel",hook:"“Legends (50+): the fall reset isn't just for the young.”",msg:"Program spotlight that doubles as acquisition for older adults.",src:"Original",prod:"Film/photo a Legends class",full:"CAPTION: \"I'm too old to start.\" We hear it all the time, and it's the one that breaks our hearts a little, because it's so rarely true. The fall reset isn't just for the young. Our Legends (50+) members will tell you: the best time to get strong was twenty years ago, and the second-best time is a Tuesday this fall. It's never too late, and you won't be doing it alone. 📍 Edmonton. Book a No Sweat Intro in the bio. #legends #neverlateto #yeg #blacktuskathletics #community"},
+ ]},
+];
+
+const TIER_LABEL = {acq:"Acquisition", ret:"Retention", reeng:"Re-engagement + Community"};
+const KEY = "bta-august-2026-calendar-v2";
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ state = {}; }
+
+function idFor(wi, ii){ return "w"+wi+"i"+ii; }
+function save(){
+  localStorage.setItem(KEY, JSON.stringify(state));
+  const s = document.getElementById("saved");
+  if(s){ s.classList.add("show"); setTimeout(()=>s.classList.remove("show"), 900); }
+}
+function st(id){ return state[id] || {}; }
+
+function render(){
+  const cal = document.getElementById("cal");
+  cal.innerHTML = "";
+  DATA.forEach((wk, wi) => {
+    const done = wk.items.filter((_,ii)=>st(idFor(wi,ii)).pub).length;
+    const sec = document.createElement("div");
+    sec.className = "week";
+    sec.innerHTML = '<h2>'+wk.week+'<span class="wpct">'+done+'/'+wk.items.length+' published</span></h2>';
+    wk.items.forEach((it, ii) => {
+      const id = idFor(wi, ii);
+      const s = st(id);
+      const row = document.createElement("div");
+      row.className = "row "+it.tier+(s.pub?" done":"");
+      row.dataset.id = id;
+      const flag = /needs approval|OFFER|approval gate|consent/i.test(it.prod+it.full) ?
+        '<span class="tag flag">approval / consent</span>' : '';
+      row.innerHTML =
+        '<div class="cbcol">'+
+          '<div class="cbwrap"><input type="checkbox" class="cb cap" '+(s.cap?"checked":"")+' data-id="'+id+'" data-k="cap" aria-label="Captured"><span class="cblbl">Cap</span></div>'+
+          '<div class="cbwrap"><input type="checkbox" class="cb pub" '+(s.pub?"checked":"")+' data-id="'+id+'" data-k="pub" aria-label="Published"><span class="cblbl">Pub</span></div>'+
+        '</div>'+
+        '<div class="meta"><div class="date">'+it.d+'</div>'+
+          '<div class="tags"><span class="tag ch">'+it.ch+'</span></div></div>'+
+        '<div><div class="tags" style="margin:0 0 4px">'+
+            '<span class="tag '+it.tier+'">'+TIER_LABEL[it.tier]+'</span>'+
+            '<span class="tag type">'+it.type+'</span>'+flag+'</div>'+
+          '<div class="hook">'+it.hook+'</div>'+
+          '<div class="msg">'+it.msg+'</div>'+
+          '<div class="foot"><b>Source:</b> '+it.src+'  ·  <b>Production:</b> '+it.prod+'</div>'+
+        '</div>'+
+        '<button class="exp" data-id="'+id+'" aria-label="Toggle full copy">+</button>'+
+        '<div class="detail">'+it.full.replace(/\n/g,"<br>")+'</div>';
+      sec.appendChild(row);
+    });
+    cal.appendChild(sec);
+  });
+  cal.querySelectorAll(".cb").forEach(cb => {
+    cb.addEventListener("change", e => {
+      const id = e.target.dataset.id, k = e.target.dataset.k;
+      const cur = state[id] || {};
+      if(e.target.checked) cur[k] = true; else delete cur[k];
+      if(!cur.cap && !cur.pub) delete state[id]; else state[id] = cur;
+      save(); render(); updateProgress();
+    });
+  });
+  cal.querySelectorAll(".exp").forEach(b => {
+    b.addEventListener("click", e => {
+      const row = e.target.closest(".row");
+      row.classList.toggle("open");
+      e.target.textContent = row.classList.contains("open") ? "-" : "+";
+    });
+  });
+  updateProgress();
+}
+
+function updateProgress(){
+  let total=0, done=0;
+  const tierCount = {acq:[0,0], ret:[0,0], reeng:[0,0]};
+  DATA.forEach((wk, wi) => wk.items.forEach((it, ii) => {
+    total++; tierCount[it.tier][1]++;
+    if(st(idFor(wi,ii)).pub){ done++; tierCount[it.tier][0]++; }
+  }));
+  const pct = total ? Math.round(done/total*100) : 0;
+  document.getElementById("fill").style.width = pct+"%";
+  document.getElementById("ptxt").innerHTML = done+" of "+total+" published ("+pct+"%)<span class=\"saved\" id=\"saved\"></span>";
+  const ts = document.getElementById("tierstats");
+  ts.innerHTML = "";
+  Object.keys(tierCount).forEach(t => {
+    const c = tierCount[t];
+    const chip = document.createElement("span");
+    chip.className = "chip";
+    chip.style.borderLeft = "4px solid var(--"+(t==="acq"?"acq-b":t==="ret"?"ret-b":"reeng-b")+")";
+    chip.innerHTML = TIER_LABEL[t]+' <span class="n">'+c[0]+"/"+c[1]+"</span>";
+    ts.appendChild(chip);
+  });
+}
+
+document.getElementById("expandAll").addEventListener("click", () => {
+  document.querySelectorAll(".row").forEach(r=>{ r.classList.add("open"); const b=r.querySelector(".exp"); if(b)b.textContent="-"; });
+});
+document.getElementById("collapseAll").addEventListener("click", () => {
+  document.querySelectorAll(".row").forEach(r=>{ r.classList.remove("open"); const b=r.querySelector(".exp"); if(b)b.textContent="+"; });
+});
+document.getElementById("reset").addEventListener("click", () => {
+  if(confirm("Clear all Captured/Published check marks?")){ state = {}; save(); render(); }
+});
+
+render();
+</script>
+</body>
+</html>
