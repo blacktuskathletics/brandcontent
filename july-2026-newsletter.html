@@ -22,6 +22,8 @@ body{margin:0; background:#cfcbc4; color:var(--black);
 .rule{height:4px; background:var(--gold); width:90px; margin:20px 0 0; border-radius:3px}
 .flag{background:#fff4d6; border-bottom:1px solid var(--gold); color:#8a6d18; font-size:12.5px;
   padding:10px 40px; text-align:left}
+.meta{background:var(--lgrey); border-bottom:1px solid var(--line); padding:14px 40px; font-size:13px; color:var(--dgrey)}
+.meta b{color:var(--black)}
 .body{padding:30px 40px 40px}
 .intro{font-size:16px; color:var(--dgrey); margin:0 0 26px}
 h2{font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); font-weight:700;
@@ -29,19 +31,17 @@ h2{font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--g
 h3{font-size:17px; margin:18px 0 4px; color:var(--black)}
 p{margin:0 0 14px}
 .lead{font-size:17px; font-weight:700; color:var(--black)}
-ul{margin:6px 0 16px; padding-left:0; list-style:none}
-li{position:relative; padding-left:22px; margin:0 0 10px}
-li::before{content:"\25B2"; color:var(--gold); position:absolute; left:0; top:1px; font-size:10px}
 .datechip{display:inline-block; background:var(--black); color:var(--white); font-size:11px; font-weight:700;
   border-radius:12px; padding:2px 9px; margin-right:6px; letter-spacing:.02em}
+.note{background:#faf6ec; border-left:4px solid var(--gold); border-radius:6px; padding:20px 22px; margin:18px 0 6px}
+.note h3{margin-top:0}
 .cta{background:var(--lgrey); border-left:4px solid var(--gold); border-radius:6px; padding:18px 20px; margin:26px 0 6px}
 .cta a{color:var(--gold); font-weight:700; text-decoration:none}
 .signoff{margin-top:24px; font-style:italic; color:var(--mgrey)}
 .foot{background:var(--deep); color:#A8A39B; font-size:11.5px; padding:20px 40px; line-height:1.7}
 .foot b{color:#fff}
 .foot a{color:var(--gold); text-decoration:none}
-em.fill{font-style:normal; background:#fbf1da; color:#7a5f1d; padding:0 4px; border-radius:3px}
-@media(max-width:600px){ .hero,.body,.foot,.flag{padding-left:22px; padding-right:22px} .htitle{font-size:32px} }
+@media(max-width:600px){ .hero,.body,.foot,.flag,.meta{padding-left:22px; padding-right:22px} .htitle{font-size:32px} }
 </style>
 </head>
 <body>
@@ -54,41 +54,54 @@ em.fill{font-style:normal; background:#fbf1da; color:#7a5f1d; padding:0 4px; bor
     <div class="rule"></div>
   </div>
 
-  <div class="flag">DRAFT for Jay. This is a member and community newsletter. Fill the highlighted blanks and approve before it gets sent or posted.</div>
+  <div class="flag">DRAFT for Jay. This is a member and community newsletter. Review and approve before it gets sent or posted.</div>
+
+  <div class="meta">
+    <b>Subject line:</b> Summer's here, and you all showed up for it<br>
+    <b>Preview text:</b> Brew Crew laughs, two ultra finishers, a BBQ to save the date for, and a heartfelt note about Coach Eve.
+  </div>
 
   <div class="body">
-    <p class="intro">Hey Black Tusk,</p>
-    <p>June was a big one for this community. Here's a look back at the month, and a heads-up on a very Edmonton July ahead.</p>
+    <p class="intro">Hey team,</p>
+    <p>There's a stretch of summer in Edmonton where the days feel like they go on forever, and that's exactly the kind of month we just had. Long evenings, full classes, and a community that keeps showing up for each other. Here's what's been happening, and what's coming.</p>
 
     <h2>Last month at Black Tusk</h2>
     <p class="lead">A month built around the people.</p>
-    <p>If June had a theme, it was community. We opened the doors to friends, celebrated the people who keep showing up, and welcomed a fresh wave of new faces into class.</p>
-    <ul>
-      <li><b>Bring-a-Friend Day</b> packed the room with <em class="fill">[a great turnout / X guests]</em>, and it was a blast. Thank you to everyone who brought someone. A few of those guests are already back, which is the whole point.</li>
-      <li>We celebrated the <b>dads</b> in our community on Father's Day, the ones quietly modelling what showing up looks like.</li>
-      <li>Our <b>Legends (50+)</b> crew reminded everyone that it is never too late to get strong. If you watched them this month, you know.</li>
-      <li>A warm welcome to <em class="fill">[names / "our newest June members"]</em>, and a shout to <em class="fill">[member]</em> for <em class="fill">[milestone]</em>. The room felt it.</li>
-    </ul>
 
-    <h2>Coming up: the next few weeks</h2>
-    <p class="lead">A full Edmonton summer, the Black Tusk way: enjoy the city, keep your training alive.</p>
-    <h3><span class="datechip">Wed Jul 1</span>Canada Day</h3>
-    <p>Happy Canada Day from all of us. Get outside, see the people you love, and we'll see you on the floor when you're ready.</p>
-    <h3><span class="datechip">Sat Jul 18</span>Bring-a-Friend Day (round two)</h3>
-    <p>It was too good not to run again. One class, one friend, no pressure. Start thinking about who you'd bring.</p>
-    <h3><span class="datechip">Jul 16-26</span>K-Days and Taste of Edmonton</h3>
-    <p>The city is in full summer mode and so are we. Our take: you don't earn the fun by suffering, and you don't ruin your progress by enjoying the city. Train, then go ride the midway.</p>
-    <h3><span class="datechip">All month</span>Don't lose your summer</h3>
-    <p>Heading away on a trip? Two weeks off won't undo you, and guilt does more damage than the break. Tell us before you go and we'll send you a simple travel workout. Something always beats nothing.</p>
-    <h3><span class="datechip">All month</span>StrongTEENS and Legends</h3>
-    <p>School's out, so StrongTEENS (ages 11-16) is a great place for kids to put down the screens and build real confidence. And our Legends (50+) crew keeps proving it's never too late to start.</p>
+    <h3><span class="datechip">Jun 14</span>Brew Crew did it again</h3>
+    <p>The Brew Crew got together on June 14, and as usual the gym crew proved we're just as good at hanging out as we are at training. Good people, good drinks, plenty of laughs. If you've ever wondered whether this place is more than a gym, nights like that are your answer. Watch for the next one.</p>
 
-    <div class="cta">
-      <p style="margin:0 0 6px"><b>Want to get involved?</b></p>
-      <p style="margin:0">Bring a friend on Jul 18, book a free No Sweat Intro at <a href="https://www.blacktuskathletics.com">blacktuskathletics.com</a>, or reply and tell us where you're headed this summer so we can keep you training while you're away.</p>
+    <h3>Two of ours took on the North Sun Ultra</h3>
+    <p>Huge congratulations to Sarah Clark and Tamara Smith, who both crossed the finish line at the North Sun Ultra 30k. Thirty kilometers is no small thing. It's the kind of effort that gets built one ordinary training day at a time, the days nobody sees. We see it, and we're proud of you both. If their story lights a little fire in you, come tell us about it. Every first big goal starts with a conversation.</p>
+
+    <h3>School's out</h3>
+    <p>To all the kids: congratulations on making it through another year. And to the parents who packed the lunches, survived the early mornings, and held it all together, you made it too. You've earned a summer. Let's make movement part of it, for you and the kids both.</p>
+
+    <h2>A heartfelt note about Coach Eve</h2>
+    <div class="note">
+      <h3>Thank you, Eve.</h3>
+      <p>This one comes with a lot of love. Coach Eve is stepping back from her coaching role with us. Anyone who's trained with Eve knows what she brought to the floor: the care, the attention, the way she made people feel like they belonged here from day one. That kind of coaching leaves a mark, and hers is all over this community.</p>
+      <p>We're going to miss seeing her in her usual spot, and we're grateful for every rep, every cue, and every encouraging word she gave this gym. Please join us in thanking Eve for everything. Stay tuned for a proper send-off.</p>
     </div>
 
-    <p class="signoff">See you on the floor,<br>Coach [Name] and the Black Tusk team</p>
+    <h2>Coming up: the next few weeks</h2>
+    <p class="lead">A few things to put on your radar this month.</p>
+
+    <h3><span class="datechip">Now live</span>Summer schedule is in effect</h3>
+    <p>A quick heads-up that our summer schedule change is now live. Take a minute to check the updated class times before you head in, so nobody shows up to a locked door or an empty room. If anything's unclear, message us and we'll sort you out.</p>
+
+    <h3><span class="datechip">On the floor</span>New equipment has landed</h3>
+    <p>We've added some new equipment to the floor. Come get your hands on it, and if you're not sure how a piece works or how to fit it into your training, grab a coach. That's what we're here for.</p>
+
+    <h3><span class="datechip">August</span>Save the date: Black Tusk BBQ</h3>
+    <p>Mark your calendar. We're throwing a Black Tusk BBQ in August, and you're invited. Food, family, and the people who make this community what it is. Details to come, but for now, just save the date so you don't miss it.</p>
+
+    <div class="cta">
+      <p style="margin:0 0 6px"><b>Make the most of your summer</b></p>
+      <p style="margin:0">Summer is a great time to recommit, to bring a friend, or to finally book that No Sweat Intro you've been thinking about. Book free at <a href="https://www.blacktuskathletics.com">blacktuskathletics.com</a>, or just reply and tell us what you're working toward. We read every one.</p>
+    </div>
+
+    <p class="signoff">See you in class,<br>Coach Jay and the Black Tusk team</p>
   </div>
 
   <div class="foot">
