@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Tusk, September 2026 Content Calendar</title>
+<style>
+:root{
+  color-scheme: light;
+  --black:#231F20; --deep:#0A0806; --gold:#A4822D;
+  --white:#FFFFFF; --lgrey:#F2F2F2; --mgrey:#6E6A66; --dgrey:#3A3633;
+  --line:#E2DED7; --acq:#FBF1DA; --acq-b:#A4822D;
+  --ret:#EDEBE7; --ret-b:#6E6A66; --reeng:#F6F4F1; --reeng-b:#B8B2A8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--white); color:var(--black);
+  font-family:Arial,Helvetica,sans-serif; font-size:14px; line-height:1.45;
+}
+.wrap{max-width:1080px; margin:0 auto; padding:22px 20px 60px}
+header.top{border-bottom:3px solid var(--gold); padding-bottom:16px; margin-bottom:18px}
+.kicker{font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); font-weight:700}
+h1{font-size:24px; margin:6px 0 2px; color:var(--black)}
+.sub{color:var(--mgrey); font-size:13px}
+.banner{margin:14px 0 0; background:var(--deep); color:#fff; border-radius:8px; padding:14px 16px; border-left:4px solid var(--gold)}
+.banner .bk{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); font-weight:700}
+.banner .bt{font-size:16px; font-weight:700; margin:3px 0 4px}
+.banner .bd{font-size:12.5px; color:#d9d6d1}
+
+.progwrap{margin:18px 0 8px}
+.progrow{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+.progbar{flex:1; min-width:220px; height:14px; background:var(--lgrey); border-radius:8px; overflow:hidden}
+.progfill{height:100%; width:0; background:var(--gold); border-radius:8px; transition:width .3s ease}
+.progtxt{font-weight:700; font-size:13px; white-space:nowrap}
+.tierstats{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+.chip{font-size:11px; padding:4px 10px; border-radius:20px; font-weight:700; border:1px solid var(--line)}
+.chip .n{color:var(--mgrey); font-weight:400}
+.controls{margin:14px 0 4px; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+.btn{font:inherit; font-size:12px; padding:6px 12px; border:1px solid var(--line); background:var(--white);
+  border-radius:6px; cursor:pointer; color:var(--dgrey)}
+.btn:hover{border-color:var(--gold); color:var(--black)}
+.legend{font-size:11px; color:var(--mgrey); margin-left:auto; display:flex; gap:14px; flex-wrap:wrap}
+.dot{display:inline-block; width:10px; height:10px; border-radius:3px; vertical-align:middle; margin-right:4px}
+
+.week{margin-top:26px}
+.week h2{font-size:15px; margin:0 0 4px; padding-bottom:6px; border-bottom:1px solid var(--line)}
+.week h2 .wpct{float:right; font-size:12px; color:var(--mgrey); font-weight:400}
+
+.row{display:grid; grid-template-columns:64px 92px 1fr 26px; gap:12px; align-items:start;
+  padding:11px 12px; border:1px solid var(--line); border-left-width:4px; border-radius:7px; margin-top:8px; background:var(--white)}
+.row.acq{border-left-color:var(--acq-b)}
+.row.ret{border-left-color:var(--ret-b)}
+.row.reeng{border-left-color:var(--reeng-b)}
+.row.done{background:var(--lgrey); opacity:.66}
+.row.done .hook{text-decoration:line-through}
+
+.cbcol{display:flex; flex-direction:column; gap:8px; align-items:center}
+.cbwrap{display:flex; flex-direction:column; align-items:center; gap:2px}
+.cblbl{font-size:8.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--mgrey); font-weight:700}
+.cb{appearance:none; width:22px; height:22px; border:2px solid var(--mgrey); border-radius:6px;
+  cursor:pointer; margin:0; position:relative; flex:none; background:var(--white)}
+.cb.cap:checked{background:var(--dgrey); border-color:var(--dgrey)}
+.cb.pub:checked{background:var(--gold); border-color:var(--gold)}
+.cb:checked::after{content:""; position:absolute; left:6px; top:2px; width:6px; height:11px;
+  border:solid var(--white); border-width:0 3px 3px 0; transform:rotate(45deg)}
+
+.meta{font-size:11px; color:var(--mgrey)}
+.date{font-weight:700; color:var(--black); font-size:12px}
+.tags{margin-top:3px; display:flex; gap:5px; flex-wrap:wrap}
+.tag{font-size:10px; padding:2px 7px; border-radius:12px; font-weight:700; letter-spacing:.02em}
+.tag.acq{background:var(--acq); color:#7a5f1d}
+.tag.ret{background:var(--ret); color:var(--dgrey)}
+.tag.reeng{background:var(--reeng); color:var(--mgrey)}
+.tag.type{background:var(--white); border:1px solid var(--line); color:var(--mgrey); font-weight:400}
+.tag.ch{background:var(--deep); color:var(--white); font-weight:400}
+.tag.flag{background:#fff4d6; color:#8a6d18; border:1px solid var(--gold)}
+.tag.bc{background:var(--gold); color:#fff; font-weight:700}
+
+.hook{font-weight:700; color:var(--black); font-size:14px}
+.msg{margin-top:3px; color:var(--dgrey); font-size:12.5px}
+.foot{margin-top:6px; font-size:11px; color:var(--mgrey)}
+.foot b{color:var(--dgrey); font-weight:700}
+.exp{appearance:none; border:1px solid var(--line); background:var(--white); width:24px; height:24px;
+  border-radius:6px; cursor:pointer; font-size:16px; line-height:1; color:var(--mgrey); font-weight:700}
+.exp:hover{border-color:var(--gold); color:var(--black)}
+.detail{display:none; grid-column:1 / -1; margin-top:10px; padding:12px 14px; background:var(--lgrey);
+  border-radius:6px; border-left:3px solid var(--gold); font-size:12.5px; color:var(--dgrey); white-space:pre-wrap; line-height:1.5}
+.row.open .detail{display:block}
+.detail b{color:var(--black)}
+
+.saved{font-size:11px; color:var(--gold); margin-left:6px; opacity:0; transition:opacity .2s}
+.saved.show{opacity:1}
+
+section.lib{margin-top:40px; border-top:3px solid var(--gold); padding-top:18px}
+section.lib h2{font-size:19px; margin:0 0 4px}
+section.lib h3{font-size:14px; margin:22px 0 4px; color:var(--black); border-bottom:1px solid var(--line); padding-bottom:5px}
+section.lib h4{font-size:13px; margin:16px 0 4px; color:var(--gold)}
+.card{border:1px solid var(--line); border-radius:8px; padding:14px 16px; margin-top:10px; background:var(--white)}
+.card p{margin:0 0 10px}
+.subj{font-weight:700; color:var(--black)}
+.flagbox{background:#fff4d6; border:1px solid var(--gold); border-radius:6px; padding:8px 12px; font-size:12px;
+  color:#8a6d18; margin:8px 0}
+.linklist{columns:2; font-size:12.5px; margin-top:6px}
+.linklist a{color:var(--gold)}
+@media(max-width:620px){ .linklist{columns:1} .row{grid-template-columns:54px 1fr 26px} .meta{display:none} }
+footer.note{margin-top:30px; padding-top:14px; border-top:1px solid var(--line); font-size:11px; color:var(--mgrey)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="kicker">Black Tusk Athletics · Edmonton</div>
+    <h1>September 2026 Content Calendar</h1>
+    <div class="sub">Four weeks · all three growth tiers · Instagram, Facebook &amp; email. Tick <b>Captured</b> when footage/copy is ready and <b>Published</b> when it's live. Tap <b>+</b> on any row for the full copy. Progress saves on this device.</div>
+    <div class="banner">
+      <div class="bk">Campaign of the month</div>
+      <div class="bt">Base Camp, Strength Training for Runners (launch)</div>
+      <div class="bd">The off-season pivot. We acquire runners with a free guide (DM "BASE CAMP"), convert them with a No Sweat Intro, and start the program in earnest as the weather turns. Gold tag marks every Base Camp post. Guide PDF and all copy in the Source Library below.</div>
+    </div>
+  </header>
+
+  <div class="progwrap">
+    <div class="progrow">
+      <div class="progbar"><div class="progfill" id="fill"></div></div>
+      <div class="progtxt" id="ptxt">0 published<span class="saved" id="saved">saved ✓</span></div>
+    </div>
+    <div class="tierstats" id="tierstats"></div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="expandAll">Expand all</button>
+    <button class="btn" id="collapseAll">Collapse all</button>
+    <button class="btn" id="reset">Reset checks</button>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--acq-b)"></span>Acquisition</span>
+      <span><span class="dot" style="background:var(--ret-b)"></span>Retention</span>
+      <span><span class="dot" style="background:var(--reeng-b)"></span>Re-engagement + Community</span>
+    </div>
+  </div>
+
+  <div id="cal"></div>
+
+  <!-- ============ SOURCE LIBRARY ============ -->
+  <section class="lib">
+    <h2>Source Library</h2>
+    <div class="sub">Everything written in the Black Tusk voice, ready to use. Edit bracketed bits (member names, coach names) before anything goes live. Items with an offer or member email need Jay's sign-off first.</div>
+
+    <h3>The lead magnet</h3>
+    <div class="card">
+      <p class="subj">Free PDF guide: "Base Camp, Strength Training for Runners"</p>
+      <p>7-page branded guide. The off-season case, why runners need strength, the core movements, sample 1x and 2x weeks, the Sept-to-spring timeline, and a closing CTA to book a No Sweat Intro. This is what people receive when they DM "BASE CAMP." File: <i>Black Tusk Programs / BTA_BaseCamp_RunnerStrength_Guide.pdf</i>.</p>
+      <p style="font-size:11.5px;color:var(--mgrey)"><b>DM workflow:</b> reply to every "BASE CAMP" DM with a warm one-liner + the PDF, then offer to book a free No Sweat Intro. Save a canned reply so it's fast.</p>
+    </div>
+
+    <h3>Instagram / Facebook captions</h3>
+
+    <div class="card">
+      <h4>Base Camp, Launch Reel (Acquisition)</h4>
+      <p>Mid-September in Edmonton. The mornings are cooler, the daylight's pulling back, and the long runs that felt so good in August are starting to feel like a fight.</p>
+      <p>Most runners treat that as the end of something. Season over, time to hibernate.</p>
+      <p>We see it differently. That's not the end of your running. That's the start of the work that makes you faster.</p>
+      <p>You can't build real strength and peak mileage at the same time. The off-season is the one window all year to build the engine instead of just running it into the ground.</p>
+      <p>We put everything we'd coach you through into a free guide: why runners need strength, the movements that matter most, and exactly what a week looks like.</p>
+      <p>Want it? DM us "BASE CAMP" and we'll send the free guide your way. Already know you're in? Book a free No Sweat Intro at the link in bio and we'll map out your off-season together.</p>
+      <p style="font-size:11.5px;color:var(--mgrey)">#yeg #edmonton #yegrunning #blacktuskathletics #strengthforrunners #runningcommunity #functionalfitness</p>
+    </div>
+
+    <div class="card">
+      <h4>Base Camp, Myth-buster Carousel (Acquisition) · 4 slides</h4>
+      <p><b>Slide 1:</b> "Lifting will make me slow and bulky." Most runners believe it. It's backwards.</p>
+      <p><b>Slide 2:</b> A stronger leg puts more force into the ground every stride. That's better running economy: same pace, lower cost. You hold your speed longer before you fade.</p>
+      <p><b>Slide 3:</b> Strength doesn't add bulk to a runner. It adds durability and power, the two things that actually win you a faster spring.</p>
+      <p><b>Slide 4:</b> The catch: you have to build it in the off-season, when you're not chasing peak mileage. That window is now.</p>
+      <p><b>Caption:</b> The strongest runners you know didn't get fast by running more. They got fast by getting strong in the months nobody sees. We wrote a free guide on exactly how to do it over the winter. DM us "BASE CAMP" for the guide, or book a free No Sweat Intro through the link in bio if you'd rather just talk it through with a coach.</p>
+    </div>
+
+    <div class="card">
+      <h4>Base Camp, Direct Offer (Acquisition)</h4>
+      <p>Runners: your best spring is built this fall. 🏔️</p>
+      <p>Base Camp is our off-season strength program, built to make you faster and harder to injure by the time race season comes back around.</p>
+      <p>One day a week to hold your ground. Two days a week to build something new. Coached, scaled to you, and programmed around your running.</p>
+      <p>We made a free guide to walk you through the whole thing. DM us "BASE CAMP" to grab it, no strings. Ready to start for real? Book a free No Sweat Intro at the link in bio.</p>
+      <p style="font-size:11.5px;color:var(--mgrey)">📍 8760 149 St, Edmonton · #yeg #edmonton #yegfitness #strengthforrunners #blacktuskathletics #runningcommunity</p>
+    </div>
+
+    <div class="card">
+      <h4>Base Camp, "1x or 2x" tracks (Acquisition)</h4>
+      <p>How much off-season do you have in you?</p>
+      <p>MAINTAIN, one day a week. Hold the strength you've got and stay injury-resilient through the winter. For the runner short on time who refuses to lose ground.</p>
+      <p>BUILD, two days a week. Add real strength and power. This is the track that pays dividends in spring: more speed, fewer injuries, a stronger finish.</p>
+      <p>Not sure which is you? That's what the free guide is for, and it's what we'll figure out together at a No Sweat Intro. DM us "BASE CAMP" for the guide, or book your free intro at the link in bio.</p>
+    </div>
+
+    <div class="card">
+      <h4>Base Camp, Stories sequence (Acquisition)</h4>
+      <p><b>Story 1:</b> Text over a training clip: "Runners, this one's for you 👇"</p>
+      <p><b>Story 2:</b> "You can't build strength and peak mileage at the same time. The off-season is your window."</p>
+      <p><b>Story 3:</b> "We made a free guide on how to use it. The movements, the weekly plan, all of it."</p>
+      <p><b>Story 4:</b> "DM us BASE CAMP for the free guide, or tap to book a free No Sweat Intro." (DM sticker + link sticker.)</p>
+    </div>
+
+    <h3>Weekly emails (4)</h3>
+
+    <div class="card">
+      <p class="subj">Email 1 · Wed Sep 2 · Acquisition / Community · Subject: "Runners: your best spring starts this fall"</p>
+      <p>There's a moment every Edmonton runner knows.</p>
+      <p>It's the first cool morning of September. The light's pulling back, and the long runs that felt so good in August suddenly take a little more out of you. Most runners read that as the season winding down. Time to coast, lose a little, and hope to claw it back in spring.</p>
+      <p>We read it differently. That moment isn't the end of your running. It's the start of the work that makes you faster.</p>
+      <p>Here's the part nobody tells you: you can't build real strength and peak mileage at the same time. In-season, every bit of energy goes to the kilometres. The off-season is the one window in the year where you get to build the engine instead of just running it into the ground.</p>
+      <p>That's why we built Base Camp, our off-season strength program for runners. One day a week to hold what you've got. Two days a week to build real strength and power, the kind that shows up in spring as a faster pace and fewer injuries.</p>
+      <p>We put the whole approach into a free guide: why runners need strength, the handful of movements that matter most, and exactly what a week looks like whether you've got one day to give or two.</p>
+      <p><b>Want it? Reply to this email or DM us "BASE CAMP" on Instagram, and we'll send it over.</b> And if you already know you're in, book a free No Sweat Intro and we'll map out your off-season together.</p>
+      <p>Spring PRs aren't won in the spring. They're built in the dark months, one session at a time. Let's build yours.</p>
+      <p>See you in the gym,<br>The team at Black Tusk Athletics</p>
+    </div>
+
+    <div class="card">
+      <p class="subj">Email 2 · Wed Sep 9 · Retention · Subject: "Willpower is overrated. Structure wins."</p>
+      <p>Most people who fall off their training don't quit because they're weak. They quit because they were relying on willpower, and willpower is the worst training partner you could pick. Strong on day one, bored by day four, gone the first week things get hard.</p>
+      <p>What actually carries people is structure. A class time already on the calendar. A coach who's expecting you. A plan you made when you were motivated that keeps running when you're not. Structure is just borrowed discipline, a system you build once so you don't have to win the argument with yourself every morning.</p>
+      <p>That's the whole idea behind an off-season plan. You don't leave your winter training to how you feel on a Tuesday in January. You anchor it now, while the motivation's high, so the steady version of you carries the rest. One booked day beats five imagined ones.</p>
+      <p>If you've tried to "be more disciplined" before and it didn't take, stop blaming yourself and change the design. Come have a no-pressure conversation with us, a No Sweat Intro, and we'll build you a fall rhythm that doesn't depend on how you feel that day.</p>
+      <p>See you in class,<br>Coach [Name]</p>
+    </div>
+
+    <div class="card">
+      <p class="subj">Email 3 · Wed Sep 16 · Re-engagement · Subject: "The trails are turning. Come build with us."</p>
+      <div class="flagbox">⚠ If this includes any free-week or trial offer, do not send until Jay approves the offer and the copy.</div>
+      <p>We'll keep this short. We've missed you.</p>
+      <p>If you're a runner, you know this stretch of the year. The races are done, the mornings are dark, and the routine that carried you through summer is quietly coming apart. That happens to everyone, and there's no guilt here.</p>
+      <p>But here's the good news: this is the best chance all year to build something that pays off. The off-season is when runners get faster, not by running more, but by getting stronger while the weather keeps them indoors anyway. We built a whole program around exactly that, and your spot in this community never went anywhere.</p>
+      <p>Reply to this email and we'll find you a time to come in, no pressure, and map out a winter that sets up your best spring yet.</p>
+      <p>Hope to see you soon,<br>Coach [Name]</p>
+    </div>
+
+    <div class="card">
+      <p class="subj">Email 4 · Wed Sep 23 · Retention · Subject: "What we saw in class this month"</p>
+      <p>September was a good month to be part of this gym. We watched runners who've never touched a barbell pick one up for the first time and surprise themselves. We watched people come in from a summer away and walk back in like they'd never left. We watched the room go quiet and then loud for someone finishing their first heavy set, because that's who we are.</p>
+      <p>And we watched something we love about this time of year: runners deciding the off-season is for building, not coasting. Quietly putting in the work now that everyone else will wish they'd done come April.</p>
+      <p>None of that shows up on a race result. But it's the real measure of the place: people doing hard things next to people who want to see them win.</p>
+      <p>Thanks for being one of them. See you on the floor.</p>
+      <p>Coach [Name]</p>
+    </div>
+
+    <h3>Webpage section (live reference)</h3>
+    <div class="card">
+      <p class="subj">New site section: Base Camp, Strength Training for Runners</p>
+      <p>Hero, who it's for, the off-season case, how it works (1x Maintain / 2x Build), the off-season path, and a No Sweat Intro CTA. Full copy in <i>Black Tusk Programs / BaseCamp_Campaign_Copy.md</i>. Link the "link in bio" and every "book a No Sweat Intro" CTA to this page.</p>
+      <div class="flagbox">⚠ Webpage publishing needs Jay's approval before it goes live on blacktuskathletics.com.</div>
+    </div>
+
+    <h3>Production checklist</h3>
+    <div class="card">
+      <p>☐ Save a canned DM reply that sends the Base Camp PDF + a No Sweat Intro link.</p>
+      <p>☐ Batch-film: Sep 1 launch Reel, Sep 8 "why runners get hurt" Reel, Sep 10 PT Reel, Sep 17 "1x or 2x" Reel, Sep 24 "you don't have to be fast" Reel.</p>
+      <p>☐ Design the Base Camp myth-buster carousel (4 slides) and the "off-season path" carousel (timeline from the guide).</p>
+      <p>☐ Member consent secured for the Sep 15 runner spotlight and any tagged shoutouts/PR board.</p>
+      <p>☐ Approve the webpage section and any win-back offer (Sep 16 email) before they go out.</p>
+      <p>☐ Tee up October: this is the "build" month. Plan the deeper program content and a mid-program check-in.</p>
+    </div>
+
+    <h3>Edmonton seasonal hooks used this month</h3>
+    <div class="card">
+      <p>• Labour Day long weekend (Sep 5 to 7): last-long-weekend community touch, then the back-to-routine pivot.</p>
+      <p>• Cooler mornings &amp; shorter days: the natural "outdoor running gets harder" hook that launches Base Camp.</p>
+      <p>• Terry Fox Run (Sun Sep 13): a runners' community moment, city pride, and an easy bridge to "runners belong here."</p>
+      <p>• Fall equinox (Tue Sep 22): "first day of fall, your off-season window is officially open."</p>
+      <p>• River valley fall colours: beautiful b-roll for the off-season running story.</p>
+    </div>
+
+    <h3>Links</h3>
+    <h4>Blog library (repurpose these)</h4>
+    <div class="linklist">
+      <a href="https://www.blacktuskathletics.com/blog/we-make-decisions-based-on-what-we-feel-in-the-moment-black-tusk-athletics">We Make Decisions Based On What We Feel In The Moment</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/what-can-proper-breathing-do-for-you-black-tusk-athletics">What Can Proper Breathing Do For You?</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/leading-with-kindness-black-tusk-athletics">Leading With Kindness</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/whats-your-why-black-tusk-athletics">What's Your Why? (Julia's story)</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/why-crossfit-black-tusk-athletics">Why CrossFit?</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/what-is-personal-training-and-is-it-right-for-you-black-tusk-athletics">What Is Personal Training and Is It Right For You?</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/what-to-expect-when-returning-to-black-tusk-athletics-black-tusk-athletics">What To Expect When Returning</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/whats-our-take-on-nutrition-black-tusk-athletics">What's Our Take On Nutrition</a>
+    </div>
+    <h4>Programs &amp; booking</h4>
+    <div class="linklist">
+      <a href="https://www.blacktuskathletics.com/programs/personal-training">Personal Training</a><br>
+      <a href="https://www.blacktuskathletics.com/programs/group-classes">Group Classes</a><br>
+      <a href="https://www.blacktuskathletics.com/programs/legends-50">Legends (50+)</a><br>
+      <a href="https://www.blacktuskathletics.com/programs/teens-strength-and-conditioning">StrongTEENS (11-16)</a><br>
+      <a href="https://api.grow.pushpress.com/widget/booking/XeAYLaDsj8GP6RB8om7P">Book a No Sweat Intro</a><br>
+      <a href="https://instagram.com/blacktuskathletics">Instagram</a><br>
+      <a href="https://www.facebook.com/blacktuskathletics">Facebook</a>
+    </div>
+  </section>
+
+  <footer class="note">
+    Source: BTA September 2026 Content Calendar &amp; Growth Engine. Campaign of the month: Base Camp, Strength Training for Runners. Items involving an offer, a webpage publish, or a member email need Jay's sign-off before publishing. Check state is stored locally in this browser.
+  </footer>
+</div>
+
+<script>
+const DATA = [
+ {week:"Week 1, September 1-6 · “Base Camp launch & the Labour Day pivot”", items:[
+  {d:"Tue Sep 1",ch:"IG + FB",tier:"acq",bc:true,type:"Reel",hook:"“The season's not over. The work that makes you faster is just starting.”",msg:"Launch Base Camp. Flip the end-of-season feeling into the start of the off-season. CTA: DM “BASE CAMP” for the free guide.",src:"NEW: Base Camp guide + Launch Reel",prod:"Film 20-30s: coach to-camera + cool-morning running b-roll",full:"CAPTION: Mid-September in Edmonton. The mornings are cooler, the daylight's pulling back, and the long runs that felt so good in August are starting to feel like a fight. Most runners treat that as the end of something. We see it differently, that's the start of the work that makes you faster. You can't build real strength and peak mileage at the same time. The off-season is your one window to build the engine. We put it all in a free guide. DM us \"BASE CAMP\" and it's yours, or book a free No Sweat Intro in the bio. 📍 Edmonton #yegrunning #blacktuskathletics #strengthforrunners #yeg"},
+  {d:"Wed Sep 2",ch:"Email",tier:"acq",bc:true,type:"Email",hook:"Subject: “Runners: your best spring starts this fall”",msg:"Announce Base Camp to the list. Reply or DM for the free guide; book a No Sweat Intro. (Email 1)",src:"NEW: Base Camp email",prod:"Copy-only",full:"Full copy in Source Library → Email 1. The off-season is the one window to build strength; here's the free guide and the program. Reply or DM \"BASE CAMP\" for the guide, or book a No Sweat Intro."},
+  {d:"Thu Sep 3",ch:"IG + FB",tier:"acq",bc:true,type:"Carousel",hook:"“Lifting makes runners slow.” It's backwards.",msg:"Myth-buster that addresses the #1 objection runners have to strength work. CTA: DM for guide.",src:"NEW: Base Camp myth-buster carousel",prod:"Design 4 slides (copy in Source Library)",full:"CAPTION: The strongest runners you know didn't get fast by running more. They got fast by getting strong in the months nobody sees. Swipe for why lifting makes you faster, not slower. Free guide on how to do it over the winter, DM us \"BASE CAMP\" or book a No Sweat Intro in the bio.\n\nSLIDES: see “Myth-buster Carousel” in Source Library."},
+  {d:"Fri Sep 4",ch:"Instagram",tier:"ret",type:"Story",hook:"Poll: “Do you strength train in the off-season?”",msg:"Engage current members/runners; segment who to nudge toward Base Camp.",src:"Original",prod:"Story poll sticker",full:"STORY: \"Runners, be honest, do you lift in the off-season?\" Poll: \"Always\" / \"I know I should.\" DM the \"should\" crowd warmly with the Base Camp guide."},
+  {d:"Sat Sep 5",ch:"IG + FB",tier:"reeng",type:"Reel",hook:"“Long weekend, Edmonton. Enjoy it.”",msg:"Labour Day community touch, city pride, no ask.",src:"Repurpose “Leading With Kindness”",prod:"Warm community b-roll",full:"REEL: warm city-and-community montage for the Labour Day long weekend. Gratitude, belonging, no pitch. \"One more long weekend of summer, Edmonton. Soak it up. We'll be here when you're ready to build.\""},
+  {d:"Sun Sep 6",ch:"Facebook",tier:"reeng",type:"Community post",hook:"“Summer scattered everyone. Fall's the reset.”",msg:"Warm win-back before the routine returns; runner nod.",src:"Original",prod:"Copy + candid photo",full:"POST: No guilt. Summer pulls everyone in ten directions and the routine falls apart, runners included. Fall is the easiest time all year to rebuild something steady. The door's open. Drop in this week, or reply here and we'll help you pick a day to anchor."},
+ ]},
+ {week:"Week 2, September 7-13 · “Why strength, Personal Training & Terry Fox”", items:[
+  {d:"Mon Sep 7",ch:"Instagram",tier:"reeng",type:"Story",hook:"“Labour Day. One last easy one, then we build.”",msg:"Light holiday touch; tee up the back-to-routine week.",src:"Original",prod:"Story template",full:"STORY: \"Happy Labour Day, Edmonton. Rest up. The off-season starts this week, and we've got something built just for runners.\" Tease the guide; link sticker."},
+  {d:"Tue Sep 8",ch:"IG + FB",tier:"acq",bc:true,type:"Reel",hook:"“Why runners break down every spring (and how to stop it).”",msg:"Lead with the injury fear, the strongest runner motivator. CTA: DM for guide.",src:"NEW blog/Base Camp guide (reason 1)",prod:"Film coach to-camera + a single-leg strength clip",full:"CAPTION: Runner's knee. Shin splints. That Achilles that flares up every April. Most running injuries aren't bad luck, they're overuse meeting weakness. Stronger hips, calves and tendons absorb the pounding that would otherwise wear you down. Strength is the cheapest injury insurance you'll ever buy, and the off-season is when you build it. Free guide: DM us \"BASE CAMP.\" Or book a No Sweat Intro in the bio. #yegrunning #strengthforrunners #blacktuskathletics"},
+  {d:"Wed Sep 9",ch:"Email",tier:"ret",type:"Email",hook:"Subject: “Willpower is overrated. Structure wins.”",msg:"Retention + PT angle: anchor the off-season plan now. (Email 2)",src:"Repurpose “Willpower Is Overrated”",prod:"Copy-only",full:"Full copy in Source Library → Email 2. Structure beats willpower; anchor your winter training now. Soft nod to PT and a No Sweat Intro."},
+  {d:"Thu Sep 10",ch:"Instagram",tier:"acq",bc:true,type:"Reel",hook:"“1:1 strength, built around your running.”",msg:"Personal Training (top revenue driver) framed for runners. CTA: book a No Sweat Intro.",src:"Base Camp + PT",prod:"Film a real 1:1 session with a runner",full:"CAPTION: The fastest way to build an off-season that actually fits your running? Personal Training. One hour, built entirely around you, your knee, your goal, your race calendar. We load it right, watch your form, and keep you honest when motivation runs thin. If you want the off-season done properly, this is it. Book a free No Sweat Intro in the bio and we'll tell you honestly whether PT, the program, or a mix is your move. #personaltraining #yegfitness #strengthforrunners #blacktuskathletics"},
+  {d:"Fri Sep 11",ch:"Instagram",tier:"ret",type:"Feed / Reel",hook:"Technique tip: “The one lift every runner should own”",msg:"Coaching value for members and runners; builds trust and saves.",src:"Base Camp guide (movements)",prod:"Film a clean Romanian deadlift demo",full:"FORMAT: short coaching demo of the Romanian deadlift. Why it matters for runners (your glutes and hamstrings are your engine room, this is where push-off power comes from), 2-3 quick form cues, one common mistake. End: \"This is one of the first things we teach in Base Camp. Want the rest? DM us BASE CAMP.\""},
+  {d:"Sun Sep 13",ch:"IG + FB",tier:"reeng",type:"Reel",hook:"“Terry Fox Run today, Edmonton. 🏃”",msg:"Runners' community moment + city pride; bridges to “runners belong here.”",src:"Original",prod:"Community b-roll; respectful tone",full:"REEL/POST: Honour the Terry Fox Run and Edmonton's running community. Heartfelt, not promotional. \"To everyone out there today: this city runs for a reason bigger than a finish time. We're proud to be part of a running community like this one.\" Light Base Camp nod only if it feels right; lead with community."},
+ ]},
+ {week:"Week 3, September 14-20 · “The plan, a runner's story & booking”", items:[
+  {d:"Mon Sep 14",ch:"IG + FB",tier:"acq",bc:true,type:"Carousel",hook:"“How the off-season actually works” (Sept to spring)",msg:"The Base Camp timeline made visual; save-worthy + converts. CTA: DM for guide / book NSI.",src:"NEW: Base Camp guide (timeline)",prod:"Design carousel from the guide's 4 phases",full:"CAPTION: Spring PRs aren't won in the spring. They're built right now, in a path most runners never follow (swipe). Foundation, strength, power, then you hand it off to your spring running sharp. That's Base Camp. Free guide: DM us \"BASE CAMP,\" or book a No Sweat Intro in the bio.\n\nSLIDES: Foundation (Sept-Oct) → Strength (Nov-Dec) → Power (Jan-Feb) → Transition (March). Pull copy from the guide."},
+  {d:"Tue Sep 15",ch:"IG + FB",tier:"ret",type:"Feed",hook:"Runner spotlight: “Why [Member] started lifting”",msg:"Real runner who strength trains; make members feel seen, show the outcome.",src:"Repurpose “What's Your Why” (Julia format)",prod:"Photo + pulled quote; get consent",full:"CAPTION: Meet [Member]. [She]'s a runner first, [half-marathons / trails / 10Ks], and for years [she] thought the gym was for other people. Then [a nagging injury / a plateau] changed [her] mind. [She] started strength training in the off-season and what happened to [her] running surprised [her]: [faster, healthier, finally past the plateau]. Your why might not look like [Member]'s. That doesn't make it any less important. 🖤 #memberspotlight #strengthforrunners #blacktuskathletics #yegrunning\n\n⚠ Get member consent before posting."},
+  {d:"Wed Sep 16",ch:"Email",tier:"reeng",type:"Email",hook:"Subject: “The trails are turning. Come build with us.”",msg:"Win back lapsed runners specifically; off-season is the reason to return. (Email 3)",src:"Original",prod:"Copy-only; any offer needs approval",full:"⚠ If it includes an offer, needs Jay's approval before sending. Full copy in Source Library → Email 3. Warm, runner-specific win-back: the off-season is the best time to rebuild, come in and we'll map your winter."},
+  {d:"Thu Sep 17",ch:"Instagram",tier:"acq",bc:true,type:"Reel",hook:"“1x or 2x? Which off-season runner are you?”",msg:"Present the two tracks; lower the commitment barrier. CTA: DM for guide / book NSI.",src:"NEW: Base Camp “1x or 2x” caption",prod:"Film a quick split-screen: one session vs two",full:"CAPTION: How much off-season do you have in you? MAINTAIN, one day a week, holds what you've built and keeps you injury-resilient. BUILD, two days a week, adds the strength and power that pays dividends in spring. There's no wrong answer, just the one that fits your life. Not sure? That's what the free guide and a No Sweat Intro are for. DM us \"BASE CAMP\" or book in the bio. #strengthforrunners #yegrunning #blacktuskathletics"},
+  {d:"Fri Sep 18",ch:"Instagram",tier:"ret",type:"Story",hook:"Technique tip: calves & feet for runners",msg:"Quick coaching value; keep members engaged and saving.",src:"Base Camp guide (movements)",prod:"Story demo + text",full:"STORY: 2-3 frames. \"Your calves and Achilles take a huge load every stride. Load them on purpose in the off-season and they stop breaking down come spring.\" Show a heavy calf raise. End frame: \"More in the Base Camp guide, DM us BASE CAMP.\""},
+  {d:"Sat Sep 19",ch:"IG + FB",tier:"reeng",type:"Feed",hook:"“Our runners showed up this week.”",msg:"Community celebration; make the room proud, draw in lurking runners.",src:"Original",prod:"Photo group/candid; consent",full:"POST: celebrate the runners who started their off-season strength this week. \"Some of these names just lifted for the first time. Every one of them showed up on a day they could've stayed on the couch. That's the whole game.\" 🖤 ⚠ Get consent for photos/tags."},
+ ]},
+ {week:"Week 4, September 21-30 · “First day of fall, your window opens”", items:[
+  {d:"Mon Sep 21",ch:"IG + FB",tier:"acq",bc:true,type:"Reel",hook:"“Tomorrow's the first day of fall. Your off-season window is open.”",msg:"Equinox hook = urgency to start now. CTA: DM for guide / book NSI.",src:"NEW: Base Camp",prod:"Film fall b-roll (river valley colours)",full:"CAPTION: Fall starts tomorrow. For a runner, that's not a sad thing, it's the starting gun for the work that makes next spring your best one. The window to build strength is open now, and it doesn't stay open forever. Grab the free guide (DM \"BASE CAMP\") or book a No Sweat Intro in the bio and let's map your winter. 📍 Edmonton #yegrunning #strengthforrunners #blacktuskathletics"},
+  {d:"Tue Sep 22",ch:"Instagram",tier:"acq",bc:true,type:"Story",hook:"“First day of fall. Off-season is officially on.”",msg:"Equinox Story with a direct book/DM action.",src:"Original",prod:"Story template + link sticker",full:"STORY: \"🍂 First day of fall. Runners, your off-season just started. Book a free No Sweat Intro 👇 or DM BASE CAMP for the guide.\" Link sticker to booking."},
+  {d:"Wed Sep 23",ch:"Email",tier:"ret",type:"Email",hook:"Subject: “What we saw in class this month”",msg:"Warm month-in-review + Base Camp momentum; no hard pitch. (Email 4)",src:"Original",prod:"Copy-only",full:"Full copy in Source Library → Email 4. Belonging-first recap; celebrate the runners who chose to build, not coast. Light nod to Base Camp."},
+  {d:"Thu Sep 24",ch:"IG + FB",tier:"acq",bc:true,type:"Reel",hook:"“You don't have to be fast to start.”",msg:"Bust the “I'm not a real runner” objection; widen the top of funnel. CTA: book NSI.",src:"Base Camp / “What to Expect”",prod:"Film welcoming gym/coach b-roll",full:"CAPTION: You don't have to run a certain pace, hit a certain distance, or call yourself a \"real runner\" to belong here. If you run, even a little, even slow, the off-season strength work will make it better. We coach every level, and you won't do it alone, that's the whole point of training here. Book a free No Sweat Intro in the bio, come exactly as you are. #yegrunning #blacktuskathletics #strengthforrunners #community"},
+  {d:"Fri Sep 25",ch:"Instagram",tier:"reeng",type:"Story",hook:"“We miss our runners.”",msg:"Soft win-back touch for lapsed members who run.",src:"Original",prod:"Story template + DM/link sticker",full:"STORY: \"Used to train with us and drifted? The off-season is the perfect reason to come back. No pressure, no catch. Tap to book a No Sweat Intro, or just say hi.\" DM sticker."},
+  {d:"Sun Sep 27",ch:"Facebook",tier:"reeng",type:"Community post",hook:"“September, in your words.”",msg:"Close the month on members' voices; belonging.",src:"Original",prod:"Graphic with 3-4 member quotes; consent",full:"POST: graphic with 3-4 real member quotes about what training meant this month, including a runner or two who started their off-season. Close September on the members' voices, not the brand's. ⚠ Get consent."},
+  {d:"Mon Sep 28",ch:"Instagram",tier:"ret",type:"Story",hook:"“October is build month. Lock your track.”",msg:"Tee up October; nudge guide recipients to commit.",src:"Original",prod:"Story template + link sticker",full:"STORY: \"September was for deciding. October is for building. If you grabbed the Base Camp guide, this is your sign to lock it in, book a No Sweat Intro 👇 and pick your track.\" Link sticker."},
+ ]},
+];
+
+const TIER_LABEL = {acq:"Acquisition", ret:"Retention", reeng:"Re-engagement + Community"};
+const KEY = "bta-september-2026-calendar-v1";
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ state = {}; }
+
+function idFor(wi, ii){ return "w"+wi+"i"+ii; }
+function save(){
+  localStorage.setItem(KEY, JSON.stringify(state));
+  const s = document.getElementById("saved");
+  if(s){ s.classList.add("show"); setTimeout(()=>s.classList.remove("show"), 900); }
+}
+function st(id){ return state[id] || {}; }
+
+function render(){
+  const cal = document.getElementById("cal");
+  cal.innerHTML = "";
+  DATA.forEach((wk, wi) => {
+    const done = wk.items.filter((_,ii)=>st(idFor(wi,ii)).pub).length;
+    const sec = document.createElement("div");
+    sec.className = "week";
+    sec.innerHTML = '<h2>'+wk.week+'<span class="wpct">'+done+'/'+wk.items.length+' published</span></h2>';
+    wk.items.forEach((it, ii) => {
+      const id = idFor(wi, ii);
+      const s = st(id);
+      const row = document.createElement("div");
+      row.className = "row "+it.tier+(s.pub?" done":"");
+      row.dataset.id = id;
+      const flag = /needs approval|OFFER|approval gate|consent/i.test(it.prod+it.full) ?
+        '<span class="tag flag">approval / consent</span>' : '';
+      const bc = it.bc ? '<span class="tag bc">Base Camp</span>' : '';
+      row.innerHTML =
+        '<div class="cbcol">'+
+          '<div class="cbwrap"><input type="checkbox" class="cb cap" '+(s.cap?"checked":"")+' data-id="'+id+'" data-k="cap" aria-label="Captured"><span class="cblbl">Cap</span></div>'+
+          '<div class="cbwrap"><input type="checkbox" class="cb pub" '+(s.pub?"checked":"")+' data-id="'+id+'" data-k="pub" aria-label="Published"><span class="cblbl">Pub</span></div>'+
+        '</div>'+
+        '<div class="meta"><div class="date">'+it.d+'</div>'+
+          '<div class="tags"><span class="tag ch">'+it.ch+'</span></div></div>'+
+        '<div><div class="tags" style="margin:0 0 4px">'+
+            '<span class="tag '+it.tier+'">'+TIER_LABEL[it.tier]+'</span>'+
+            '<span class="tag type">'+it.type+'</span>'+bc+flag+'</div>'+
+          '<div class="hook">'+it.hook+'</div>'+
+          '<div class="msg">'+it.msg+'</div>'+
+          '<div class="foot"><b>Source:</b> '+it.src+'  ·  <b>Production:</b> '+it.prod+'</div>'+
+        '</div>'+
+        '<button class="exp" data-id="'+id+'" aria-label="Toggle full copy">+</button>'+
+        '<div class="detail">'+it.full.replace(/\n/g,"<br>")+'</div>';
+      sec.appendChild(row);
+    });
+    cal.appendChild(sec);
+  });
+  cal.querySelectorAll(".cb").forEach(cb => {
+    cb.addEventListener("change", e => {
+      const id = e.target.dataset.id, k = e.target.dataset.k;
+      const cur = state[id] || {};
+      if(e.target.checked) cur[k] = true; else delete cur[k];
+      if(!cur.cap && !cur.pub) delete state[id]; else state[id] = cur;
+      save(); render(); updateProgress();
+    });
+  });
+  cal.querySelectorAll(".exp").forEach(b => {
+    b.addEventListener("click", e => {
+      const row = e.target.closest(".row");
+      row.classList.toggle("open");
+      e.target.textContent = row.classList.contains("open") ? "-" : "+";
+    });
+  });
+  updateProgress();
+}
+
+function updateProgress(){
+  let total=0, done=0;
+  const tierCount = {acq:[0,0], ret:[0,0], reeng:[0,0]};
+  DATA.forEach((wk, wi) => wk.items.forEach((it, ii) => {
+    total++; tierCount[it.tier][1]++;
+    if(st(idFor(wi,ii)).pub){ done++; tierCount[it.tier][0]++; }
+  }));
+  const pct = total ? Math.round(done/total*100) : 0;
+  document.getElementById("fill").style.width = pct+"%";
+  document.getElementById("ptxt").innerHTML = done+" of "+total+" published ("+pct+"%)<span class=\"saved\" id=\"saved\"></span>";
+  const ts = document.getElementById("tierstats");
+  ts.innerHTML = "";
+  Object.keys(tierCount).forEach(t => {
+    const c = tierCount[t];
+    const chip = document.createElement("span");
+    chip.className = "chip";
+    chip.style.borderLeft = "4px solid var(--"+(t==="acq"?"acq-b":t==="ret"?"ret-b":"reeng-b")+")";
+    chip.innerHTML = TIER_LABEL[t]+' <span class="n">'+c[0]+"/"+c[1]+"</span>";
+    ts.appendChild(chip);
+  });
+}
+
+document.getElementById("expandAll").addEventListener("click", () => {
+  document.querySelectorAll(".row").forEach(r=>{ r.classList.add("open"); const b=r.querySelector(".exp"); if(b)b.textContent="-"; });
+});
+document.getElementById("collapseAll").addEventListener("click", () => {
+  document.querySelectorAll(".row").forEach(r=>{ r.classList.remove("open"); const b=r.querySelector(".exp"); if(b)b.textContent="+"; });
+});
+document.getElementById("reset").addEventListener("click", () => {
+  if(confirm("Clear all Captured/Published check marks?")){ state = {}; save(); render(); }
+});
+
+render();
+</script>
+</body>
+</html>
