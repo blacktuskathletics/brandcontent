@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Tusk, November 2026 Content Calendar</title>
+<style>
+:root{
+  color-scheme: light;
+  --black:#231F20; --deep:#0A0806; --gold:#A4822D;
+  --white:#FFFFFF; --lgrey:#F2F2F2; --mgrey:#6E6A66; --dgrey:#3A3633;
+  --line:#E2DED7; --acq:#FBF1DA; --acq-b:#A4822D;
+  --ret:#EDEBE7; --ret-b:#6E6A66; --reeng:#F6F4F1; --reeng-b:#B8B2A8;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--white); color:var(--black);
+  font-family:Arial,Helvetica,sans-serif; font-size:14px; line-height:1.45;
+}
+.wrap{max-width:1080px; margin:0 auto; padding:22px 20px 60px}
+header.top{border-bottom:3px solid var(--gold); padding-bottom:16px; margin-bottom:18px}
+.kicker{font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); font-weight:700}
+h1{font-size:24px; margin:6px 0 2px; color:var(--black)}
+.sub{color:var(--mgrey); font-size:13px}
+.banner{margin:14px 0 0; background:var(--deep); color:#fff; border-radius:8px; padding:14px 16px; border-left:4px solid var(--gold)}
+.banner .bk{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); font-weight:700}
+.banner .bt{font-size:16px; font-weight:700; margin:3px 0 4px}
+.banner .bd{font-size:12.5px; color:#d9d6d1}
+
+.progwrap{margin:18px 0 8px}
+.progrow{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+.progbar{flex:1; min-width:220px; height:14px; background:var(--lgrey); border-radius:8px; overflow:hidden}
+.progfill{height:100%; width:0; background:var(--gold); border-radius:8px; transition:width .3s ease}
+.progtxt{font-weight:700; font-size:13px; white-space:nowrap}
+.tierstats{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+.chip{font-size:11px; padding:4px 10px; border-radius:20px; font-weight:700; border:1px solid var(--line)}
+.chip .n{color:var(--mgrey); font-weight:400}
+.controls{margin:14px 0 4px; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+.btn{font:inherit; font-size:12px; padding:6px 12px; border:1px solid var(--line); background:var(--white);
+  border-radius:6px; cursor:pointer; color:var(--dgrey)}
+.btn:hover{border-color:var(--gold); color:var(--black)}
+.legend{font-size:11px; color:var(--mgrey); margin-left:auto; display:flex; gap:14px; flex-wrap:wrap}
+.dot{display:inline-block; width:10px; height:10px; border-radius:3px; vertical-align:middle; margin-right:4px}
+
+.week{margin-top:26px}
+.week h2{font-size:15px; margin:0 0 4px; padding-bottom:6px; border-bottom:1px solid var(--line)}
+.week h2 .wpct{float:right; font-size:12px; color:var(--mgrey); font-weight:400}
+
+.row{display:grid; grid-template-columns:64px 92px 1fr 26px; gap:12px; align-items:start;
+  padding:11px 12px; border:1px solid var(--line); border-left-width:4px; border-radius:7px; margin-top:8px; background:var(--white)}
+.row.acq{border-left-color:var(--acq-b)}
+.row.ret{border-left-color:var(--ret-b)}
+.row.reeng{border-left-color:var(--reeng-b)}
+.row.done{background:var(--lgrey); opacity:.66}
+.row.done .hook{text-decoration:line-through}
+
+.cbcol{display:flex; flex-direction:column; gap:8px; align-items:center}
+.cbwrap{display:flex; flex-direction:column; align-items:center; gap:2px}
+.cblbl{font-size:8.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--mgrey); font-weight:700}
+.cb{appearance:none; width:22px; height:22px; border:2px solid var(--mgrey); border-radius:6px;
+  cursor:pointer; margin:0; position:relative; flex:none; background:var(--white)}
+.cb.cap:checked{background:var(--dgrey); border-color:var(--dgrey)}
+.cb.pub:checked{background:var(--gold); border-color:var(--gold)}
+.cb:checked::after{content:""; position:absolute; left:6px; top:2px; width:6px; height:11px;
+  border:solid var(--white); border-width:0 3px 3px 0; transform:rotate(45deg)}
+
+.meta{font-size:11px; color:var(--mgrey)}
+.date{font-weight:700; color:var(--black); font-size:12px}
+.tags{margin-top:3px; display:flex; gap:5px; flex-wrap:wrap}
+.tag{font-size:10px; padding:2px 7px; border-radius:12px; font-weight:700; letter-spacing:.02em}
+.tag.acq{background:var(--acq); color:#7a5f1d}
+.tag.ret{background:var(--ret); color:var(--dgrey)}
+.tag.reeng{background:var(--reeng); color:var(--mgrey)}
+.tag.type{background:var(--white); border:1px solid var(--line); color:var(--mgrey); font-weight:400}
+.tag.ch{background:var(--deep); color:var(--white); font-weight:400}
+.tag.flag{background:#fff4d6; color:#8a6d18; border:1px solid var(--gold)}
+.tag.bc{background:var(--gold); color:#fff; font-weight:700}
+
+.hook{font-weight:700; color:var(--black); font-size:14px}
+.msg{margin-top:3px; color:var(--dgrey); font-size:12.5px}
+.foot{margin-top:6px; font-size:11px; color:var(--mgrey)}
+.foot b{color:var(--dgrey); font-weight:700}
+.exp{appearance:none; border:1px solid var(--line); background:var(--white); width:24px; height:24px;
+  border-radius:6px; cursor:pointer; font-size:16px; line-height:1; color:var(--mgrey); font-weight:700}
+.exp:hover{border-color:var(--gold); color:var(--black)}
+.detail{display:none; grid-column:1 / -1; margin-top:10px; padding:12px 14px; background:var(--lgrey);
+  border-radius:6px; border-left:3px solid var(--gold); font-size:12.5px; color:var(--dgrey); white-space:pre-wrap; line-height:1.5}
+.row.open .detail{display:block}
+.detail b{color:var(--black)}
+
+.saved{font-size:11px; color:var(--gold); margin-left:6px; opacity:0; transition:opacity .2s}
+.saved.show{opacity:1}
+
+section.lib{margin-top:40px; border-top:3px solid var(--gold); padding-top:18px}
+section.lib h2{font-size:19px; margin:0 0 4px}
+section.lib h3{font-size:14px; margin:22px 0 4px; color:var(--black); border-bottom:1px solid var(--line); padding-bottom:5px}
+section.lib h4{font-size:13px; margin:16px 0 4px; color:var(--gold)}
+.card{border:1px solid var(--line); border-radius:8px; padding:14px 16px; margin-top:10px; background:var(--white)}
+.card p{margin:0 0 10px}
+.subj{font-weight:700; color:var(--black)}
+.flagbox{background:#fff4d6; border:1px solid var(--gold); border-radius:6px; padding:8px 12px; font-size:12px;
+  color:#8a6d18; margin:8px 0}
+.linklist{columns:2; font-size:12.5px; margin-top:6px}
+.linklist a{color:var(--gold)}
+@media(max-width:620px){ .linklist{columns:1} .row{grid-template-columns:54px 1fr 26px} .meta{display:none} }
+footer.note{margin-top:30px; padding-top:14px; border-top:1px solid var(--line); font-size:11px; color:var(--mgrey)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="kicker">Black Tusk Athletics &middot; Edmonton</div>
+    <h1>November 2026 Content Calendar</h1>
+    <div class="sub">Four weeks &middot; 26 posts &middot; all three growth tiers &middot; Instagram, Facebook &amp; email. Tick <b>Captured</b> when footage/copy is ready and <b>Published</b> when it's live. Tap <b>+</b> on any row for the full copy. Progress saves on this device.</div>
+    <div class="banner">
+      <div class="bk">Campaign of the month</div>
+      <div class="bt">Base Camp, strength phase</div>
+      <div class="bd">September launched it, October got the runners through the door, and November is where the loading gets serious and the changes start showing up in their legs. All four Base Camp posts this month are proof-shaped: real sessions, real cues, real people two months in. Gold tag marks every Base Camp post. All copy in the Source Library below.</div>
+    </div>
+  </header>
+
+  <div class="progwrap">
+    <div class="progrow">
+      <div class="progbar"><div class="progfill" id="fill"></div></div>
+      <div class="progtxt" id="ptxt">0 published<span class="saved" id="saved">saved ✓</span></div>
+    </div>
+    <div class="tierstats" id="tierstats"></div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="expandAll">Expand all</button>
+    <button class="btn" id="collapseAll">Collapse all</button>
+    <button class="btn" id="reset">Reset checks</button>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--acq-b)"></span>Acquisition</span>
+      <span><span class="dot" style="background:var(--ret-b)"></span>Retention</span>
+      <span><span class="dot" style="background:var(--reeng-b)"></span>Re-engagement + Community</span>
+    </div>
+  </div>
+
+  <div id="cal"></div>
+
+  <!-- ============ SOURCE LIBRARY ============ -->
+  <section class="lib">
+    <h2>Source Library</h2>
+    <div class="sub">Everything written in the Black Tusk voice, ready to use. Edit bracketed bits (member names, coach names, the burpee total, the charity) before anything goes live. Items with an offer or a member email need Jay's sign-off first.</div>
+
+    <h3>Carried over from October: fill these in first</h3>
+    <div class="card">
+      <div class="flagbox">&#9888; The burpee challenge total, the charity recipient and the handover date are not confirmed. The Nov 2 email and the Nov 7 post both depend on them and neither can go out until they are filled in.</div>
+      <p>The challenge ran Oct 1 to Oct 16 ($1 per burpee to a $10,000 cap, hashtag #BlackTuskBurpeesforYEG) and the giveaway landed on the gym's tenth anniversary, Oct 16. November opens by closing it out properly: a thank-you email with nothing to sell, and a handover post that makes the whole room proud.</p>
+    </div>
+
+    <h3>The lead magnet</h3>
+    <div class="card">
+      <p class="subj">Free PDF guide: "Base Camp, Strength Training for Runners"</p>
+      <p>Still the front door for every Base Camp post. Keep the canned DM reply live: the guide plus a No Sweat Intro booking link. In November the guide's job is to catch the runners who read it in September, never started, and assume they have missed it. Every DM reply should name the next intake date and a day.</p>
+    </div>
+
+    <h3>Designed carousels (files delivered with the calendar)</h3>
+    <div class="card">
+      <h4>Carousel 1 &middot; What nobody tells you about an Edmonton winter (Acquisition) &middot; 6 slides</h4>
+      <p>Cover: WHAT NOBODY TELLS YOU ABOUT AN EDMONTON WINTER. "Four things we have learned from ten winters on this floor."</p>
+      <p>One, the cold is not the problem. The doorway is. Inside it is sixteen degrees and nobody has ever regretted being here. The whole fight happens in your kitchen at 5:40.</p>
+      <p>Two, you need a day, not a plan. Winter does not reward ambition. It rewards one protected day you actually keep, every week, boring and unglamorous, until March.</p>
+      <p>Three, warm up longer than you want to. Your tissue is genuinely colder in November. Ten extra minutes is the cheapest injury insurance you will ever buy.</p>
+      <p>Four, the room is the reason. People who train alone in winter stop in January. People who get noticed when they are missing do not. That is not a sales line, it is just how people work.</p>
+      <p>Close: "Winter is won in the doorway." Book a free No Sweat Intro and we will help you pick the day. Link in bio.</p>
+    </div>
+    <div class="card">
+      <h4>Carousel 2 &middot; Why starting in November beats starting in January (Acquisition) &middot; 6 slides</h4>
+      <p>Cover: WHY STARTING IN NOVEMBER BEATS STARTING IN JANUARY. "Nobody wants to hear this in November. It is still true."</p>
+      <p>Step 01, January is crowded. Everybody starts at once and every class is full. The people who walked in during November are the ones actually getting coached.</p>
+      <p>Step 02, you get eight weeks of head start. By the time the resolution crowd arrives you are not a beginner any more. You know the movements, the coaches know your name, and the awkward part is behind you.</p>
+      <p>Step 03, a decision made in a hard month holds. Starting when it is dark and cold means you did not need perfect conditions to begin. That is the only kind of start that survives February.</p>
+      <p>Step 04, nothing about January is special. It is a date on a calendar. Your body has no idea what month it is. The only month that matters is the one where you actually walk in.</p>
+      <p>Close: "Start in the worst month." A free No Sweat Intro is twenty minutes, no workout and no pitch. Link in bio.</p>
+    </div>
+
+    <h3>Weekly emails (4)</h3>
+    <div class="card">
+      <p class="subj">Email 1 &middot; Mon Nov 2 &middot; Re-engagement + Community &middot; Subject: "Thank you, Edmonton. Here is what you did."</p>
+      <div class="flagbox">&#9888; Fill in the total, the charity and the handover date before this sends. It is the only email all month with nothing to sell, so it is worth getting exactly right.</div>
+      <p>In October we said we would give a dollar to [charity] for every burpee this city could do, up to ten thousand dollars. We did it because the gym turned ten and we could not think of a better way to mark it than asking you to earn something for somebody else.</p>
+      <p>You did [number] burpees. That is [$amount] going to [charity], handed over on [date].</p>
+      <p>We want to be honest about what that was like to watch. People we had never met posted videos. Members pulled their kids into it. [Add a favourite moment here: the person who did the most, the oldest participant, the family that filmed in their kitchen.] A few of you did burpees in a parking lot in the snow on the tenth, which is both ridiculous and completely in character for this city.</p>
+      <p>Ten years is a long time to run a gym in Edmonton. It works because of rooms like this one. Not the equipment, not the programming, the people who learn each other's names and then show up on the days nobody feels like it.</p>
+      <p>That is the whole email. No offer, nothing to click. Just thank you.</p>
+    </div>
+    <div class="card">
+      <p class="subj">Email 2 &middot; Tue Nov 10 &middot; Retention &middot; Subject: "Winter training is a skill, not a mood."</p>
+      <p>The clocks went back last week and the city got about four hours shorter. If training has started to feel harder since then, nothing is wrong with you. Something genuinely changed.</p>
+      <p>Almost nobody stops training in winter because they decided to. They stop because the plan quietly depended on feeling like it, and from roughly the first week of November onward, nobody feels like it. So the fix is not more willpower. It is making the plan depend on something else.</p>
+      <p>One, the fight happens in your kitchen, not at the gym. Once you are through the door it is sixteen degrees in here and you have never once regretted being here. So win the doorway: bag packed the night before, clothes out, no negotiation at 5:40 in the morning.</p>
+      <p>Two, pick one day and protect it like a dentist appointment. Not four. One. Tell us which one it is and we will notice when you are not in it.</p>
+      <p>Three, warm up longer than you want to. Your tissue is genuinely colder in November, and ten extra minutes is the cheapest injury insurance you will ever buy. Ask a coach on your way in and we will walk you through it.</p>
+      <p>Four, if your schedule is in pieces this month, Personal Training exists for exactly that. One hour, built around the week you actually have, not the one you wish you had.</p>
+      <p>Reply and tell us your day. That is all this email is asking for.</p>
+    </div>
+    <div class="card">
+      <p class="subj">Email 3 &middot; Wed Nov 18 &middot; Acquisition &middot; Subject: "Please do not wait for January."</p>
+      <div class="flagbox">&#9888; Approval gate: if this carries any offer, promo or pricing it needs Jay's explicit sign-off. The version below deliberately carries none.</div>
+      <p>We know how this goes. Somewhere in the last few weeks you have thought about getting back to training, and somewhere in the same thought you quietly moved it to January. Everyone does it.</p>
+      <p>January is crowded. Every class is full, every coach is stretched, and the attention each new person gets is a fraction of what it is right now. The people who get genuinely well coached are the ones who started in a month nobody else picked.</p>
+      <p>You would arrive in January with eight weeks behind you. Not a beginner. You would know the movements, the coaches would know your name, and the part that feels awkward would already be over. That is a completely different January.</p>
+      <p>And the honest one: a decision made in November did not need good conditions. It is dark, it is cold, and you walked in anyway. That kind of start survives February. A resolution made on a bright optimistic first of January often does not, and that is not a character flaw, it is just what we see.</p>
+      <p>Nothing about January is special. Your body has no idea what month it is. The only month that matters is the one where you actually come in.</p>
+      <p>A No Sweat Intro is free, takes twenty minutes, and there is no workout and no pitch. We will tell you honestly whether we are the right fit, including if we are not. If you are a runner, the next Base Camp intake is [date to confirm].</p>
+    </div>
+    <div class="card">
+      <p class="subj">Email 4 &middot; Wed Nov 25 &middot; Retention &middot; Subject: "The most efficient hour of your winter."</p>
+      <p>A thing we hear a lot in late November: "I do not have time right now." Almost always true, and almost always the reason people should be talking to us rather than waiting.</p>
+      <p>Personal Training is not the premium version of training here. It is the efficient one. One hour, built around your week, your body, your knee, your goal, and whatever you are genuinely able to give at this point in the year. Nothing is wasted figuring out what to do, because somebody already did that before you arrived.</p>
+      <p>It tends to be the right call when any of this is true. Your schedule changes week to week and classes never quite line up. Something hurts and you have been working around it for months. You have a specific goal, a race, a surgery to come back from, a sport your kid plays. Or you train already and suspect you are leaving a lot on the table, which you probably are.</p>
+      <p>It is also the most reliable way to keep training through a winter. One booked hour with a person expecting you is harder to skip than a class you could always catch tomorrow.</p>
+      <p>A No Sweat Intro is free and takes twenty minutes. We will tell you honestly if classes are the better value for what you want. Sometimes they are. Reply and we will find you a time.</p>
+    </div>
+
+    <h3>Original blog posts written this month</h3>
+    <div class="card">
+      <h4>Blog A &middot; "The Quiet Build" (mindset and retention)</h4>
+      <p>November is nobody's favourite month. There is no race to point at, no holiday worth planning around, nothing to post. The clocks go back in the first week and the city loses its evenings in a single night. We think it is the most important month of the year, and we are aware of how that sounds.</p>
+      <p>Every gym in this city is full in January and thinner in November, and it is more or less the same people. What separates them is not fitness or discipline or wanting it enough. It is that a decision made in good conditions and a decision made in bad ones are different objects. One of them has been tested.</p>
+      <p>Think about what it takes to come in on a Tuesday in late November. Dark when you leave, dark when you get back, nothing pulling you here, and nothing bad happens if you stay home. The only thing getting you through the door is that you decided earlier, when you were warm and clear-headed, that this is a thing you do. That is a quiet build. Nobody sees it, and it will not look like anything for months. Then in April a hill you used to dread stops registering, and people call that progress as though it arrived in April. It did not. It was built in November by somebody who was not enjoying themselves.</p>
+      <p>So make the decision somewhere else. Pick the real day you have, not the one you wish you had. Pack the bag the night before, because the fight is in your kitchen at twenty to six. Let it be boring. And train somewhere people notice, because a room full of strangers is a place you can leave quietly and a room full of people who know you is a place you come back to.</p>
+      <p><b>Repurpose into:</b> the Nov 1 feed post, the Nov 4 Base Camp Reel, Email 2, the Nov 8 Facebook post, and a Story sequence.</p>
+    </div>
+    <div class="card">
+      <h4>Blog B &middot; "Start In The Worst Month" (acquisition)</h4>
+      <p>Every year, from about the middle of November, people tell us they are going to start in January. They mean it, and a good number of them do turn up. But we would like to make the case, honestly and without a discount attached, that January is the worse month to begin.</p>
+      <p>January is crowded. Every coach is split across more new people than usual, and the attention any one person gets is a fraction of what it is in the third week of November. If you are brand new, that matters more than almost anything else. And if you start now you arrive in January with eight weeks behind you, which is a completely different January than the one you are imagining.</p>
+      <p>Then the real argument. A resolution made on the first of January is made in ideal conditions: clean year, holidays over, everyone doing it. None of those conditions last, and by the second week of February the decision has to stand on its own for the first time. For a lot of people it does not, and that is not a character flaw. The decision was simply never tested. A decision made in late November already has been.</p>
+      <p>We are not going to dress it up. November is not a nice month to start in. But nothing about January is special either. It is a date. The only month that matters is the one where you actually walk in.</p>
+      <p><b>Repurpose into:</b> Carousel 2, Email 3, the Nov 16 poll, the Nov 19 Fundamentals Reel, and the Nov 27 Black Friday post.</p>
+    </div>
+
+    <h3>Production checklist</h3>
+    <div class="card">
+      <p>&#9744; Fill in the burpee total, the charity recipient and the handover date before the Nov 2 email and the Nov 7 post.</p>
+      <p>&#9744; Confirm the Base Camp strength-phase details and the next intake date, then clear the brackets in the Nov 4 Reel and Email 3.</p>
+      <p>&#9744; Make the Black Friday call by Nov 20: the no-sale position (written) or an offer you approve.</p>
+      <p>&#9744; Confirm Remembrance Day hours before the Nov 11 post goes up.</p>
+      <p>&#9744; Batch-film: Nov 3 warm-up tip, Nov 4 Base Camp session, Nov 5 Hybrid Training, Nov 12 StrongTEENS, Nov 17 lift demo, Nov 19 Fundamentals, Nov 24 the 6am crew.</p>
+      <p>&#9744; Design is done: the Edmonton winter carousel and the November-beats-January carousel (PNGs delivered with the calendar).</p>
+      <p>&#9744; Member consent for the Nov 14 spotlight, the Base Camp footage, the 6am crew and the Nov 28 celebration post. Parent consent required for StrongTEENS.</p>
+      <p>&#9744; Answer every reply to the Nov 16 poll in DMs. That follow-up is the point of the post.</p>
+      <p>&#9744; Tee up December: holidays, the short strange weeks, and a plan for keeping one day through them.</p>
+    </div>
+
+    <h3>Edmonton seasonal hooks used this month</h3>
+    <div class="card">
+      <p>&bull; Daylight saving ends overnight on Sunday Nov 1: dark by five at the start of the month and by half past four at the end.</p>
+      <p>&bull; Movember (all month): men's health and the check-in nobody is good at. Honest and unbranded.</p>
+      <p>&bull; Remembrance Day (Wed Nov 11): short and respectful, no CTA. [Holiday hours to confirm.]</p>
+      <p>&bull; Grey Cup Sunday (Sun Nov 15): the 113th, in Calgary at McMahon Stadium. A light Alberta touch.</p>
+      <p>&bull; The first properly cold stretch: the practical hook behind the warm-up tip and the structure-over-willpower thread.</p>
+      <p>&bull; Black Friday (Fri Nov 27): used as a positioning moment rather than a discount. [Jay's call.]</p>
+      <p>&bull; Carried over from October: the burpee challenge total and the gym's tenth anniversary, closed out on Nov 2 and Nov 7.</p>
+    </div>
+
+    <h3>Links</h3>
+    <h4>Blog library (repurpose these)</h4>
+    <div class="linklist">
+      <a href="https://www.blacktuskathletics.com/blog/we-make-decisions-based-on-what-we-feel-in-the-moment-black-tusk-athletics">We Make Decisions Based On What We Feel In The Moment</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/what-can-proper-breathing-do-for-you-black-tusk-athletics">What Can Proper Breathing Do For You?</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/leading-with-kindness-black-tusk-athletics">Leading With Kindness</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/whats-your-why-black-tusk-athletics">What's Your Why? (Julia's story)</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/why-crossfit-black-tusk-athletics">Why CrossFit?</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/what-is-personal-training-and-is-it-right-for-you-black-tusk-athletics">What Is Personal Training and Is It Right For You?</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/what-to-expect-when-returning-to-black-tusk-athletics-black-tusk-athletics">What To Expect When Returning</a><br>
+      <a href="https://www.blacktuskathletics.com/blog/whats-our-take-on-nutrition-black-tusk-athletics">What's Our Take On Nutrition</a>
+    </div>
+    <h4>Programs &amp; booking</h4>
+    <div class="linklist">
+      <a href="https://www.blacktuskathletics.com/programs/personal-training">Personal Training</a><br>
+      <a href="https://www.blacktuskathletics.com/programs/hybrid-training">Hybrid Training</a><br>
+      <a href="https://www.blacktuskathletics.com/programs/fundamentals">Fundamentals</a><br>
+      <a href="https://www.blacktuskathletics.com/programs/group-classes">Group Classes</a><br>
+      <a href="https://www.blacktuskathletics.com/programs/legends-50">Legends (50+)</a><br>
+      <a href="https://www.blacktuskathletics.com/programs/teens-strength-and-conditioning">StrongTEENS (11-16)</a><br>
+      <a href="https://api.grow.pushpress.com/widget/booking/XeAYLaDsj8GP6RB8om7P">Book a No Sweat Intro</a><br>
+      <a href="https://instagram.com/blacktuskathletics">Instagram</a><br>
+      <a href="https://www.facebook.com/blacktuskathletics">Facebook</a>
+    </div>
+  </section>
+
+  <footer class="note">
+    Source: BTA November 2026 Content Calendar &amp; Growth Engine. Campaign of the month: Base Camp, strength phase. Items involving an offer or a member email need Jay's sign-off before publishing. Check state is stored locally in this browser.
+  </footer>
+</div>
+
+<script>
+const DATA = [
+ {week:"Week 1, November 1-7 · “The clocks go back”", items:[
+  {d:"Sun Nov 1",ch:"IG + FB",tier:"ret",type:"Feed",hook:"“The clocks went back. Your training did not.”",msg:"Daylight saving ends overnight and it is dark by five. Structure over willpower, from day one of the month.",src:"Repurpose “We Make Decisions Based On What We Feel”",prod:"Copy + dusk-outside-the-gym photo",full:"CAPTION: It is dark by five now, and it will be dark by half past four before this month is out. Here is the thing nobody says out loud: almost nobody stops training in winter because they decided to. They stop because the plan depended on feeling like it, and from about now until March, nobody feels like it. So stop asking the plan to run on feelings. Pick one day. Put it in your phone like a dentist appointment. Tell us which one it is so we notice when you are not in it. That is it, that is the entire system, and it beats motivation every year because motivation is weather and a calendar is not. 🖤 #yeg #yegfitness #blacktuskathletics"},
+  {d:"Mon Nov 2",ch:"Email",tier:"reeng",type:"Email",hook:"Subject: “Thank you, Edmonton. Here is what you did.”",msg:"The burpee challenge total and the anniversary, in members' honour. Zero pitch. (Email 1)",src:"NEW: community email",prod:"Copy-only; confirm total + recipient",full:"⚠ Fill in the burpee total, the charity and the handover date before this sends. Full copy in Source Library, Email 1. The only email all month with nothing to sell: what the city did, where the money went, and ten years of this room."},
+  {d:"Tue Nov 3",ch:"Instagram",tier:"ret",type:"Story",hook:"Technique tip: “How to warm up when it is minus fifteen out there”",msg:"Practical, seasonal, high save rate. The cheapest injury insurance of the winter.",src:"Repurpose “What Can Proper Breathing Do For You?”",prod:"Film a real warm-up, 3 frames",full:"STORY: 3 frames. Frame 1: \"Your tissue is genuinely colder in November. Treat it that way.\" Frame 2: the actual warm-up, 8 to 10 minutes, general to specific, breathing through it rather than rushing. Frame 3: \"Ten extra minutes is the cheapest injury insurance you will ever buy. Ask a coach on your way in and we will walk you through it.\""},
+  {d:"Wed Nov 4",ch:"IG + FB",tier:"acq",bc:true,type:"Reel",hook:"“Month two is where a runner starts to feel it.”",msg:"Proof the program is working, and an open door to the next intake. CTA: DM “BASE CAMP”.",src:"NEW blog “The Quiet Build”",prod:"Film real Base Camp session; consent",full:"CAPTION: Month two is where a runner starts to actually feel it. Not in the mirror, in the hills. The last kilometre holds together, the hip that always grumbled has gone quiet, and the side that was quietly weaker is catching up. None of that happened in week one, which is exactly why most people never get to it. If you grabbed the guide in September and never started, you have not missed it. The next intake is [date to confirm] and the first session is still about an hour, still four movements, and you can still run the next day. DM us \"BASE CAMP\". 📍 Edmonton #yegrunning #strengthforrunners #blacktuskathletics\n\n⚠ Get consent for anyone on camera."},
+  {d:"Thu Nov 5",ch:"Instagram",tier:"acq",type:"Reel",hook:"“Hybrid Training: for the person who already trains, just not well.”",msg:"Program explainer for self-coached lifters and runners. Underused and it converts.",src:"Program page: Hybrid Training",prod:"Film a hybrid session, coach to-camera",full:"CAPTION: This one is for the person who already trains. You have a gym membership, you go most weeks, and somewhere underneath it you suspect you are leaving a lot on the table. You probably are. Hybrid Training is the fix: your own programming, written for your body and your week, with coaching eyes on it and someone who notices when the loading has stalled. You do not need a beginner's program. You need somebody to stop you repeating the same eight weeks for a year. Book a free No Sweat Intro in the bio and we will tell you honestly if this is the right fit. #yegfitness #blacktuskathletics #yeg"},
+  {d:"Fri Nov 6",ch:"Instagram",tier:"reeng",type:"Story",hook:"“Movember. The check-in we are all bad at.”",msg:"Men's health month, honest and unbranded. Community is the product.",src:"Repurpose “Leading With Kindness”",prod:"Story template, 3 frames",full:"STORY: 3 frames. Frame 1: \"It is Movember, so here is the awkward thing said plainly.\" Frame 2: \"A lot of the men in this room are much better at training than they are at asking how someone is doing. Ourselves included.\" Frame 3: \"If somebody has not been in for a while, text them. If you are the one who has not been in for a while, you are allowed to just say so.\" 🖤"},
+  {d:"Sat Nov 7",ch:"IG + FB",tier:"reeng",type:"Feed",hook:"“[$Amount]. One burpee at a time.”",msg:"The cheque handover and the thank-you. Makes the whole room proud. No CTA.",src:"Original (burpee campaign)",prod:"Photo of the handover; confirm amount + recipient",full:"⚠ Do not post until the total, the recipient and the handover date are confirmed.\n\nCAPTION: [$Amount]. One burpee at a time, from a city that mostly had no reason to bother. In October we said we would give a dollar to [charity] for every burpee Edmonton could do, up to ten thousand, because this gym turned ten and we could not think of a better way to mark it than asking you to earn something for somebody else. [Number] burpees later, here it is. [Add the best moment: who did the most, the oldest participant, the family that filmed in their kitchen.] Thank you. Genuinely. 🖤 #BlackTuskBurpeesforYEG #yeg"},
+ ]},
+ {week:"Week 2, November 8-14 · “Remembrance, and the first real cold”", items:[
+  {d:"Sun Nov 8",ch:"Facebook",tier:"reeng",type:"Community post",hook:"“November is nobody's favourite month. That is rather the point.”",msg:"Belonging post for the stretch of year that thins every gym out.",src:"NEW blog “The Quiet Build”",prod:"Copy + candid evening-class photo",full:"POST: November is nobody's favourite month. No race to point at, nothing to post, and the clocks just took the evenings away. Every gym in this city is full in January and thinner right now, and it is largely the same people. The difference is that a decision made in good conditions and a decision made in bad ones are not the same object. Only one of them has been tested. Nothing about this month will feel like progress. The people who look strong in May are, without exception, the ones who were in here in November not enjoying it. 🖤"},
+  {d:"Mon Nov 9",ch:"IG + FB",tier:"acq",type:"Carousel",hook:"“What nobody tells you about an Edmonton winter”",msg:"Save-worthy, local, and it answers the real objection before anyone books.",src:"NEW: Carousel 1 (designed)",prod:"Use supplied PNGs; 6 slides",full:"CAPTION: Ten winters on this floor and here is what we have learned. The cold is not the problem, the doorway is. You need a day, not a plan. Warm up longer than you want to. And the room is the reason people make it to March, not discipline. Swipe for the full four. Then, if you want help picking the day, a No Sweat Intro is free and takes twenty minutes. Link in bio. ❄️ #yeg #yegfitness #blacktuskathletics #edmonton\n\nSLIDES: see Carousel 1 in the Source Library."},
+  {d:"Tue Nov 10",ch:"Email",tier:"ret",type:"Email",hook:"Subject: “Winter training is a skill, not a mood.”",msg:"The practical email: the doorway, the warm-up, the kit, the day. (Email 2)",src:"NEW blog “The Quiet Build”",prod:"Copy-only",full:"Full copy in Source Library, Email 2. Four practical things, none of them impressive: win the doorway, pick one day, warm up longer, and use PT if the schedule is in pieces. The ask is a reply naming a day, not a click."},
+  {d:"Wed Nov 11",ch:"IG + FB",tier:"reeng",type:"Feed",hook:"“Eleven o'clock.”",msg:"Remembrance Day. Respectful, short, no CTA and no promotion of any kind.",src:"Original",prod:"Simple graphic; confirm holiday hours first",full:"⚠ Confirm holiday hours before posting. No CTA, no hashtags beyond the basics, nothing promotional.\n\nCAPTION: Eleven o'clock. We will stop, and so will a lot of this city. Thank you to the members, families and neighbours who served, and to the ones who are serving now. [Confirm holiday hours.] 🤍"},
+  {d:"Thu Nov 12",ch:"Instagram",tier:"acq",type:"Reel",hook:"“StrongTEENS: what a thirteen-year-old learns in here that is not about lifting.”",msg:"Program spotlight aimed at parents. Strong local word-of-mouth driver.",src:"Program page: StrongTEENS (11-16)",prod:"Film a class; parent consent required",full:"CAPTION: Parents ask us what their kid actually gets out of StrongTEENS, and the honest answer has very little to do with lifting. They learn that being bad at something new is survivable. They learn to stand up straight because they are strong, not because an adult keeps telling them to. They learn that effort is a thing you can choose, separate from talent. The strength is real and it is coached carefully for a growing body, but the part parents tell us about six months later is the way their kid carries themselves. StrongTEENS is 11 to 16. Book a free intro in the bio and bring them for a look. #strongteens #yeg #blacktuskathletics\n\n⚠ Parent consent required for any footage of minors."},
+  {d:"Sat Nov 14",ch:"IG + FB",tier:"ret",type:"Feed",hook:"Member spotlight: “Why [Member] trains through the winter”",msg:"Real member, real reason, the format that consistently performs best for us.",src:"Repurpose “What's Your Why” (Julia format)",prod:"Photo + pulled quote; get consent",full:"CAPTION: Meet [Member]. [She] started [when], and the first winter is the one that sorts people, so this is the stretch that counts. [She] comes in on [day], in the dark, most weeks, and has done since [month]. \"[Pull a real quote here, the plainer the better.]\" That is the whole thing. No transformation, no number. Somebody who picked a day and kept it, through the month the rest of the city decides to start in January instead. Your why does not have to look like [Member]'s. It just has to be yours. 🖤 #memberspotlight #blacktuskathletics #yeg #community\n\n⚠ Get member consent before posting."},
+ ]},
+ {week:"Week 3, November 15-21 · “Grey Cup, and the honest pitch”", items:[
+  {d:"Sun Nov 15",ch:"Instagram",tier:"reeng",type:"Story",hook:"“Grey Cup Sunday. The wings are fine.”",msg:"Alberta hook, light touch, permission not guilt. The 113th is in Calgary.",src:"Original",prod:"Story template",full:"STORY: \"Grey Cup Sunday, and it is in Calgary this year. Eat the wings. Shout at the television. Training is a thing you do most days, not every day.\" Keep it light, no CTA."},
+  {d:"Mon Nov 16",ch:"Instagram",tier:"ret",type:"Story",hook:"Poll: “What actually stops you in winter: the cold, the dark, or the drive?”",msg:"Listen first, then answer every reply in DMs. The follow-up is the whole post.",src:"NEW blog “Start In The Worst Month”",prod:"Poll sticker; reply to every vote",full:"STORY: poll sticker with three options: the cold / the dark / the drive. Then, and this is the actual post, reply to every single vote in DMs with something useful. Cold: here is the warm-up. Dark: here is the one-day plan. Drive: here is the class time nobody uses. ⚠ Block out twenty minutes to answer them."},
+  {d:"Tue Nov 17",ch:"IG + FB",tier:"acq",bc:true,type:"Reel",hook:"“The lift that fixes the thing that hurts every April.”",msg:"Technical credibility for runners, delivered in sixty seconds. CTA: DM “BASE CAMP”.",src:"Base Camp guide (movements)",prod:"Film a clean demo + coach explanation",full:"CAPTION: Every spring the same thing happens to the same runners. Mileage goes up, something on one side starts complaining, and the whole season gets managed around it. Here is the lift that quietly prevents it, and why. [Demo the single-leg work with the two cues that matter.] Running is a one-legged sport. If you only ever train on two legs, the weaker side stays weaker and it shows up in April, every year, like clockwork. Six to eight weeks of this in the off-season and that conversation stops happening. Full programming in the Base Camp guide. DM us \"BASE CAMP\". #strengthforrunners #yegrunning #blacktuskathletics"},
+  {d:"Wed Nov 18",ch:"Email",tier:"acq",bc:true,type:"Email",hook:"Subject: “Please do not wait for January.”",msg:"The honest anti-resolution pitch, plus the next Base Camp intake. (Email 3)",src:"NEW blog “Start In The Worst Month”",prod:"Copy-only; ANY offer needs approval",full:"⚠ Needs Jay's approval before sending, and especially if any offer, promo or pricing is added. Full copy in Source Library, Email 3. The case: January is crowded, you would arrive with eight weeks behind you, and a decision made in a hard month has already been tested."},
+  {d:"Thu Nov 19",ch:"Instagram",tier:"acq",type:"Reel",hook:"“Fundamentals: the on-ramp nobody is embarrassed to be on.”",msg:"Removes the “I am not fit enough to start” objection, the biggest one we hear.",src:"Program page: Fundamentals",prod:"Film a Fundamentals session; consent",full:"CAPTION: The single most common thing people say to us before they join: \"I need to get in shape first.\" We understand it, and it is also completely backwards. Fundamentals exists for exactly that person. Small, coached, slow on purpose, and built around learning the movements properly before anybody loads them. Nobody in that room is judging anybody, because everybody in it started in the same place last month. You do not get fit and then come. You come, and the fit part happens here. Book a free No Sweat Intro in the bio. #yeg #yegfitness #blacktuskathletics"},
+  {d:"Sat Nov 21",ch:"IG + FB",tier:"acq",type:"Carousel",hook:"“Why starting in November beats starting in January”",msg:"Save-worthy and genuinely contrarian. Books intros now rather than in six weeks.",src:"NEW: Carousel 2 (designed)",prod:"Use supplied PNGs; 6 slides",full:"CAPTION: Nobody wants to hear this in November. It is still true. January is crowded, every class is full, every coach is stretched, and the person who started eight weeks earlier is the one actually getting coached. More than that: a decision made when it is dark and cold did not need perfect conditions, and that is the only kind of start that survives February. Swipe. Then book a free No Sweat Intro in the bio: twenty minutes, no workout, no pitch, and we will tell you honestly if we are not the right fit. #yeg #yegfitness #blacktuskathletics\n\nSLIDES: see Carousel 2 in the Source Library."},
+ ]},
+ {week:"Week 4, November 22-30 · “Black Friday, and the run into December”", items:[
+  {d:"Sun Nov 22",ch:"Facebook",tier:"reeng",type:"Community post",hook:"“Three weeks of dark, and this room is still full.”",msg:"Pure belonging. Names the thing everyone is quietly proud of.",src:"Original",prod:"Copy + candid photo of a full floor",full:"POST: Three weeks since the clocks went back. It is dark when you get here and dark when you leave, and this room has stayed full anyway. We notice that, and we do not think it is normal. Most places thin out right about now. If you have been in this month, on the days you did not feel like it, that is the whole thing. Not a transformation, not a number. Just a person who kept a promise to themselves in the least rewarding month of the year. 🖤"},
+  {d:"Tue Nov 24",ch:"Instagram",tier:"ret",type:"Feed / Reel",hook:"“A morning with the 6am crew.”",msg:"The members' version of the day-in-the-life. Humanises the room, not the staff.",src:"Original",prod:"Film a 6am class start to finish; consent",full:"FORMAT: film one 6am class from the car park to the coffee afterwards. Dark going in, dark coming out, the same faces, the small talk, somebody's terrible joke. Caption: \"This is the 6am crew in late November. Nothing about it is glamorous and nobody is posting about it. But these are the same people who are strong in May, every year, without exception. If you want in, there is room, and somebody will learn your name in week one.\" 🖤 ⚠ Get consent for faces."},
+  {d:"Wed Nov 25",ch:"Email",tier:"ret",type:"Email",hook:"Subject: “The most efficient hour of your winter.”",msg:"Personal Training, our primary revenue driver, framed as time saved not money spent. (Email 4)",src:"Repurpose “What Is Personal Training”",prod:"Copy-only",full:"Full copy in Source Library, Email 4. PT framed as the efficient option rather than the premium one, with the four situations where it is genuinely the right call, and an honest promise to say so if classes suit them better."},
+  {d:"Fri Nov 27",ch:"IG + FB",tier:"acq",type:"Feed",hook:"“We are not running a Black Friday sale. Here is why.”",msg:"Positioning post that converts better than a discount for a boutique gym. Needs Jay's call.",src:"Original",prod:"Copy + simple graphic; OFFER DECISION needs Jay",full:"⚠ Jay's call: this is written as the no-sale position. If you would rather run an offer, tell us and we will rewrite it. Either version needs approval before posting.\n\nCAPTION: We are not running a Black Friday sale, and we would rather tell you why than stay quiet about it. A discount gets people in the door for the wrong reason, and the wrong reason does not survive a cold Tuesday in February. We would rather you came in because you want to train, and then stayed because the coaching is good and somebody learns your name. That is not a better marketing strategy, it is just the only one we can stand behind. So no countdown and no code. The same free No Sweat Intro we offer every week of the year is in the bio: twenty minutes, no workout, no pitch. 🖤 #yeg #blacktuskathletics #yegfitness"},
+  {d:"Sat Nov 28",ch:"Instagram",tier:"reeng",type:"Feed",hook:"“November, in your words.”",msg:"Celebration post built on members' own quotes and milestones.",src:"Original",prod:"Graphic with 3-4 member quotes; consent",full:"POST: graphic with 3 or 4 real member quotes from the month, plus any milestones worth naming. Ask the question in Stories mid-week: \"What has November actually been like?\" Then close on their voices, not ours. ⚠ Get consent for quotes and names."},
+  {d:"Sun Nov 29",ch:"Instagram",tier:"ret",bc:true,type:"Story",hook:"Technique tip: “Check your hinge in ten seconds.”",msg:"Coaching value for members and Base Camp runners alike. High save rate.",src:"Base Camp guide (movements)",prod:"Film a demo, 3 frames",full:"STORY: 3 frames. Frame 1: \"Most people think they are hinging. Most people are squatting.\" Frame 2: the ten-second self-check, a dowel or a broom down the spine, three points of contact, push the hips back rather than bending the knees. Frame 3: \"If the bar leaves your back, it is a squat. Fix that one thing and your hamstrings finally get the work. More in the Base Camp guide, DM us BASE CAMP.\""},
+  {d:"Mon Nov 30",ch:"IG + FB",tier:"reeng",type:"Reel",hook:"“One month of winter down. Here is what December asks.”",msg:"Close on community, then tee up December: holidays, consistency, and the quiet months.",src:"Original",prod:"Gym b-roll montage; consent for faces",full:"CAPTION: One month of winter down. The clocks went back, the dark arrived early, and this room stayed full anyway. [Add whatever actually happened this month.] December is the harder one, honestly: the calendar fills up, the week gets strange, and consistency gets expensive. So here is the only plan worth having for it. Do not try to be perfect through the holidays. Keep one day. Come when the session is going to be mediocre, because a mediocre session attended beats a perfect one imagined, every single time. We will be here. 🖤 #blacktuskathletics #yeg #yegfitness #community\n\n⚠ Get consent for faces."},
+ ]},
+];
+
+const TIER_LABEL = {acq:"Acquisition", ret:"Retention", reeng:"Re-engagement + Community"};
+const KEY = "bta-november-2026-calendar-v2";
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e){ state = {}; }
+
+function idFor(wi, ii){ return "w"+wi+"i"+ii; }
+function save(){
+  localStorage.setItem(KEY, JSON.stringify(state));
+  const s = document.getElementById("saved");
+  if(s){ s.classList.add("show"); setTimeout(()=>s.classList.remove("show"), 900); }
+}
+function st(id){ return state[id] || {}; }
+
+function render(){
+  const cal = document.getElementById("cal");
+  cal.innerHTML = "";
+  DATA.forEach((wk, wi) => {
+    const done = wk.items.filter((_,ii)=>st(idFor(wi,ii)).pub).length;
+    const sec = document.createElement("div");
+    sec.className = "week";
+    sec.innerHTML = '<h2>'+wk.week+'<span class="wpct">'+done+'/'+wk.items.length+' published</span></h2>';
+    wk.items.forEach((it, ii) => {
+      const id = idFor(wi, ii);
+      const s = st(id);
+      const row = document.createElement("div");
+      row.className = "row "+it.tier+(s.pub?" done":"");
+      row.dataset.id = id;
+      const flag = /needs approval|OFFER|approval gate|consent/i.test(it.prod+it.full) ?
+        '<span class="tag flag">approval / consent</span>' : '';
+      const bc = it.bc ? '<span class="tag bc">Base Camp</span>' : '';
+      row.innerHTML =
+        '<div class="cbcol">'+
+          '<div class="cbwrap"><input type="checkbox" class="cb cap" '+(s.cap?"checked":"")+' data-id="'+id+'" data-k="cap" aria-label="Captured"><span class="cblbl">Cap</span></div>'+
+          '<div class="cbwrap"><input type="checkbox" class="cb pub" '+(s.pub?"checked":"")+' data-id="'+id+'" data-k="pub" aria-label="Published"><span class="cblbl">Pub</span></div>'+
+        '</div>'+
+        '<div class="meta"><div class="date">'+it.d+'</div>'+
+          '<div class="tags"><span class="tag ch">'+it.ch+'</span></div></div>'+
+        '<div><div class="tags" style="margin:0 0 4px">'+
+            '<span class="tag '+it.tier+'">'+TIER_LABEL[it.tier]+'</span>'+
+            '<span class="tag type">'+it.type+'</span>'+bc+flag+'</div>'+
+          '<div class="hook">'+it.hook+'</div>'+
+          '<div class="msg">'+it.msg+'</div>'+
+          '<div class="foot"><b>Source:</b> '+it.src+'  ·  <b>Production:</b> '+it.prod+'</div>'+
+        '</div>'+
+        '<button class="exp" data-id="'+id+'" aria-label="Toggle full copy">+</button>'+
+        '<div class="detail">'+it.full.replace(/\n/g,"<br>")+'</div>';
+      sec.appendChild(row);
+    });
+    cal.appendChild(sec);
+  });
+  cal.querySelectorAll(".cb").forEach(cb => {
+    cb.addEventListener("change", e => {
+      const id = e.target.dataset.id, k = e.target.dataset.k;
+      const cur = state[id] || {};
+      if(e.target.checked) cur[k] = true; else delete cur[k];
+      if(!cur.cap && !cur.pub) delete state[id]; else state[id] = cur;
+      save(); render(); updateProgress();
+    });
+  });
+  cal.querySelectorAll(".exp").forEach(b => {
+    b.addEventListener("click", e => {
+      const row = e.target.closest(".row");
+      row.classList.toggle("open");
+      e.target.textContent = row.classList.contains("open") ? "-" : "+";
+    });
+  });
+  updateProgress();
+}
+
+function updateProgress(){
+  let total=0, done=0;
+  const tierCount = {acq:[0,0], ret:[0,0], reeng:[0,0]};
+  DATA.forEach((wk, wi) => wk.items.forEach((it, ii) => {
+    total++; tierCount[it.tier][1]++;
+    if(st(idFor(wi,ii)).pub){ done++; tierCount[it.tier][0]++; }
+  }));
+  const pct = total ? Math.round(done/total*100) : 0;
+  document.getElementById("fill").style.width = pct+"%";
+  document.getElementById("ptxt").innerHTML = done+" of "+total+" published ("+pct+"%)<span class=\"saved\" id=\"saved\"></span>";
+  const ts = document.getElementById("tierstats");
+  ts.innerHTML = "";
+  Object.keys(tierCount).forEach(t => {
+    const c = tierCount[t];
+    const chip = document.createElement("span");
+    chip.className = "chip";
+    chip.style.borderLeft = "4px solid var(--"+(t==="acq"?"acq-b":t==="ret"?"ret-b":"reeng-b")+")";
+    chip.innerHTML = TIER_LABEL[t]+' <span class="n">'+c[0]+"/"+c[1]+"</span>";
+    ts.appendChild(chip);
+  });
+}
+
+document.getElementById("expandAll").addEventListener("click", () => {
+  document.querySelectorAll(".row").forEach(r=>{ r.classList.add("open"); const b=r.querySelector(".exp"); if(b)b.textContent="-"; });
+});
+document.getElementById("collapseAll").addEventListener("click", () => {
+  document.querySelectorAll(".row").forEach(r=>{ r.classList.remove("open"); const b=r.querySelector(".exp"); if(b)b.textContent="+"; });
+});
+document.getElementById("reset").addEventListener("click", () => {
+  if(confirm("Clear all Captured/Published check marks?")){ state = {}; save(); render(); }
+});
+
+render();
+</script>
+</body>
+</html>
